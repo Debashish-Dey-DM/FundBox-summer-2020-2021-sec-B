@@ -28,7 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 /////////////////ORG///////////////////////////////
 
-
+Route::post('/addevent','Org\OrganizationHomeController@create');
 
 
 

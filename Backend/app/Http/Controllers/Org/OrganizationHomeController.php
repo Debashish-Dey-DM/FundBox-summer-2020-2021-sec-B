@@ -27,68 +27,68 @@ class OrganizationHomeController extends Controller
                 ->with('title','Volunteer Events | Organization')
                 ->with('EventList',$VolEvents);
     }
- public function create(Request $req){
-    $validator = Validator::make($req->all(), [
-        'event_name' =>'required|min:3|max:30',
-        'event_amount' =>'required',
-        'event_details' =>'required',
-        'event_Category' =>'required',
-        'event_type' =>'required',
-        'event_image' =>'required',
-        'contact'=>'required|min:11|max:15'
+//  public function create(Request $req){
+//     $validator = Validator::make($req->all(), [
+//         'event_name' =>'required|min:3|max:30',
+//         'event_amount' =>'required',
+//         'event_details' =>'required',
+//         'event_Category' =>'required',
+//         'event_type' =>'required',
+//         'event_image' =>'required',
+//         'contact'=>'required|min:11|max:15'
         
-        ]);
-        if($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Required data missing.'
-            ]);
-        }
-        else{
-            // $eventName = $req->input('event_name');
-            $image = $req->file('event_image');
-            $image_name=$image->getClientOriginalName();
-            $image_ext=$image->getClientOriginalExtension();
-            $image_new_name =strtoupper(Str::random(6));
-            $image_full_name=$image_new_name.'.'.$image_ext;
-            $upload_path='images/event/';
-            $image_url=$upload_path.$image_full_name;
-            $success=$image->move($upload_path,$image_full_name);
-            $imageData='/images/event/'.$image_full_name;
+//         ]);
+//         if($validator->fails()) {
+//             return redirect()->back()->with([
+//                 'error' => true,
+//                 'message' => 'Required data missing.'
+//             ]);
+//         }
+//         else{
+//             // $eventName = $req->input('event_name');
+//             $image = $req->file('event_image');
+//             $image_name=$image->getClientOriginalName();
+//             $image_ext=$image->getClientOriginalExtension();
+//             $image_new_name =strtoupper(Str::random(6));
+//             $image_full_name=$image_new_name.'.'.$image_ext;
+//             $upload_path='images/event/';
+//             $image_url=$upload_path.$image_full_name;
+//             $success=$image->move($upload_path,$image_full_name);
+//             $imageData='/images/event/'.$image_full_name;
 
 
 
-            $data=array();
-            $data['event_name']=$req->event_name;
-            $data['targetDate']=$req->event_end_date;
-            $data['targetMoney']=$req->event_amount;
-            $data['details']=$req->event_details;
-            $data['eventCategory']=$req->event_Category;
-            $data['image']=$imageData;
-            $data['eventType']='1';
-            $data['contact'] =$req->contact;
-            $data['orgId'] = $req->session()->get('org_id');
+//             $data=array();
+//             $data['event_name']=$req->event_name;
+//             $data['targetDate']=$req->event_end_date;
+//             $data['targetMoney']=$req->event_amount;
+//             $data['details']=$req->event_details;
+//             $data['eventCategory']=$req->event_Category;
+//             $data['image']=$imageData;
+//             $data['eventType']='1';
+//             $data['contact'] =$req->contact;
+//             $data['orgId'] = $req->session()->get('org_id');
 
             
 
-            $insert_event = DB::table('events')->insert($data);
-            if($insert_event){
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'User Create Successfully'
-                ]);
-            }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
-                ]);
-            }
+//             $insert_event = DB::table('events')->insert($data);
+//             if($insert_event){
+//                 return redirect()->back()->with([
+//                     'error' => false,
+//                     'message' => 'User Create Successfully'
+//                 ]);
+//             }else{
+//                 return redirect()->back()->with([
+//                     'error' => true,
+//                     'message' => 'Something going wrong'
+//                 ]);
+//             }
             
 
-        }
+//         }
         
            
-}
+// }
 public function edit($id,$type){
     return view('Organization.EditEvent')
     ->with('type', $type)
@@ -388,5 +388,70 @@ public function RefundMoney(Request $req,$id){
     $refund->save();
     return redirect()->route('org.transaction'); 
 }
+
+
+
+
+
+
+
+
+
+
+
+// -------------------------
+public function create(Request $req){
+        $validator = Validator::make($req->all(), [
+        'event_name' =>'required|min:3|max:30',
+        'targetMoney' =>'required',
+        'details' =>'required',
+        'eventCategory' =>'required',
+        'contact'=>'required|min:11|max:15'
+        
+        ]);
+         if($validator->fails()) {
+            return response()->json([
+             'status' => 240,
+            'message' => 'Validation Error'
+             ]);
+        }
+
+          else{   // $eventName = $req->input('event_name');
+            $data=array();
+            $data['event_name']=$req->event_name;
+            $data['targetDate']=$req->event_end_date;
+            $data['targetMoney']=$req->event_amount;
+            $data['details']=$req->event_details;
+            $data['eventCategory']=$req->event_Category;
+            $data['eventType']='1';
+            $data['contact'] =$req->contact;
+
+            
+
+            $insert_event = DB::table('events')->insert($data);
+            if($insert_event){
+               return response()->json([
+                        'status' => 200,
+                        'event'=> $insert_event,
+                        'message' => 'User Added Successfully'
+                             ]);
+            }else{
+                response()->json([
+                        'status' => 202,
+                        'message' => 'Something went Wrong'
+                             ]);
+            }
+            
+        }
+
+        
+           
+}
+
+
+
+
+
+
 
 }
