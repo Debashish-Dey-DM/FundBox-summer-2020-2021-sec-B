@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import OrgHome from './Components/Org/OrgHome';
+import CreateEvent from './Components/Org/CreateEvent';
 function App() {
   return (
     <>
@@ -24,7 +25,7 @@ function App() {
 
 
 <Route  path="/org" component={OrgHome} />
-
+<Route path="/createEvent" component={CreateEvent} />
 
 
 {/* //closeorg */}
