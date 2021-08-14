@@ -29,8 +29,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /////////////////ORG///////////////////////////////
 
 Route::post('/addevent','Org\OrganizationHomeController@create');
-
-
+Route::post('/addVolevent','Org\OrganizationHomeController@createVolunteerEvent');
+Route::get('/eventList','Org\OrganizationHomeController@showEvents');
+Route::get('/edit-event/{id}','Org\OrganizationHomeController@eventData');
+Route::post('/update-event/{id}','Org\OrganizationHomeController@updateEvent');
 
 
 //closeorg

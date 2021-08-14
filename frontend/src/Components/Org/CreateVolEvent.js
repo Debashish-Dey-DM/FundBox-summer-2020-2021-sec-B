@@ -1,43 +1,38 @@
 import React from 'react'
 import axios from 'axios';
-// import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
-const CreateEvent = () => {
+const CreateVolEvent = () => {
     const history = useHistory();
     const [event, setEvent] = useState({
         event_name: '',
         details: '',
-        targetMoney: '',
         contact: '',
-        eventCategory : '',
+        venue : '',
         targetDate: ''
     });
     const [msg, setMsg] = useState(" ");
     const handleInput = (e) => {
-        const name = e.target.name;
+         const name = e.target.name;
         const value = e.target.value;
         setEvent({  ...event,[name]: [value]})
         console.log(name, value);
-        
     }
     const addEvent = async (e) => {
         e.preventDefault();
         const event_name = event.event_name.toString();
         const details =event.details.toString();
-        const targetMoney =event.targetMoney.toString();
         const contact =event.contact.toString();
-        const eventCategory  =event.eventCategory.toString();
+        const venue  =event.venue.toString();
         const targetDate = event.targetDate.toString();
-        const res = await axios.post('http://localhost:8000/api/addevent', { event_name: event_name,details: details,targetMoney: targetMoney,contact: contact,eventCategory : eventCategory,targetDate : targetDate});
+        const res = await axios.post('http://localhost:8000/api/addVolevent', { event_name: event_name,details: details,contact: contact,venue : venue,targetDate : targetDate});
         if (res.data.status === 200) {
             console.log(res.data.message);
             setMsg(res.data.message);
             setEvent({ event_name: '',
         details: '',
-        targetMoney: '',
         contact: '',
-        eventCategory : '',
+        venue : '',
         targetDate: '' })
             setTimeout(() => { history.push('/organization'); }, 3000);
             // 
@@ -46,27 +41,24 @@ const CreateEvent = () => {
             setMsg(res.data.message);
             setEvent({ event_name: '',
         details: '',
-        targetMoney: '',
         contact: '',
-        eventCategory : '',
+        venue : '',
         targetDate: '' })
         }
         else {
             setMsg(res.data.message);
-            setEvent({event_name: '',
+            setEvent({  event_name: '',
         details: '',
-        targetMoney: '',
         contact: '',
-        eventCategory : '',
-        targetDate: ''})
+        venue : '',
+        targetDate: '' })
         }
-    
     }
     return (
-        <div className="col-sm-6 offset-sm-3">
+       <div className="col-sm-6 offset-sm-3">
            <div className="card">
             <div className="card-header">
-                    <h4 className="card-title">Create New Event </h4>
+                    <h4 className="card-title">Create New Volunteer Event </h4>
                     <h4 className="card-title">{msg} </h4>
                </div>
                 <div className="card-content">
@@ -75,7 +67,8 @@ const CreateEvent = () => {
                                        
                                         <div className="row">
                                             <div className="col-12 col-sm-12 col-lg-12">
-                                                <input type="text" className="form-control" name="event_name" placeholder="Event Name" onChange={handleInput} required/>
+                                                 <label >Event Name</label>
+                                                <input type="text" className="form-control" name="event_name"  onChange={handleInput} required/>
                                             </div>
                                             
                                           <div className="col-12 col-sm-12 col-lg-6 mb-1" style={{ "marginTop" :"10px"}}>
@@ -84,17 +77,14 @@ const CreateEvent = () => {
                                                     <input type="datetime-local" name="targetDate"  className="form-control" id="#" placeholder="End Date" autoComplete="off" onChange={handleInput} required/>
                                                 </fieldset>
                                             </div>
-                                            <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                                <label >          </label>
-                                                <input type="number" className="form-control" name="targetMoney" placeholder="Amount" onChange={handleInput} required/>
-                                            </div>
                                             <div className="col-12 col-sm-12 col-lg-12" >
-                                            <label >  </label>
-                                                <input type="text" className="form-control" name="contact" placeholder="Contact" onChange={handleInput} required/>
+                                            <label >Contact</label>
+                                                <input type="text" className="form-control" name="contact"  onChange={handleInput} required/>
                                             </div>
                                             <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
                                                 <fieldset className="form-group">
-                                                    <textarea className="form-control" name="details" id="basicTextarea" rows="3" placeholder="Details" onChange={handleInput} required />
+                                                    <label >Details</label>
+                                                    <textarea className="form-control" name="details" id="basicTextarea" rows="3"  onChange={handleInput} required />
                                                 </fieldset>
                                             </div>
                                             {/* <div className="col-12 col-sm-12"style={{ "marginTop" :"10px"}}>
@@ -107,7 +97,8 @@ const CreateEvent = () => {
                                             </div> */}
                                              <div className="col-12 col-sm-6" style={{ "marginTop" :"10px"}}>
                                                 <fieldset className="form-group">
-                                                    <input type="text" className="form-control" name="eventCategory" placeholder="Category" onChange={handleInput} required/>
+                                                    <label >Venue</label>
+                                                    <input type="text" className="form-control" name="venue"  onChange={handleInput} required/>
                                                 </fieldset>
                                             </div>
                                             
@@ -123,4 +114,4 @@ const CreateEvent = () => {
         </div>
     )
 }
-export default CreateEvent;
+export default CreateVolEvent;
