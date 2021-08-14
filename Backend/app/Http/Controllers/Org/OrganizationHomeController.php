@@ -552,5 +552,17 @@ public function updateEvent(Request $req,$id){
     }
 
 }
+public function deleteEvent($id){
+    $removed=DB::table('events')
+    ->where('id', $id)
+    ->delete();
+    if($removed){
+         return response()->json([
+            'status' => 200,
+            'removed'=> $removed,
+            'message' => 'Deleted successfully.'
+        ]);
+    }
+}
 
 }

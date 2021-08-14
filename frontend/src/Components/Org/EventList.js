@@ -2,8 +2,10 @@ import React from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 const EventList = () => {
+    const history = useHistory();
     const [event, setEvent] = useState([]);
     const [isEvent, setIsEvent] = useState([]);
     const mount= async()=>{
@@ -16,6 +18,10 @@ const EventList = () => {
         }
             
     }
+    // const deleteEvent = (e) => {
+    //     console.log("deleted");
+    //       setTimeout(() => { history.push('/org/EventList'); }, 1000);
+    // }
      useEffect(() => {
     mount();
         
@@ -61,7 +67,8 @@ const EventList = () => {
                                                         <Link to={`edit-event/${e.id}`} className="btn btn-primary btn-sm foat-end"> Event List</Link><br />
                                                     </td>
                                                     <td>
-                                                        <button type="button" className = "btn btn-danger btn-sm">Delete</button>
+                                                        <Link to={`delete-event/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
+                                                        {/* <button className="btn btn-danger btn-sm foat-end" onClick={deleteEvent}>Delete</button> */}
                                                     </td>
                                                 </tr>
                                             );
