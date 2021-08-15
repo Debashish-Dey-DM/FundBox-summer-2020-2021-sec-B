@@ -458,13 +458,14 @@ class EventController extends Controller
         ->select('event_trans_lists.*', 'events.event_name','userinfos.name')
         ->where('paymentType',1)
         ->orderBy('id','DESC')
-        ->paginate(10);
+        ->get();
 
 
-        return view('Admin.transitionList')
-        ->with('title', 'Transition List | Admin')
-        ->with('eventName', "All Event")
-        ->with('allTransitions', $allTransitions);
+        if($allTransitions){
+            return response()->json($allTransitions, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 

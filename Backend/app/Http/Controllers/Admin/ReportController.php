@@ -14,24 +14,23 @@ class ReportController extends Controller
 {
     public function Index(Request $request){
 
-        // $allReports = DB::table('reports')
         $allReports = DB::table('reports')
         ->leftJoin('userinfos', 'reports.user_id', '=', 'userinfos.id')
         ->leftJoin('events', 'reports.event_id', '=', 'events.id')
         ->select('reports.*', 'userinfos.username','userinfos.image','userinfos.name','events.event_name')
-        ->paginate(10);
+        ->get();
         
-        // dd($allReports);
-        return view('Admin.ManageReports')
-        ->with('title', 'Manage Reports | Admin')
-        ->with('allReports', $allReports);
+        if($allReports){
+            return response()->json($allReports, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 
-    public function AddReply(Request $request)
+    public function AddReply(Request $request,$id)
     {
         $validator = Validator::make($request->all(), [
-            'edit_id' => 'required',
             'edit_reply' => 'required'
         ]);
 
@@ -46,18 +45,18 @@ class ReportController extends Controller
             $data['reply']=$request->input('edit_reply');
 
             $update= DB::table('reports')
-                            ->where('id',$request->input('edit_id'))
+                            ->where('id',$id)
                             ->update($data);
 
             if ($update) {
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'Replied Successfully'
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Reply Send Successfully'
                 ]);
             } else {
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Something going wrong!'
                 ]);
             }
         }

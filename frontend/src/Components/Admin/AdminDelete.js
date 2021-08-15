@@ -4,17 +4,18 @@ import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
-const DeleteCategory = () => {
+const AdminDelete = () => {
     const history = useHistory();
-    const { id: cat_id } = useParams();
+    const { id: adminId } = useParams();
     
-    const deleteEvent = async (e) => {
+    const deleteAdmin = async (e) => {
         const thidClickedFunda = e.currentTarget;
         thidClickedFunda.innerText = "Deleting";
-        const res = await axios.post('http://localhost:8000/api/admin/eventCategory/delete', { cat_id: cat_id});
+        console.log(adminId);
+        const res = await axios.post('http://localhost:8000/api/admin/manageAdmin/deleteAdmin', { adminId: adminId});
         if (res.data.status ===200) {
             console.log(res.data.message);
-            setTimeout(() => { history.push('/admin/category'); }, 100);
+            setTimeout(() => { history.push('/admin/manageAdmin'); }, 100);
         }else if(res.data.status === 240){
             console.log(res.data.message);
         }else{
@@ -26,16 +27,16 @@ const DeleteCategory = () => {
         <div className="col-sm-6 offset-sm-3" style={{ "marginTop" :"50px"}}>
             <div className="class-header">
                 <h4>
-                <Link to={'/admin/category'} className="btn btn-primary btn-sm foat-end"> Back</Link>
+                <Link to={'/admin/manageAdmin'} className="btn btn-primary btn-sm foat-end"> Back</Link>
                 </h4>
             </div>
             <div className="alert alert-danger" role="alert">
-                Are You Sure You Want to Delete Category
+                Are You Sure You Want to Delete Admin
                 <br />
                 <br />
-                <button className="btn btn-danger btn-sm foat-end" onClick={deleteEvent}>Delete</button>
+                <button className="btn btn-danger btn-sm foat-end" onClick={deleteAdmin}>Delete</button>
             </div>
         </div>
     )
 }
-export default DeleteCategory
+export default AdminDelete
