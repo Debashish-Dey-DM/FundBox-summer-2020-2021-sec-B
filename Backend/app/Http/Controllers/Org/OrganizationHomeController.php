@@ -564,5 +564,33 @@ public function deleteEvent($id){
         ]);
     }
 }
+public function eTransaction(){
+    //  $transaction = DB::table('event_trans_lists')
+    //                     ->where('org_Id',$req->session()->get('org_id'))
+    //                     ->where('status','1')->get();
+    
+     $transaction = DB::table('event_trans_lists')
+    ->leftJoin('events','event_trans_lists.eventId','=' , 'events.id')
+    ->leftJoin('userinfos', 'event_trans_lists.user_id', '=', 'userinfos.id')
+    ->select('event_trans_lists.*', 'events.event_name','userinfos.name')
+    
+    ->where('events.status','1')
+    ->where('events.eventType','1')
+    ->where('event_trans_lists.status','1')
+    ->where('paymentType','1')
+    ->get();     
 
+    if($transaction){
+        return response()->json($transaction, 200);
+    }
+    
+    
+}
+public function refundEvent($id){
+    $refund = event_trans_list::find($id);
+    $refund->status = '6';
+    $refund->save();
+   return response()->json($refund, 200);
+
+}
 }

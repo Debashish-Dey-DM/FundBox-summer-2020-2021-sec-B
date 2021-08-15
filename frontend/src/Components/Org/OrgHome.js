@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
             <p><Link to={'/org/EventList'} className="btn btn-primary btn-sm foat-end"> Event List</Link><br /> </p>
 
+            <p><Link to={'/org/EventTransactionList'} className="btn btn-primary btn-sm foat-end"> Event Transaction List</Link><br /> </p>
         </div>
     )
 }
