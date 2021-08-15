@@ -7,6 +7,8 @@ import CreateVolEvent from './Components/Org/CreateVolEvent';
 import EventList from './Components/Org/EventList';
 import EditEvent from './Components/Org/EditEvent';
 import DeleteEvent from './Components/Org/DeleteEvent';
+import Category from './Components/Admin/Category';
+import DeleteCategory from './Components/Admin/DeleteCategory';
 function App() {
   return (
     <>
@@ -19,7 +21,8 @@ function App() {
 {/* /////////////////Admin/////////////////////////////// */}
 
 
-
+<Route  path="/admin/category" component={Category} />
+<Route  path="/admin/delete-event/:id" component={DeleteCategory} />
 
 
 
@@ -28,7 +31,7 @@ function App() {
 {/* /////////////////ORG/////////////////////////////// */}
 
 
-<Route  path="/organization" component={OrgHome} />
+<Route path="/organization" component={OrgHome} />
 <Route path="/org/createEvent" component={CreateEvent} />
 <Route path="/org/createVolEvent" component={CreateVolEvent} />
 <Route path="/org/EventList" component={EventList}/>

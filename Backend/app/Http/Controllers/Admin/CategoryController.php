@@ -13,11 +13,13 @@ class CategoryController extends Controller
 {
     public function Index(Request $request){
 
-        $allCategory = DB::table('event_categorys')->get();
+        $allCategory = DB::table('event_categorys')->orderBy('id','DESC')->get();
 
-        return view('Admin.EventCategory')
-        ->with('title', 'Event Category | Admin')
-        ->with('allCategory', $allCategory);
+        if($allCategory){
+            return response()->json($allCategory, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No Category Found!']);
+        }
 
     }
 
@@ -30,17 +32,17 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Required data missing.'
+            return response()->json([
+                'status' => 240,
+                'message' => 'Validation Error'
             ]);
         }else{
 
             $check = DB::table('event_categorys')->where('name',$request->category_name)->first();
 
-            if($check ){
-                return redirect()->back()->with([
-                    'error' => true,
+            if($check){
+                return response()->json([
+                    'status' => 240,
                     'message' => 'Already use this category name'
                 ]);
             }else{
@@ -51,14 +53,15 @@ class CategoryController extends Controller
                 $insert = DB::table('event_categorys')->insert($data);
     
                 if($insert){
-                    return redirect()->back()->with([
-                        'error' => false,
-                        'message' => 'Create Successfully'
+                    return response()->json([
+                        'status' => 200,
+                        'event'=> $insert,
+                        'message' => 'Event Create Successfully'
                     ]);
                 }else{
-                    return redirect()->back()->with([
-                        'error' => true,
-                        'message' => 'Something going wrong'
+                    return response()->json([
+                        'status' => 240,
+                        'message' => 'Something going wrong!'
                     ]);
                 }
             }
@@ -109,8 +112,8 @@ class CategoryController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 240,
+                'message' => 'Validation Error'
             ]);
         } else {
             $id = $request->input('cat_id');
@@ -119,13 +122,14 @@ class CategoryController extends Controller
 
             if ($removed) {
                 return response()->json([
-                    'error' => false,
-                    'message' => 'Delete successfully.'
+                    'status' => 200,
+                    'removed'=> $removed,
+                    'message' => 'Deleted successfully.'
                 ]);
             } else {
                 return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
+                    'status' => 240,
+                    'message' => 'Something going wrong'
                 ]);
             }
         }

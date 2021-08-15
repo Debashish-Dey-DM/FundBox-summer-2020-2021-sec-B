@@ -20,6 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /////////////////Admin///////////////////////////////
 
 
+Route::get('/admin/eventCategory','Admin\CategoryController@Index');
+Route::post('/admin/eventCategory','Admin\CategoryController@CreateCategory');
+Route::post('/admin/eventCategory/updateStatus','Admin\CategoryController@UpdateStatus');
+Route::post('/admin/eventCategory/delete','Admin\CategoryController@Delete');
+Route::post('/admin/eventCategory/update','Admin\CategoryController@Update');
 
 
 
