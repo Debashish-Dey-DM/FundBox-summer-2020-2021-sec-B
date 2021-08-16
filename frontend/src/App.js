@@ -10,6 +10,10 @@ import DeleteEvent from './Components/Org/DeleteEvent';
 import Category from './Components/Admin/Category';
 import DeleteCategory from './Components/Admin/DeleteCategory';
 
+import SpTest from './Components/Sponsor/SpTest';
+import SponsorHome from './Components/Sponsor/SponsorHome';
+import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise'
+
 import EditCategory from './Components/Admin/EditCategory';
 import AdminHome from './Components/Admin/AdminHome';
 import CreateAdmin from './Components/Admin/CreateAdmin';
@@ -95,7 +99,9 @@ function App() {
 {/* //closeorg */}
 
 {/* /////////////////Sponsor/////////////////////////////// */}
-<Route path="/sponsor" component={SponsorHome} />
+<Route path="/sp/test" component={SpTest} />
+<Route path="/sp/dashboard" component={SponsorHome} />
+<Route path="/sp/allAdvertiser" component={ListOfAdvertise} />
 
 
 
