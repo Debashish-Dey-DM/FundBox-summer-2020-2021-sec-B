@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import OrgHome from './Components/Org/OrgHome';
 import CreateEvent from './Components/Org/CreateEvent';
@@ -9,6 +8,7 @@ import EditEvent from './Components/Org/EditEvent';
 import DeleteEvent from './Components/Org/DeleteEvent';
 import Category from './Components/Admin/Category';
 import DeleteCategory from './Components/Admin/DeleteCategory';
+import SponsorHome from './Components/Sponsor/SponsorHome';
 function App() {
   return (
     <>
@@ -41,7 +41,7 @@ function App() {
 {/* //closeorg */}
 
 {/* /////////////////Sponsor/////////////////////////////// */}
-
+<Route path="/sponsor" component={SponsorHome} />
 
 
 
