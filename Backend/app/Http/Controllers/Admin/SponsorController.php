@@ -23,94 +23,72 @@ class SponsorController extends Controller
         ->get();
 
         // dd($pendingSponsor);
-        return view('Admin.SponsorPending')
-        ->with('title', 'Pending Sponsor | Admin')
-        ->with('pendingSponsor', $pendingSponsor);
-
-    }
-
-    public function Accept(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
-            ]);
-        } else {
-            $id = $request->input('id');
-            
-            $data=array();
-            $data['status']='1';
-
-            $update= DB::table('userinfos')
-                            ->where('id',$id)
-                            ->update($data);
-
-            if ($update) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Accept successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+        if($pendingSponsor){
+            return response()->json($pendingSponsor, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
         }
+
     }
 
-    public function Delete(Request $request)
+    public function Accept($id)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required'
-        ]);
+        
+        $data=array();
+        $data['status']='1';
 
-        if ($validator->fails()) {
+        $update= DB::table('userinfos')
+                        ->where('id',$id)
+                        ->update($data);
+
+        if($update){
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 200,
+                'event'=> $insert,
+                'message' => 'Update Successfully'
             ]);
-        } else {
-            $id = $request->input('id');
+        }else{
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
+        }
 
-            $removed=DB::table('userinfos')->where('id', $id)->delete();
+    }
 
-            if ($removed) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Delete successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+    public function Delete($id)
+    {
+        
+        $removed=DB::table('userinfos')->where('id', $id)->delete();
+
+        if($removed){
+            return response()->json([
+                'status' => 200,
+                'event'=> $removed,
+                'message' => 'Delete Successfully'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
         }
     }
 
     public function ManageIndex(Request $request){
-
-        // $allSponsor = DB::table('userinfos')
-        // ->where('type', 3)
-        // ->where(function($q) {$q->where('status',0)->orwhere('status',1);})
-        // ->paginate(10);
 
         $allSponsor = DB::table('userinfos')
         ->leftJoin('sponsors', 'userinfos.id', '=', 'sponsors.user_id')
         ->select('userinfos.*', 'sponsors.name AS spoName','sponsors.image AS spoImage','sponsors.startDate','sponsors.endDate','sponsors.details','sponsors.amount')
         ->where('userinfos.type', 3)
         ->where(function($q) {$q->where('userinfos.status',0)->orwhere('userinfos.status',1);})
-        ->paginate(10);
+        ->get();
 
-        return view('Admin.SponsorManage')
-        ->with('title', 'Manage Sponsor | Admin')
-        ->with('allSponsor', $allSponsor);
+        if($allSponsor){
+            return response()->json($allSponsor, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No Data Found!']);
+        }
 
     }
 
