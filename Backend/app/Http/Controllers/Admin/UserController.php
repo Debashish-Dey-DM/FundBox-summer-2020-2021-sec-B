@@ -34,34 +34,22 @@ class UserController extends Controller
             'admin_confirm_assword' => 'required|same:admin_password',
             'admin_phone' => 'required|min:11|max:15',
             'status' => 'required',
-            'admin_image' => 'required',
             'username' => 'unique:userinfos',
             'email' => 'unique:userinfos'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         }else{
-
-            $image = $request->file('admin_image');
-            $image_name=$image->getClientOriginalName();
-            $image_ext=$image->getClientOriginalExtension();
-            $image_new_name =strtoupper(Str::random(6));
-            $image_full_name=$image_new_name.'.'.$image_ext;
-            $upload_path='images/admin/';
-            $image_url=$upload_path.$image_full_name;
-            $success=$image->move($upload_path,$image_full_name);
-            $imageData='/images/admin/'.$image_full_name;
 
             
             $data=array();
             $data['name']=$request->admin_name;
             $data['username']=$request->username;
             $data['password']=md5($request->admin_password);
-            $data['image']=$imageData;
             $data['email']=$request->admin_email;
             $data['phone']=$request->admin_phone;
             $data['type']='1';
@@ -70,14 +58,15 @@ class UserController extends Controller
             $insert_user = DB::table('userinfos')->insert($data);
 
             if($insert_user){
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'User Create Successfully'
+                return response()->json([
+                    'status' => 200,
+                    'event'=> $insert_user,
+                    'message' => 'Admin Create Successfully'
                 ]);
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Something going wrong!'
                 ]);
             }
         }
@@ -89,9 +78,11 @@ class UserController extends Controller
         ->where('type', 1)
         ->get();
 
-        return view('Admin.ManageAdmin')
-        ->with('title', 'Manage Admin | Admin')
-        ->with('allAdmins', $allAdmins);
+        if($allAdmins){
+            return response()->json($allAdmins, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No Category Found!']);
+        }
     }
 
     public function UpdateStatus(Request $request)
@@ -131,10 +122,9 @@ class UserController extends Controller
         
     }
 
-    public function UpdateUserInfo(Request $request)
+    public function UpdateUserInfo(Request $request,$id)
     {
         $validator = Validator::make($request->all(), [
-            'editUser_id' => 'required',
             'editName' => 'required|string',
             'editEmail' => 'required|email|min:10|max:50',
             'editPhone' => 'required|min:11|max:15',
@@ -142,34 +132,34 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
             
         } else {
-            $user_id = $request->input('editUser_id');
             
             $data=array();
-            $data['name']=$request->input('editName');
-            $data['email']=$request->input('editEmail');
-            $data['phone']=$request->input('editPhone');
+            $data['name']=$request->editName;
+            $data['email']=$request->editEmail;
+            $data['phone']=$request->editPhone;
             
 
             $update= DB::table('userinfos')
-                            ->where('id',$user_id)
+                            ->where('id',$id)
                             ->update($data);
 
                             
             if ($update) {
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'Edit successfully.'
+                return response()->json([
+                    'status' => 200,
+                    'event'=> $update,
+                    'message' => 'Edit Successfully'
                 ]);
             } else {
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Something going wrong!'
                 ]);
             }
         }
@@ -184,7 +174,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'error' => true,
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         } else {
@@ -194,13 +184,13 @@ class UserController extends Controller
 
             if ($removed) {
                 return response()->json([
-                    'error' => false,
-                    'message' => 'Delete successfully.'
+                    'status' => 200,
+                    'message' => 'Delete Successfully'
                 ]);
             } else {
                 return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
+                    'status' => 240,
+                    'message' => 'Something going wrong!.'
                 ]);
             }
         }
@@ -244,16 +234,19 @@ class UserController extends Controller
         
     }
 
-    public function ManageProfile(Request $request){
+    public function ManageProfile($id){
 
         $UserInfo = DB::table('userinfos')
-        ->where('id',$request->session()->get('user_id'))
+        ->where('id',$id)
         ->where('type', 1)
         ->first();
 
-        return view('Admin.ManageAccount')
-        ->with('title', 'Create Admin | Admin')
-        ->with('UserInfo', $UserInfo);
+        if($UserInfo){
+            return response()->json($UserInfo, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No Data Found!']);
+        }
+        
     }
 
     public function ManageProfileUpdate(Request $request)

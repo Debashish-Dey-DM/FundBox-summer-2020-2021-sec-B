@@ -2,9 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useState,useEffect} from 'react';
-import { useHistory } from "react-router-dom";
 const Category = () => {
-    const history = useHistory();
     const [event, setEvent] = useState({
         category_name: '',
         category_status: '1'
@@ -47,7 +45,6 @@ const Category = () => {
                 category_status: '1'
             })
         }
-    
     }
 
     let serial = 0;
@@ -67,7 +64,11 @@ const Category = () => {
     return (
         <div className="col-sm-6 offset-sm-3" style={{ "marginTop" :"50px"}}>
             <div className="card">
-                <div className="card-header">
+                <div className="card-header" style={{ "padding" :"5px"}}>
+                    <h4>
+                    <Link to={'/admin/dashboard'} className="btn btn-primary btn-sm foat-end"> Back</Link>
+                    </h4>
+                
                     <h4 className="card-title">Create New Category </h4>
                     <h4 className="card-title">{msg} </h4>
                </div>
@@ -104,6 +105,7 @@ const Category = () => {
                             <tr>
                                 <th>ID</th>
                                 <th>Category Name</th>
+                                <th>Status</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -115,13 +117,13 @@ const Category = () => {
                                     <tr key={e.id} >
                                         <td>{serial += 1}</td>
                                         <td>{e.name}</td>
-                                        
+                                        <td>{e.status === 1 ? 'Active' : 'Deactive'}</td>
                                         <td>
                                             {/* <Link to={`edit-student/${e.id}`} className="btn btn-success btn-sm" >Edit</Link> */}
-                                            <Link to={`org/edit-event/${e.id}`} className="btn btn-primary btn-sm foat-end"> Event List</Link><br />
+                                            <Link to={`edit-category/${e.id}`} className="btn btn-primary btn-sm foat-end"> Edit </Link><br />
                                         </td>
                                         <td>
-                                            <Link to={`delete-event/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
+                                            <Link to={`delete-category/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
                                             {/* <button className="btn btn-danger btn-sm foat-end" onClick={deleteEvent}>Delete</button> */}
                                         </td>
                                     </tr>

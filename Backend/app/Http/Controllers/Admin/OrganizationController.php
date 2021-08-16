@@ -32,33 +32,19 @@ class OrganizationController extends Controller
             'org_details' => 'required',
             'phone' => 'required|min:11|max:15',
             'address' => 'required',
-            'org_image' => 'required',
             'status' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         }else{
-
-            $image = $request->file('org_image');
-            $image_name=$image->getClientOriginalName();
-            $image_ext=$image->getClientOriginalExtension();
-            $image_new_name =strtoupper(Str::random(6));
-            $image_full_name=$image_new_name.'.'.$image_ext;
-            $upload_path='images/organisation/';
-            $image_url=$upload_path.$image_full_name;
-            $success=$image->move($upload_path,$image_full_name);
-            $imageData='/images/organisation/'.$image_full_name;
-
             
             $data=array();
-            $data['user_id']=$request->org_user;
             $data['name']=$request->org_name;
             $data['phone']=$request->phone;
-            $data['image']=$imageData;
             $data['address']=$request->address;
             $data['details']=$request->org_details;
             $data['status']=$request->status;
@@ -66,14 +52,14 @@ class OrganizationController extends Controller
             $insert = DB::table('organizations')->insert($data);
 
             if($insert){
-                return redirect()->back()->with([
-                    'error' => false,
+                return response()->json([
+                    'status' => 200,
                     'message' => 'Create Successfully'
                 ]);
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Something going wrong!'
                 ]);
             }
         }
@@ -86,17 +72,17 @@ class OrganizationController extends Controller
         ->orWhere('status',1)
         ->orWhere('status',2)
         ->orderBy('id','DESC')
-        ->paginate(10);
+        ->get();
 
         $allUsers = DB::table('userinfos')
         ->where('type', 4)
         ->get();
 
-        return view('Admin.ManageOrg')
-        ->with('title', 'Manage Organisation | Admin')
-        ->with('allOrgs', $allOrgs)
-        ->with('allUsers', $allUsers);
-
+        if($allOrgs){
+            return response()->json($allOrgs, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
     }
 
     public function UpdateStatus(Request $request)
@@ -309,40 +295,28 @@ class OrganizationController extends Controller
         }
     }
 
-    public function BlockOrg(Request $request)
+    public function BlockOrg(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'orgId' => 'required',
-            'value' => 'required'
-        ]);
+            
+        $data=array();
+        $data['status']=2;
 
-        if ($validator->fails()) {
+        $update= DB::table('organizations')
+                        ->where('id',$id)
+                        ->update($data);
+
+        if ($update) {
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 200,
+                'message' => 'Block Successfully'
             ]);
         } else {
-            $id = $request->input('orgId');
-            
-            $data=array();
-            $data['status']=$request->input('value');
-
-            $update= DB::table('organizations')
-                            ->where('id',$id)
-                            ->update($data);
-
-            if ($update) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Block successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
         }
+        
     }
 
     public function PendingOrg(Request $request){
@@ -350,57 +324,56 @@ class OrganizationController extends Controller
         $allOrgs = DB::table('organizations')
         ->where('status',3)
         ->orderBy('id','DESC')
-        ->paginate(10);
+        ->get();
 
         $allUsers = DB::table('userinfos')
         ->where('type', 4)
         ->get();
 
-        return view('Admin.ManageOrg')
-        ->with('title', 'Manage Organisation | Admin')
-        ->with('allOrgs', $allOrgs)
-        ->with('allUsers', $allUsers);
+        if($allOrgs){
+            return response()->json($allOrgs, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 
     public function PendingOrgAccept(Request $request,$id){
-        $orgId = base64_decode($id);
         
         $data=array();
         $data['status']='1';
 
         $update= DB::table('organizations')
-            ->where('id',$orgId)
+            ->where('id',$id)
             ->update($data);
 
         if ($update) {
-            return redirect()->back()->with([
-                'error' => false,
-                'message' => 'Active successfully.'
+            return response()->json([
+                'status' => 200,
+                'message' => 'Accept Successfully'
             ]);
         } else {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Something went wrong.'
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
             ]);
         }
 
     }
 
     public function PendingOrgDelete(Request $request,$id){
-        $orgId = base64_decode($id);
         
-        $removed=DB::table('organizations')->where('id', $orgId)->delete();
+        $removed=DB::table('organizations')->where('id', $id)->delete();
 
         if ($removed) {
-            return redirect()->back()->with([
-                'error' => false,
-                'message' => 'Delete successfully.'
+            return response()->json([
+                'status' => 200,
+                'message' => 'Delete Successfully'
             ]);
         } else {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Something went wrong.'
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
             ]);
         }
     }

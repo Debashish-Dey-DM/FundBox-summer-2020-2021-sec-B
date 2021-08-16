@@ -24,8 +24,42 @@ Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 Route::post('/admin/eventCategory','Admin\CategoryController@CreateCategory');
 Route::post('/admin/eventCategory/updateStatus','Admin\CategoryController@UpdateStatus');
 Route::post('/admin/eventCategory/delete','Admin\CategoryController@Delete');
-Route::post('/admin/eventCategory/update','Admin\CategoryController@Update');
+Route::post('/admin/eventCategory/update/{id}','Admin\CategoryController@Update');
+Route::get('/admin/eventCategory/singleCategory/{id}','Admin\CategoryController@SingleCategory');
 
+
+Route::post('/admin/createAdmin','Admin\UserController@CreateAdmin');
+Route::get('/admin/manageAdmin','Admin\UserController@ManageAdmin');
+Route::get('/admin/getSingleAdminData/{id}','Admin\UserController@ManageProfile');
+Route::post('/admin/manageAdmin/updateStatus', 'Admin\UserController@UpdateStatus');
+Route::post('/admin/manageAdmin/updateUserInfo/{id}', 'Admin\UserController@UpdateUserInfo');
+Route::post('/admin/manageAdmin/deleteAdmin', 'Admin\UserController@DeleteAdmin');
+Route::post('/admin/manageAdmin/makeSuperAdmin', 'Admin\UserController@MakeSuperAdmin');
+
+//SponsorAdmin
+Route::get('/admin/sponsor','Admin\SponsorController@Index');
+Route::get('/admin/sponsor/accept/{id}','Admin\SponsorController@Accept');
+Route::get('/admin/sponsorManage','Admin\SponsorController@ManageIndex');
+Route::get('/admin/sponsor/delete/{id}','Admin\SponsorController@Delete');
+
+Route::get('/admin/reports','Admin\ReportController@Index');
+Route::post('/admin/reports/{id}','Admin\ReportController@AddReply');
+
+Route::get('/admin/transitionList','Admin\EventController@TransitionList');
+
+Route::get('/admin/pendingOrg','Admin\OrganizationController@PendingOrg');
+Route::get('/admin/pendingOrg/accept/{id}','Admin\OrganizationController@PendingOrgAccept');
+Route::get('/admin/pendingOrg/delete/{id}','Admin\OrganizationController@PendingOrgDelete');
+Route::get('/admin/manageOrg','Admin\OrganizationController@ManageOrg');
+Route::get('/admin/manageOrg/block/{id}', 'Admin\OrganizationController@BlockOrg');
+Route::post('/admin/createOrg','Admin\OrganizationController@CreateOrganisation');
+
+//event admin
+Route::post('/admin/createAdminEvent','Admin\EventController@CreateAdminEvent');
+Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
+
+//getCategory
+Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 
 
 

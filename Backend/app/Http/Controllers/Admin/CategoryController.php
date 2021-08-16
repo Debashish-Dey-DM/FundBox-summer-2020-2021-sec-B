@@ -13,10 +13,23 @@ class CategoryController extends Controller
 {
     public function Index(Request $request){
 
-        $allCategory = DB::table('event_categorys')->orderBy('id','DESC')->get();
+        $allCategory = DB::table('event_categorys')
+        ->orderBy('id','DESC')->get();
 
         if($allCategory){
             return response()->json($allCategory, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
+
+    }
+
+    public function SingleCategory($id){
+
+        $Category = DB::table('event_categorys')->where('id',$id)->first();
+
+        if($Category){
+            return response()->json($Category, 200);
         }else{
             return response()->json(['code'=>401, 'message' => 'No Category Found!']);
         }
@@ -134,25 +147,24 @@ class CategoryController extends Controller
             }
         }
     }
-    public function Update(Request $request)
+    public function Update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'edit_catId' => 'required',
-            'editCatName' => 'required|string'
+            'category_name' => 'required',
+            'category_status' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Required data missing.'
+            return response()->json([
+                'status' => 240,
+                'message' => 'Validation Error'
             ]);
             
         } else {
-            $id = $request->input('edit_catId');
 
             $data=array();
-            $data['name']=$request->input('editCatName');
-            
+            $data['name']=$request->category_name;
+            $data['status']=$request->category_status;
 
             $update= DB::table('event_categorys')
                             ->where('id',$id)
@@ -160,14 +172,15 @@ class CategoryController extends Controller
 
                             
             if ($update) {
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'Edit successfully.'
+                return response()->json([
+                    'status' => 200,
+                    'removed'=> $update,
+                    'message' => 'Update successfully.'
                 ]);
             } else {
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Something went wrong'
                 ]);
             }
         }
