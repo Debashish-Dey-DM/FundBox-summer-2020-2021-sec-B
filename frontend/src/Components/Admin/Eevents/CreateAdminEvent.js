@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import LeftNavBar from '../Layout/LeftNavBar';
+import TopNavbar from '../Layout/TopNavbar';
+
 const CreateAdminEvent = () => {
     const history = useHistory();
     const [event, setEvent] = useState({
@@ -102,90 +105,97 @@ const CreateAdminEvent = () => {
     }, []);
 
     return (
-        <div className="col-sm-8 offset-sm-2" style={{ "marginTop" :"20px"}}>
-           <div className="card">
-                <div className="card-header">
-                    <h4>
-                        <Link to={'/admin/dashboard'} className="btn btn-primary btn-sm foat-end"> Back</Link>
-                    </h4>
-                    <h4 className="card-title">Create Admin Event </h4>
-                    
-                </div>
-                <div className="card-content">
-                    <div className="card-body">  
-                        <form onSubmit={addEvent} >
-                            <div className="row">
-                                <div className="col-12 col-sm-12 col-lg-12">
-                                    <input type="text" className="form-control" name="event_name" placeholder="Event Name" onChange={handleInput} required/>
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                    <main>
+                        <div className="col-sm-12 offset-sm-0" style={{ "marginTop" :"0px"}}>
+                            <div className="card">
+                                <div className="card-header">
+                                    <h4 className="card-title">Create Admin Event </h4>
                                 </div>
-                                
-                            <div className="col-12 col-sm-12 col-lg-6 mb-1" style={{ "marginTop" :"10px"}}>
-                                    <fieldset className="form-group position-relative has-icon-left">
-                                        <label >End Date</label>
-                                        <input type="datetime-local" name="date"  className="form-control" id="#" placeholder="End Date" autoComplete="off" onChange={handleInput} required/>
-                                    </fieldset>
-                                </div>
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <label >          </label>
-                                    <input type="number" className="form-control" name="event_amount" placeholder="Amount" onChange={handleInput} required/>
-                                </div>
-                                <div className="col-12 col-sm-12 col-lg-12" >
-                                <label >  </label>
-                                    <input type="text" className="form-control" name="event_phone" placeholder="Contact" onChange={handleInput} required/>
-                                </div>
-                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
-                                    <fieldset className="form-group">
-                                        <textarea className="form-control" name="event_details" id="basicTextarea" rows="3" placeholder="Event details" onChange={handleInput} required />
-                                    </fieldset>
-                                </div>
+                                <div className="card-content">
+                                    <div className="card-body">  
+                                        <form onSubmit={addEvent} >
+                                            <div className="row">
+                                                <div className="col-12 col-sm-12 col-lg-12">
+                                                    <input type="text" className="form-control" name="event_name" placeholder="Event Name" onChange={handleInput} required/>
+                                                </div>
+                                                
+                                                <div className="col-12 col-sm-12 col-lg-6 mb-1" style={{ "marginTop" :"10px"}}>
+                                                    <fieldset className="form-group position-relative has-icon-left">
+                                                        <label >End Date</label>
+                                                        <input type="datetime-local" name="date"  className="form-control" id="#" placeholder="End Date" autoComplete="off" onChange={handleInput} required/>
+                                                    </fieldset>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <label >          </label>
+                                                    <input type="number" className="form-control" name="event_amount" placeholder="Amount" onChange={handleInput} required/>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-12" >
+                                                <label >  </label>
+                                                    <input type="text" className="form-control" name="event_phone" placeholder="Contact" onChange={handleInput} required/>
+                                                </div>
+                                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
+                                                    <fieldset className="form-group">
+                                                        <textarea className="form-control" name="event_details" id="basicTextarea" rows="3" placeholder="Event details" onChange={handleInput} required />
+                                                    </fieldset>
+                                                </div>
 
-                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
-                                    <fieldset className="form-group">
-                                        <div className="custom-file">
-                                            <input type="file" className="custom-file-input" onChange={(e)=>setSelectedFile(e.target.files[0])} name="image" />
-                                            <label className="custom-file-label" htmlFor="inputGroupFile02">Choose Event image</label>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <label>Category</label>
-                                    <fieldset className="form-group">
-                                        <select name="event_category" className="form-control" onChange={handleInput} required>
-                                            {
-                                                getCategory.map((e) => {
-                                                    return (
-                                                    <option value={e.id}>{e.name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
-                                    </fieldset>
-                                </div>
-                                
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <label>Status</label>
-                                    <fieldset className="form-group">
-                                        <select name="status" className="form-control" onChange={handleInput} required>
-                                            <option disabled>Select Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="0">Deactivate</option>
-                                        </select>
-                                    </fieldset>
-                                </div>
-                                
-                                
-                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
-                                    <button type="submit" className="btn btn-block btn-success glow">Add</button>
-                                </div>
+                                                {/* <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
+                                                    <fieldset className="form-group">
+                                                        <div className="custom-file">
+                                                            <input type="file" className="custom-file-input" onChange={(e)=>setSelectedFile(e.target.files[0])} name="image" />
+                                                            <label className="custom-file-label" htmlFor="inputGroupFile02">Choose Event image</label>
+                                                        </div>
+                                                    </fieldset>
+                                                </div> */}
+                                                
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <label>Category</label>
+                                                    <fieldset className="form-group">
+                                                        <select name="event_category" className="form-control" onChange={handleInput} required>
+                                                            {
+                                                                getCategory.map((e) => {
+                                                                    return (
+                                                                    <option value={e.id}>{e.name}</option>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                                
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <label>Status</label>
+                                                    <fieldset className="form-group">
+                                                        <select name="status" className="form-control" onChange={handleInput} required>
+                                                            <option disabled>Select Status</option>
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Deactivate</option>
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                                
+                                                
+                                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
+                                                    <button type="submit" className="btn btn-block btn-success glow">Add</button>
+                                                </div>
 
-                                <h4 className="card-title" style={{ "marginTop" :"10px"}}>{msg} </h4>
+                                                <h4 className="card-title" style={{ "marginTop" :"10px"}}>{msg} </h4>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> 
                             </div>
-                        </form>
-                    </div>
-                </div> 
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
+        
     )
 }
 export default CreateAdminEvent;

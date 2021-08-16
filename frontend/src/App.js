@@ -9,11 +9,9 @@ import EditEvent from './Components/Org/EditEvent';
 import DeleteEvent from './Components/Org/DeleteEvent';
 import Category from './Components/Admin/Category';
 import DeleteCategory from './Components/Admin/DeleteCategory';
-
 import SpTest from './Components/Sponsor/SpTest';
 import SponsorHome from './Components/Sponsor/SponsorHome';
 import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise'
-
 import EditCategory from './Components/Admin/EditCategory';
 import AdminHome from './Components/Admin/AdminHome';
 import CreateAdmin from './Components/Admin/CreateAdmin';
@@ -34,7 +32,7 @@ import OrgManage from './Components/Admin/Organization/OrgManage';
 import OrgBlock from './Components/Admin/Organization/OrgBlock';
 import OrgCreate from './Components/Admin/Organization/OrgCreate';
 import CreateAdminEvent from './Components/Admin/Eevents/CreateAdminEvent';
-import SponsorHome from './Components/Sponsor/SponsorHome';
+import HomeDefault from './Components/HomeDefault';
 
 function App() {
   return (
@@ -44,6 +42,8 @@ function App() {
          
           {/* <Route exact path="/" component={Signin} />
           <Route  path="/signup" component={Signup} /> */}
+
+<Route  path="/index" component={HomeDefault} />
 
 {/* /////////////////Admin/////////////////////////////// */}
 

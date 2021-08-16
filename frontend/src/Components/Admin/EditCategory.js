@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
+
 const EditEvent = () => {
     const history = useHistory();
     const [event, setEvent] = useState({
@@ -56,47 +59,56 @@ const EditEvent = () => {
         }
     }
     return (
-        <div>
-            <div className="container" style={{ "marginTop" :"50px"}}>
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="card">
-                            <div className="class-header">
+        <div className="sb-nav-fixed">
+                <TopNavbar/>
+                <div id="layoutSidenav">
+                    <LeftNavBar/>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div className="card-header" style={{ "padding" :"5px"}}>
                                 <h4>
-                                <Link to={'/admin/category'} className="btn btn-primary btn-sm foat-end"> Back</Link>
+                                    <Link to={'/admin/category'} className="btn btn-primary btn-sm foat-end"> Back</Link>
                                 </h4>
                             </div>
-                            <div className="class-header">
-                                <h4> Edit Category
-                                </h4>
-                                <h4 className="card-title">{msg} </h4>
-                            </div>
-                            <div className="class-body"></div>
-                            <form onSubmit={updateEvent}>
-                                <div className="form-group mb-3">
-                                <label > Event Name</label>
-                                    <input type="text" name="category_name" onChange={handleInput} className="form-control" placeholder={ename} />
-                                </div>
+                            <div className="container" style={{ "marginTop" :"50px"}}>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="card">
+                                            <div className="class-header">
+                                                <h4> Edit Category
+                                                </h4>
+                                                <h4 className="card-title">{msg} </h4>
+                                            </div>
+                                            <div className="class-body"></div>
+                                            <form onSubmit={updateEvent}>
+                                                <div className="form-group mb-3">
+                                                <label > Event Name</label>
+                                                    <input type="text" name="category_name" onChange={handleInput} className="form-control" placeholder={ename} />
+                                                </div>
 
-                                <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
-                                    <fieldset className="form-group">
-                                        <select name="status" value={event.status} className="form-control" id="basicSelect" onChange={handleInput} required>
-                                            <option disabled defaultValue>Select Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="0">Deactivate</option>
-                                        </select>
-                                    </fieldset>
+                                                <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
+                                                    <fieldset className="form-group">
+                                                        <select name="status" value={event.status} className="form-control" id="basicSelect" onChange={handleInput} required>
+                                                            <option disabled defaultValue>Select Status</option>
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Deactivate</option>
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
+                                            
+                                                <div className="form-group mb-3"style={{ "marginTop" :"10px"}}>
+                                                <button type="submit" className="btn btn-primary">Save Category</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
-                            
-                                <div className="form-group mb-3"style={{ "marginTop" :"10px"}}>
-                                  <button type="submit" className="btn btn-primary">Save Category</button>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+
+                        </main>
                     </div>
                 </div>
             </div>
-        </div>
     )
 }
 export default EditEvent
