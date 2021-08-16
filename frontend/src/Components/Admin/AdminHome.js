@@ -92,13 +92,11 @@ import 'boxicons';
                         <li className="nav-item" style={{ "padding" :"5px"}}>
                             <Link to={'/admin/manageAdmin'} className="btn btn-primary btn-sm foat-end"> Manage Admin </Link>
                         </li>
+
                         <br/>
                         <h6 className=" navigation-header"><span>Organisation</span></h6>
-                        <li className="nav-item">
-                            <a className="nav-hover" href="#">
-                                <i className="bx bx-planet mr-50"></i>
-                                <span className="menu-title" data-i18n="City Manager">Create Organisation</span>
-                            </a>
+                        <li className="nav-item" style={{ "padding" :"5px"}}>
+                            <Link to={'/admin/orgCreate'} className="btn btn-primary btn-sm foat-end"> Create Organisation </Link>
                         </li>
                         <li className="nav-item" style={{ "padding" :"5px"}}>
                             <Link to={'/admin/pendingOrg'} className="btn btn-primary btn-sm foat-end"> Pending Organisation </Link>
@@ -109,69 +107,54 @@ import 'boxicons';
                         <br/>
                         <h6 className=" navigation-header"><span>Category</span></h6>
                         <li className="nav-item">
-                            <a className="nav-hover" href="#">
-                                <i className="bx bxs-city mr-50"></i>
-                                {/* <span className="menu-title" data-i18n="City Manager">Event Category</span> */}
-                                <Link to={'/admin/category'} className="btn btn-primary btn-sm foat-end"> Category Manage</Link>
-                            </a>
+                            <Link to={'/admin/category'} className="btn btn-primary btn-sm foat-end"> Category Manage</Link>
                         </li>
 
                         <br />
                         <h6>Event</h6>
-                        <li className="nav-item has-sub" style={{ "padding" :"5px"}}>
+                        <li className="nav-item" style={{ "padding" :"5px"}}>
+                            <Link to={'/admin/createAdminEvent'} className="btn btn-primary btn-sm foat-end"> Create Admin Event </Link>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-hover" href="#">
+                                <i className="bx bxs-navigation mr-50"></i>
+                                <span className="menu-title" data-i18n="Category Manager">Create organisation Event</span>
+                            </a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-hover" href="#">
+                                <i className="bx bxs-navigation mr-50"></i>
+                                <span className="menu-title" data-i18n="City Manager">Create Volunteer Event</span>
+                            </a>
+                        </li>
+                        
+                        <li className="nav-item has-sub">
                             <a href="#">
                                 <i className="bx bxs-package mr-50"></i>
-                                <span className="menu-title" data-i18n="Area Coverage">Event</span>
+                                <span className="menu-title" data-i18n="Area Coverage">Manage Events</span>
                             </a>
                             <ul className="menu-content">
                                 <li className="nav-item">
                                     <a className="nav-hover" href="#">
                                         <i className="bx bxs-navigation mr-50"></i>
-                                        <span className="menu-title" data-i18n="Category Manager">Create Admin Event</span>
+                                        <span className="menu-title" data-i18n="Category Manager">Admin</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-hover" href="#">
                                         <i className="bx bxs-navigation mr-50"></i>
-                                        <span className="menu-title" data-i18n="Category Manager">Create organisation Event</span>
+                                        <span className="menu-title" data-i18n="Category Manager">Pending</span>
                                     </a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-hover" href="#">
                                         <i className="bx bxs-navigation mr-50"></i>
-                                        <span className="menu-title" data-i18n="City Manager">Create Volunteer Event</span>
+                                        <span className="menu-title" data-i18n="Category Manager">Accepted</span>
                                     </a>
-                                </li>
-                                
-                                <li className="nav-item has-sub">
-                                    <a href="#">
-                                        <i className="bx bxs-package mr-50"></i>
-                                        <span className="menu-title" data-i18n="Area Coverage">Manage Events</span>
-                                    </a>
-                                    <ul className="menu-content">
-                                        <li className="nav-item">
-                                            <a className="nav-hover" href="#">
-                                                <i className="bx bxs-navigation mr-50"></i>
-                                                <span className="menu-title" data-i18n="Category Manager">Admin</span>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-hover" href="#">
-                                                <i className="bx bxs-navigation mr-50"></i>
-                                                <span className="menu-title" data-i18n="Category Manager">Pending</span>
-                                            </a>
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-hover" href="#">
-                                                <i className="bx bxs-navigation mr-50"></i>
-                                                <span className="menu-title" data-i18n="Category Manager">Accepted</span>
-                                            </a>
-                                        </li>
-                                    </ul>
                                 </li>
                             </ul>
-                            
                         </li>
+                            
                         {/* <li className="nav-item">
                             <a className="nav-hover" href="#">
                                 <i className="bx bx-planet mr-50"></i>

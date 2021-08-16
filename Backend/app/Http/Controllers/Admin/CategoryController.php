@@ -13,12 +13,13 @@ class CategoryController extends Controller
 {
     public function Index(Request $request){
 
-        $allCategory = DB::table('event_categorys')->orderBy('id','DESC')->get();
+        $allCategory = DB::table('event_categorys')
+        ->orderBy('id','DESC')->get();
 
         if($allCategory){
             return response()->json($allCategory, 200);
         }else{
-            return response()->json(['code'=>401, 'message' => 'No Category Found!']);
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
         }
 
     }

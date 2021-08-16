@@ -35,9 +35,9 @@ class ReportController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Please Select User'
+            return response()->json([
+                'status' => 240,
+                'message' => 'Required data missing.'
             ]);
         } else {
 

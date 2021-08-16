@@ -27,6 +27,8 @@ import OrgDelete from './Components/Admin/Organization/OrgDelete';
 import OrgAccept from './Components/Admin/Organization/OrgAccept';
 import OrgManage from './Components/Admin/Organization/OrgManage';
 import OrgBlock from './Components/Admin/Organization/OrgBlock';
+import OrgCreate from './Components/Admin/Organization/OrgCreate';
+import CreateAdminEvent from './Components/Admin/Eevents/CreateAdminEvent';
 function App() {
   return (
     <>
@@ -66,7 +68,12 @@ function App() {
 <Route  path="/admin/pendingOrgAccept/:id" component={OrgAccept} />
 <Route  path="/admin/orgManage" component={OrgManage} />
 <Route  path="/admin/orgManageBlock/:id" component={OrgBlock} />
+<Route  path="/admin/orgCreate" component={OrgCreate} />
               {/* Admin Organization END */}
+
+              {/* Admin Event Start */}
+<Route  path="/admin/createAdminEvent" component={CreateAdminEvent} />
+              {/* Admin Event END */}
 
 <Route  path="/admin/transitionList" component={TransitionList} />
 

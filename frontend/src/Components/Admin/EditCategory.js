@@ -26,9 +26,9 @@ const EditEvent = () => {
         }
             
     }
-     useEffect(() => {
-    mount();  
-     }, []);
+    useEffect(() => {
+        mount();  
+    }, []);
     
     const handleInput = (e) => {
         const name = e.target.name;
@@ -80,7 +80,7 @@ const EditEvent = () => {
 
                                 <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
                                     <fieldset className="form-group">
-                                        <select name="status" className="form-control" id="basicSelect" onChange={handleInput} required>
+                                        <select name="status" value={event.status} className="form-control" id="basicSelect" onChange={handleInput} required>
                                             <option disabled defaultValue>Select Status</option>
                                             <option value="1">Active</option>
                                             <option value="0">Deactivate</option>

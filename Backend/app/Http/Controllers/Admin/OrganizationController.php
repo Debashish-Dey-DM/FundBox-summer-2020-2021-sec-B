@@ -32,33 +32,19 @@ class OrganizationController extends Controller
             'org_details' => 'required',
             'phone' => 'required|min:11|max:15',
             'address' => 'required',
-            'org_image' => 'required',
             'status' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         }else{
-
-            $image = $request->file('org_image');
-            $image_name=$image->getClientOriginalName();
-            $image_ext=$image->getClientOriginalExtension();
-            $image_new_name =strtoupper(Str::random(6));
-            $image_full_name=$image_new_name.'.'.$image_ext;
-            $upload_path='images/organisation/';
-            $image_url=$upload_path.$image_full_name;
-            $success=$image->move($upload_path,$image_full_name);
-            $imageData='/images/organisation/'.$image_full_name;
-
             
             $data=array();
-            $data['user_id']=$request->org_user;
             $data['name']=$request->org_name;
             $data['phone']=$request->phone;
-            $data['image']=$imageData;
             $data['address']=$request->address;
             $data['details']=$request->org_details;
             $data['status']=$request->status;
@@ -66,14 +52,14 @@ class OrganizationController extends Controller
             $insert = DB::table('organizations')->insert($data);
 
             if($insert){
-                return redirect()->back()->with([
-                    'error' => false,
+                return response()->json([
+                    'status' => 200,
                     'message' => 'Create Successfully'
                 ]);
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Something going wrong!'
                 ]);
             }
         }

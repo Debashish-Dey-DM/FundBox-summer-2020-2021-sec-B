@@ -52,7 +52,14 @@ Route::get('/admin/pendingOrg/accept/{id}','Admin\OrganizationController@Pending
 Route::get('/admin/pendingOrg/delete/{id}','Admin\OrganizationController@PendingOrgDelete');
 Route::get('/admin/manageOrg','Admin\OrganizationController@ManageOrg');
 Route::get('/admin/manageOrg/block/{id}', 'Admin\OrganizationController@BlockOrg');
+Route::post('/admin/createOrg','Admin\OrganizationController@CreateOrganisation');
 
+//event admin
+Route::post('/admin/createAdminEvent','Admin\EventController@CreateAdminEvent');
+Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
+
+//getCategory
+Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 
 
 
