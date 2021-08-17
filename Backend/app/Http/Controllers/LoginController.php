@@ -50,8 +50,8 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         }else{
@@ -66,39 +66,21 @@ class LoginController extends Controller
 
                 if($user->password == $password){
 
-                    $request->session()->put('user_id', $user->id);
-                    $request->session()->put('username', $user->username);
-                    $request->session()->put('full_name', $user->name);
-                    $request->session()->put('user_type', $user->type);
-                    $request->session()->put('user_email', $user->email);
-                    $request->session()->put('user_image', $user->image);
-                    $request->session()->put('admin_is_super_admin', $user->is_super_admin);
-
-                    if($user->type == 1){
-                        return redirect('/admin/dashboard');
-                    }elseif($user->type == 2){
-                        return redirect('/org/dashboard');
-                    }elseif($user->type == 3){
-                        return redirect('/sp/dashboard');
-                    }elseif($user->type == 4){
-                        return redirect('/');
-                    }else{
-                        return redirect()->back()->with([
-                            'error' => true,
-                            'message' => 'Something going wrong'
-                        ]);
-                    }
+                    return response()->json([
+                        'status' => 200,
+                        'userData'=> $user,
+                        'message' => 'Login Successful'
+                    ]);
                 }else{
-                    return redirect()->back()->with([
-                        'error' => true,
-                        'message' => 'user email or password not matched'
+                    return response()->json([
+                        'status' => 240,
+                        'message' => 'Something going wrong!'
                     ]);
                 }
-
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'user Not found!'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'User not Found!'
                 ]);
             }
         }

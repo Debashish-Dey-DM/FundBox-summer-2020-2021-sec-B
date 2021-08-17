@@ -61,7 +61,7 @@ Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
 //getCategory
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 
-
+Route::post('/login','LoginController@Login');
 
 //closeadmin
 

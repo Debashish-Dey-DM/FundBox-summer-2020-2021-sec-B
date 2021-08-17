@@ -43,6 +43,7 @@ import OrgBlock from './Components/Admin/Organization/OrgBlock';
 import OrgCreate from './Components/Admin/Organization/OrgCreate';
 import CreateAdminEvent from './Components/Admin/Eevents/CreateAdminEvent';
 import HomeDefault from './Components/HomeDefault';
+import Login from './Components/Login';
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
           <Route  path="/signup" component={Signup} /> */}
 
 <Route  path="/index" component={HomeDefault} />
+<Route  path="/login" component={Login} />
 
 {/* /////////////////Admin/////////////////////////////// */}
 

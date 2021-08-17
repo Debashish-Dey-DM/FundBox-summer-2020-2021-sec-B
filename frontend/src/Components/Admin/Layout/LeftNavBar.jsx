@@ -42,59 +42,59 @@ export default function LeftNavBar() {
 
                         <div className="sb-sidenav-menu-heading">Events</div>
                         <a className="nav-link" href="/admin/createAdminEvent">
-                            <div className="sb-nav-link-icon"><i class="fas fa-calendar-week"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Create Admin Event
                         </a>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="fas fa-calendar-week"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Create organisation Event
                         </a>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="fas fa-calendar-week"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Create Volunteer Event
                         </a>
 
                         <div className="sb-sidenav-menu-heading">Manage Events</div>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="fas fa-calendar-week"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Admin
                         </a>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="fas fa-calendar-week"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Pending
                         </a>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="fas fa-calendar-week"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Accepted
                         </a>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="fas fa-list"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-list"/></div>
                             Volunteer List
                         </a>
                         <a className="nav-link" href="/admin/transitionList">
-                            <div className="sb-nav-link-icon"><i class="fas fa-dollar-sign"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-dollar-sign"/></div>
                             Transition List
                         </a>
 
                         <div className="sb-sidenav-menu-heading">Sponsor</div>
                         <a className="nav-link" href="/admin/sponsor">
-                            <div className="sb-nav-link-icon"><i class="fas fa-hand-holding-usd"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-hand-holding-usd"/></div>
                             Pending Sponsor
                         </a>
                         <a className="nav-link" href="/admin/sponsorManage">
-                            <div className="sb-nav-link-icon"><i class="fas fa-hand-holding-usd"/></div>
+                            <div className="sb-nav-link-icon"><i className="fas fa-hand-holding-usd"/></div>
                             Manage Sponsor
                         </a>
 
                         <div className="sb-sidenav-menu-heading">Reports</div>
                         <a className="nav-link" href="/admin/reports">
-                            <div className="sb-nav-link-icon"><i class="far fa-flag"/></div>
+                            <div className="sb-nav-link-icon"><i className="far fa-flag"/></div>
                             Manage Reports
                         </a>
 
                         <div className="sb-sidenav-menu-heading">Account</div>
                         <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i class="far fa-flag"/></div>
+                            <div className="sb-nav-link-icon"><i className="far fa-flag"/></div>
                             Manage Account
                         </a>
                     </div>
