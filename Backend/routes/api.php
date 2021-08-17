@@ -57,6 +57,9 @@ Route::post('/admin/createOrg','Admin\OrganizationController@CreateOrganisation'
 //event admin
 Route::post('/admin/createAdminEvent','Admin\EventController@CreateAdminEvent');
 Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
+Route::get('/admin/getAllOrg','Admin\EventController@EventOrgIndex');
+Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
+Route::post('/admin/createVolunteerEvent','Admin\EventController@CreateVolunteerIndex');
 
 //getCategory
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');

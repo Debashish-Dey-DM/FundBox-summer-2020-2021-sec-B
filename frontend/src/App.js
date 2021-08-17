@@ -44,6 +44,7 @@ import OrgCreate from './Components/Admin/Organization/OrgCreate';
 import CreateAdminEvent from './Components/Admin/Eevents/CreateAdminEvent';
 import HomeDefault from './Components/HomeDefault';
 import Login from './Components/Login';
+import CreateOrgEvent from './Components/Admin/Eevents/CreateOrgEvent';
 
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
 
               {/* Admin Event Start */}
 <Route  path="/admin/createAdminEvent" component={CreateAdminEvent} />
+<Route  path="/admin/createOrgEvent" component={CreateOrgEvent} />
               {/* Admin Event END */}
 
 <Route  path="/admin/transitionList" component={TransitionList} />

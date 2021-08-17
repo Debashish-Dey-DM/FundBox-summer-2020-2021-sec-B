@@ -19,6 +19,29 @@ const Login = () => {
         
     }
 
+    function checkUserActive(){
+        let data = sessionStorage.getItem('userData');
+        data = JSON.parse(data);
+        if(data != null){
+
+            if (data.type === 1) {
+                setTimeout(() => { history.push('/admin/dashboard'); }, 0);
+            }else if (data.type === 2) {
+                setTimeout(() => { history.push('/organization'); }, 0);
+            }else if (data.type === 3) {
+                setTimeout(() => { history.push('/sp/dashboard'); }, 0);
+            }else if (data.type === 4) {
+                setTimeout(() => { history.push('/user/dashboard'); }, 0);
+            }else{
+                setTimeout(() => { history.push('/login'); }, 0);
+            }
+        }
+    }
+
+    useEffect(() => {
+        checkUserActive();  
+    }, []);
+
     function setDate(userData){
         localStorage.setItem('userData',JSON.stringify(userData));
         sessionStorage.setItem('userData',JSON.stringify(userData))
@@ -48,12 +71,12 @@ const Login = () => {
 
             if (res.data.userData.type === 1) {
                 setTimeout(() => { history.push('/admin/dashboard'); }, 0);
-            }else if (res.data.userData.type === 1) {
-                setTimeout(() => { history.push('/admin/dashboard'); }, 0);
-            }else if (res.data.userData.type === 1) {
-                setTimeout(() => { history.push('/admin/dashboard'); }, 0);
-            }else if (res.data.userData.type === 1) {
-                setTimeout(() => { history.push('/admin/dashboard'); }, 0);
+            }else if (res.data.userData.type === 2) {
+                setTimeout(() => { history.push('/organization'); }, 0);
+            }else if (res.data.userData.type === 3) {
+                setTimeout(() => { history.push('/sp/dashboard'); }, 0);
+            }else if (res.data.userData.type === 4) {
+                setTimeout(() => { history.push('/user/dashboard'); }, 0);
             }
         }
         else if (res.data.status === 240) {
@@ -75,7 +98,7 @@ const Login = () => {
         <div className="col-sm-6 offset-sm-3" style={{ "marginTop" :"50px"}}>
             <div className="card">
                 <div className="card-header" style={{ "padding" :"5px"}}>
-                    <h4 className="card-title">Create New Category </h4>
+                    <h4 className="card-title">Welcome Back! <br/> Login </h4>
                     <h4 className="card-title">{msg} </h4>
                 </div>
                 <div className="card-content">
@@ -95,10 +118,6 @@ const Login = () => {
                                 </div>
                             </div>
                         </form>
-
-                        <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
-                            <button onClick={()=> getUserData()} className="btn btn-block btn-success glow">USER INFO</button>
-                        </div>
                     </div>
                 </div>
             </div>

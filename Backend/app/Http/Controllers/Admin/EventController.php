@@ -85,17 +85,15 @@ class EventController extends Controller
 
     public function EventOrgIndex(Request $request){
 
-        $allCategory = DB::table('event_categorys')
-        ->where('status', 1)
-        ->get();
         $allOrg = DB::table('organizations')
         ->where('status', 1)->orderBy('id','DESC')
         ->get();
 
-        return view('Admin.createOrgEvent')
-        ->with('title', 'Create Organisation Event | Admin')
-        ->with('allCategory', $allCategory)
-        ->with('allOrg', $allOrg);
+        if($allOrg){
+            return response()->json($allOrg, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 
@@ -109,31 +107,19 @@ class EventController extends Controller
             'event_amount' => 'required',
             'date' => 'required',
             'event_phone' => 'required|min:11|max:15',
-            'image' => 'required',
             'status' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         }else{
 
-            $image = $request->file('image');
-            $image_name=$image->getClientOriginalName();
-            $image_ext=$image->getClientOriginalExtension();
-            $image_new_name =strtoupper(Str::random(6));
-            $image_full_name=$image_new_name.'.'.$image_ext;
-            $upload_path='images/event/';
-            $image_url=$upload_path.$image_full_name;
-            $success=$image->move($upload_path,$image_full_name);
-            $imageData='/images/event/'.$image_full_name;
-            
             $data=array();
             $data['orgId']=$request->org_id;
             $data['event_name']=$request->event_name;
-            $data['image']=$imageData;
             $data['details']=$request->event_details;
             $data['contact']=$request->event_phone;
             $data['eventCategory']=$request->event_category;
@@ -145,14 +131,14 @@ class EventController extends Controller
             $insert = DB::table('events')->insert($data);
 
             if($insert){
-                return redirect()->back()->with([
-                    'error' => false,
+                return response()->json([
+                    'status' => 200,
                     'message' => 'Create Successfully'
                 ]);
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Required data missing.'
                 ]);
             }
         }

@@ -56,7 +56,7 @@ class ReportController extends Controller
             } else {
                 return response()->json([
                     'status' => 240,
-                    'message' => 'Something going wrong!'
+                    'message' => 'Required data missing.'
                 ]);
             }
         }
