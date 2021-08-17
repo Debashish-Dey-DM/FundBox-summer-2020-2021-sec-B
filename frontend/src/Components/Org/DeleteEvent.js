@@ -12,7 +12,7 @@ const DeleteEvent = () => {
 
         if (res.status === 200) {
         seteName(res.data.event_name);
-         setTimeout(() => { history.push('/org/EventList'); }, 3000);   
+         
         }
             
     }
@@ -21,7 +21,8 @@ const DeleteEvent = () => {
         thidClickedFunda.innerText = "Deleting";
         const res = await axios.post(`http://localhost:8000/api/delete-event/${eid}`);
         if (res.data.status ===200) {
-        console.log(res.data.message);
+            console.log(res.data.message);
+            setTimeout(() => { history.push('/org/EventList'); }, 3000);   
         }
     }
 
