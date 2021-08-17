@@ -9,6 +9,12 @@ import EditEvent from './Components/Org/EditEvent';
 import DeleteEvent from './Components/Org/DeleteEvent';
 import EventTransaction from './Components/Org/EventTransaction';
 import RefundMoney from './Components/Org/RefundMoney';
+import SponsorReq from './Components/Org/SponsorReq';
+import SponsorList from './Components/Org/SponsorList';
+import RenewSpons from './Components/Org/RenewSpons';
+import ApproveSponsor from './Components/Org/ApproveSponsor';
+import CancelDeal from './Components/Org/CancelDeal';
+import RenewDeal from './Components/Org/RenewDeal';
 function App() {
   return (
     <>
@@ -38,7 +44,15 @@ function App() {
 <Route path ="/org/delete-event/:id" component={DeleteEvent} />
 <Route path="/org/EventTransactionList" component={EventTransaction} />
 <Route path="/org/refund-money/:id" component={RefundMoney} />
+<Route path ="/org/SponsorRequest" component={SponsorReq}/>
+<Route path ="/org/SponsorList" component={SponsorList}/>
+<Route path ="/org/RenewSponsor" component={RenewSpons}/>
+<Route path ="/org/Approve-Sponsor/:id" component={ApproveSponsor}/>
+<Route path ="/org/Cancel-deal/:id" component={CancelDeal}/>
+<Route path ="/org/Renew-Deal/:id" component={RenewDeal}/>
 
+
+          
 {/* //closeorg */}
 
 {/* /////////////////Sponsor/////////////////////////////// */}

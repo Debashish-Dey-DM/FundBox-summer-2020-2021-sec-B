@@ -192,19 +192,20 @@ Public function destroy($id,$type){
            
 // }
 
-public function reqsponsor(Request $req){
-    // $srequest = DB::table('spo_to_org_proposals')
-    //                     ->where('org_Id',$req->session()->get('org_id'))
-    //                     ->where('status','2')->get();
-    $srequest = DB::table('spo_to_org_proposals')
-    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
-    ->select('spo_to_org_proposals.*', 'sponsors.name')
-    ->where('org_Id',$req->session()->get('org_id'))
-    ->where('spo_to_org_proposals.status','2')->get();
-    return view('Organization.SponsorRequest')
-            ->with('Requests',$srequest)
-            ->with('title', 'Sponsor Requests | Organization');
-}
+// public function reqsponsor(Request $req){
+//     // $srequest = DB::table('spo_to_org_proposals')
+//     //                     ->where('org_Id',$req->session()->get('org_id'))
+//     //                     ->where('status','2')->get();
+//     $srequest = DB::table('spo_to_org_proposals')
+//     ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+//     ->select('spo_to_org_proposals.*', 'sponsors.name')
+//     ->where('org_Id',$req->session()->get('org_id'))
+//     ->where('spo_to_org_proposals.status','2')->get();
+//     return view('Organization.SponsorRequest')
+//             ->with('Requests',$srequest)
+//             ->with('title', 'Sponsor Requests | Organization');
+//             sponreq
+// }
 public function approvesponsor(Request $req,$id){
     $srequest = spo_to_org_proposal::find($id);
     $srequest->status = '0';
@@ -239,6 +240,7 @@ public function renewsponsor(Request $req){
     return view('Organization.RenewSponsor')
             ->with('Requests',$srequest)
             ->with('title', 'Sponsor Requests | Organization');
+            
 }
 
 public function renew(Request $req,$id){
@@ -591,6 +593,56 @@ public function refundEvent($id){
     $refund->status = '6';
     $refund->save();
    return response()->json($refund, 200);
+
+}
+public function sponreq(Request $req){
+    // $srequest = DB::table('spo_to_org_proposals')
+    //                     ->where('org_Id',$req->session()->get('org_id'))
+    //                     ->where('status','2')->get();
+    $srequest = DB::table('spo_to_org_proposals')
+    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+    ->select('spo_to_org_proposals.*', 'sponsors.name')
+    ->where('spo_to_org_proposals.status','2')
+    ->get();
+   return response()->json($srequest, 200);
+            
+}
+public function approvespon(Request $req,$id){
+    $srequest = spo_to_org_proposal::find($id);
+    $srequest->status = '0';
+    $srequest->save();
+    return response()->json($srequest, 200);
+
+
+}
+public function sponList(Request $req){
+    $srequest = DB::table('spo_to_org_proposals')
+    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+    ->select('spo_to_org_proposals.*', 'sponsors.name')
+    ->where('spo_to_org_proposals.status','0')->get();
+     return response()->json($srequest, 200);
+
+}
+public function cancelspon(Request $req,$id){
+    $srequest = spo_to_org_proposal::find($id);
+    $srequest->status = '1';
+    $srequest->save();
+     return response()->json($srequest, 200);
+
+}
+public function RenSpon(Request $req){
+    $srequest = DB::table('spo_to_org_proposals')
+    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+    ->select('spo_to_org_proposals.*', 'sponsors.name')
+    ->where('spo_to_org_proposals.status','1')->get();
+     return response()->json($srequest, 200);
+            
+}
+public function renewDeal(Request $req,$id){
+    $srequest = spo_to_org_proposal::find($id);
+    $srequest->status = '0';
+    $srequest->save();
+     return response()->json($srequest, 200);
 
 }
 }
