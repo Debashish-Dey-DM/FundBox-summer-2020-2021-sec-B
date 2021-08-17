@@ -1,18 +1,21 @@
 import React from 'react'
 import axios from 'axios';
 import { useState,useEffect} from 'react';
+import { useHistory } from "react-router-dom";
 import LeftNavBar from './Layout/LeftNavBar';
 import TopNavbar from './Layout/TopNavbar';
 
 const TransitionList = () => {
+    const history = useHistory();
     let serial = 0;
-    const [getEvent, setGetEvent] = useState([]);
+    const [event, setEvent] = useState([]);
+    const [search, setSearch] = useState("");
     const mount= async()=>{
         const res = await axios.get('http://localhost:8000/api/admin/transitionList');
         console.log(res.data);
         
         if (res.status === 200) {
-            setGetEvent(res.data)
+            setEvent(res.data)
         }
     }
 
@@ -32,6 +35,10 @@ const TransitionList = () => {
                             <div className="card">
                                 <div className="card-header" style={{ "padding" :"5px"}}>
                                     <h4 className="card-title"> All Transition List </h4>
+                                    <input className="col-sm-3 offset-sm-9" type="text"
+                                        placeholder="searching"
+                                        onChange={e => {setSearch(e.target.value)}}
+                                    />
                                 </div>
                                 <div className="class-body">
                                     <table className="table table-bordered table-striped">
@@ -47,7 +54,15 @@ const TransitionList = () => {
                                         </thead>
                                         <tbody>
                                         {
-                                            getEvent.map((e) => {
+                                            event.filter((val) => {
+                                                if (search == "" || search === null) {
+                                                    return val
+                                                }
+                                                else if ((val.event_name?val.event_name:'').toLowerCase().includes(search.toLowerCase()) || (val.name?val.name:'').toLowerCase().includes(search.toLowerCase()))
+                                                {
+                                                    return val
+                                                }
+                                            }).map((e) => {
                                                 return (
                                                     <tr key={e.id} >
                                                         <td>{serial += 1}</td>

@@ -17,6 +17,13 @@ import TopNavbar from './Layout/TopNavbar';
             }}
         />
     );
+    function getUserData(){
+        // let data = localStorage.getItem('userData');
+        let setData = sessionStorage.getItem('userData');
+        // console.log(JSON.parse(data))
+        console.log(JSON.parse(setData))
+    }
+
     return (
         <div className="sb-nav-fixed">
             <TopNavbar/>
@@ -135,7 +142,7 @@ import TopNavbar from './Layout/TopNavbar';
                                 <div className="col-lg-3 col-sm-6 col-12 dashboard-users-danger">
                                     <div className="card text-center">
                                         <div className="card-content">
-                                            <div claclassNamess="card-body py-1">
+                                            <div className="card-body py-1">
                                                 <div className="badge-circle badge-circle-lg badge-circle-light-warning mx-auto mb-50">
                                                     <i className="bx bx-receipt font-medium-5"></i>
                                                 </div>

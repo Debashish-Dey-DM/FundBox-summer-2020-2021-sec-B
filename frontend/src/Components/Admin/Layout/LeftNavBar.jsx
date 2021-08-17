@@ -1,6 +1,41 @@
 import React from 'react'
+import { useState,useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 
 export default function LeftNavBar() {
+    const history = useHistory();
+    const [userName, setUserName] = useState("");
+    const [username, setUsername] = useState("");
+
+    function setUserDat(){
+        let data = sessionStorage.getItem('userData');
+        data = JSON.parse(data);
+        if(data === null){
+            setTimeout(() => { history.push('/login'); }, 0);
+        }else{
+            if(data.type !=1){
+                if (data.type === 2) {
+                    setTimeout(() => { history.push('/organization'); }, 0);
+                }else if (data.type === 3) {
+                    setTimeout(() => { history.push('/sp/dashboard'); }, 0);
+                }else if (data.type === 3) {
+                    setTimeout(() => { history.push('/admin/dashboard'); }, 0);
+                }else{
+                    sessionStorage.removeItem('userData');
+                    setTimeout(() => { history.push('/login'); }, 0);
+                }
+            }else{
+                // console.log(data)
+                setUserName(data.name)
+                setUsername(data.username)
+            }
+        }
+    }
+
+    useEffect(() => {
+        setUserDat();  
+    }, []);
+
     return (
         <div id="layoutSidenav_nav">
             <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -45,7 +80,7 @@ export default function LeftNavBar() {
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Create Admin Event
                         </a>
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/admin/createOrgEvent">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Create organisation Event
                         </a>
@@ -100,8 +135,9 @@ export default function LeftNavBar() {
                     </div>
                 </div>
                 <div className="sb-sidenav-footer">
+                    <div className="small">Hey! {userName}</div>
                     <div className="small">Logged in as:</div>
-                    Admin
+                    Admin[{username}]
                 </div>
             </nav>
         </div>
