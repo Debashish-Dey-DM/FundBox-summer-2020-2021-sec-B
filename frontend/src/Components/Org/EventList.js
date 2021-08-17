@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 const EventList = () => {
     const history = useHistory();
     const [event, setEvent] = useState([]);
+    const [search, setSearch] = useState("");
     const [isEvent, setIsEvent] = useState([]);
     const mount= async()=>{
         const res = await axios.get('http://localhost:8000/api/eventList');
@@ -26,7 +27,11 @@ const EventList = () => {
     mount();
         
      }, []);
-    
+    // const searchEvent = async (e) => {
+    //     e.preventDefault();
+    //     const res = await axios.get('http://localhost:8000/api/eventList');
+    // }
+
     return (
         <div>
             <div className="container">
@@ -37,6 +42,14 @@ const EventList = () => {
                                 <h4> Events
                                 {/* <Link to={'add-student'} className="btn btn-primary btn-sm foat-end"> Add Student</Link> */}
                                 </h4>
+                                
+                                    <input type="text"
+                                        placeholder="searching"
+                                        onChange={e => {setSearch(e.target.value)}}
+                                    />
+                              
+                                
+                                
                             </div>
                             <div className="class-body">
                                 <table className="table table-bordered table-striped">
@@ -53,7 +66,15 @@ const EventList = () => {
                                     </thead>
                                     <tbody>
                                     {
-                                        event.map((e) => {
+                                            event.filter((val) => {
+                                                if (search == "") {
+                                                    return val
+                                                }
+                                                else if (val.event_name.toLowerCase().includes(search.toLowerCase()))
+                                                {
+                                                    return val
+                                                }
+                                            }).map((e) => {
                                             return (
                                                 <tr key={e.id} >
                                                     <td>{e.id}</td>
