@@ -94,7 +94,7 @@ export default function LeftNavBar() {
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Admin
                         </a>
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/admin/managePendingEvent">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Pending
                         </a>
