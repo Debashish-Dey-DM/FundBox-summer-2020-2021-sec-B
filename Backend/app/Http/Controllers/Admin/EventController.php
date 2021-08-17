@@ -285,76 +285,53 @@ class EventController extends Controller
         $allEvents = DB::table('events')
         ->where('status', 2)
         ->where('isAdminEvent', 0)
-        ->paginate(10);
+        ->get();
 
-        return view('Admin.managePendingEvent')
-        ->with('title', 'Manage Pending Event | Admin')
-        ->with('allEvents', $allEvents);
+        if($allEvents){
+            return response()->json($allEvents, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 
-    public function ManagePendingEventAccept(Request $request)
+    public function ManagePendingEventAccept(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required'
-        ]);
+            
+        $data=array();
+        $data['status']='1';
 
-        if ($validator->fails()) {
+        $update= DB::table('events')
+                        ->where('id',$id)
+                        ->update($data);
+
+        if ($update) {
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 200,
+                'message' => 'Accept Successfully'
             ]);
         } else {
-            $id = $request->input('id');
-            
-            $data=array();
-            $data['status']='1';
-
-            $update= DB::table('events')
-                            ->where('id',$id)
-                            ->update($data);
-
-            if ($update) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Update successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
         }
     }
 
-    public function ManagePendingEventDelete(Request $request)
+    public function ManagePendingEventDelete(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required'
-        ]);
+        $removed=DB::table('events')->where('id', $id)->delete();
 
-        if ($validator->fails()) {
+        if ($removed) {
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 200,
+                'message' => 'Delete Successfully'
             ]);
         } else {
-            $id = $request->input('id');
-
-            $removed=DB::table('events')->where('id', $id)->delete();
-
-            if ($removed) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Delete successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
         }
     }
 

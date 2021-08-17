@@ -46,6 +46,7 @@ import HomeDefault from './Components/HomeDefault';
 import Login from './Components/Login';
 import CreateOrgEvent from './Components/Admin/Eevents/CreateOrgEvent';
 import CreateVolunteerEvent from './Components/Admin/Eevents/CreateVolunteerEvent';
+import PendingEvents from './Components/Admin/Eevents/PendingEvents';
 
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
 <Route  path="/admin/createAdminEvent" component={CreateAdminEvent} />
 <Route  path="/admin/createOrgEvent" component={CreateOrgEvent} />
 <Route  path="/admin/createVolunteerEvent" component={CreateVolunteerEvent} />
+<Route  path="/admin/managePendingEvent" component={PendingEvents} />
               {/* Admin Event END */}
 
 <Route  path="/admin/transitionList" component={TransitionList} />

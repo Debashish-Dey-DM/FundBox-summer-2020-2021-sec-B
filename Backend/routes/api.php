@@ -60,6 +60,9 @@ Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
 Route::get('/admin/getAllOrg','Admin\EventController@EventOrgIndex');
 Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
 Route::post('/admin/createVolunteerEvent','Admin\EventController@CreateVolunteerIndex');
+Route::get('/admin/managePendingEvent','Admin\EventController@ManagePendingEvent');
+Route::get('/admin/managePendingEvent/accept/{id}','Admin\EventController@ManagePendingEventAccept');
+Route::get('/admin/managePendingEvent/delete/{id}','Admin\EventController@ManagePendingEventDelete');
 
 //getCategory
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');

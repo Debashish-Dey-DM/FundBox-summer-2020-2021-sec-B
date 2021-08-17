@@ -84,19 +84,19 @@ const TransitionList = () => {
                                                             {(() => {
                                                                 if (e.status === 1) {
                                                                 return (
-                                                                    <div>Active</div>
+                                                                    <div className="btn btn-primary btn-sm foat-end">Active</div>
                                                                 )
                                                                 } else if (e.status === 5) {
                                                                 return (
-                                                                    <div>Waiting for Refund</div>
+                                                                    <div className="btn btn-info btn-sm foat-end">Waiting for Refund</div>
                                                                 )
                                                                 }else if (e.status === 6) {
                                                                     return (
-                                                                        <div>Refund Done</div>
+                                                                        <div className="btn btn-success btn-sm foat-end">Refund Done</div>
                                                                     )
                                                                 } else if (e.status === 0) {
                                                                     return (
-                                                                        <div>Cacel</div>
+                                                                        <div className="btn btn-danger btn-sm foat-end">Cacel</div>
                                                                     )
                                                                 }
                                                             })()}
