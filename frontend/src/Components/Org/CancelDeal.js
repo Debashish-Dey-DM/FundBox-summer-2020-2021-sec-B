@@ -16,7 +16,7 @@ const CancelDeal = () => {
         const res = await axios.post(`http://localhost:8000/api/cancelsponsor/${eid}`);
         if (res.status ===200) {
            
-            setTimeout(() => { history.push('/org/SponsorList'); }, 3000);   
+            setTimeout(() => { history.push('/org/SponsorList'); }, 2000);   
         }
     }
 

@@ -24,7 +24,7 @@ const DeleteEvent = () => {
         const res = await axios.post(`http://localhost:8000/api/delete-event/${eid}`);
         if (res.data.status ===200) {
             console.log(res.data.message);
-            setTimeout(() => { history.push('/org/EventList'); }, 3000);   
+            setTimeout(() => { history.push('/org/EventList'); }, 2000);   
         }
     }
 

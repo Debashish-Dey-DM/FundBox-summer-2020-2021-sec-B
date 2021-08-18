@@ -80,7 +80,7 @@ const EditEvent = () => {
                         <div className="card">
                             <div className="class-header">
                                 <h4> Edit Student
-                                <Link to={'/'} className="btn btn-primary btn-sm foat-end"> Back</Link>
+                                <Link to={'/org/EventList'} className="btn btn-primary btn-sm foat-end"> Back</Link>
                                 </h4>
                                 <h4 className="card-title">{msg} </h4>
                             </div>

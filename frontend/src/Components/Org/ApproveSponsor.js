@@ -17,7 +17,7 @@ const ApproveSponsor = () => {
         const res = await axios.post(`http://localhost:8000/api/approvesponsor/${eid}`);
         if (res.status ===200) {
            
-            setTimeout(() => { history.push('/org/SponsorRequest'); }, 3000);   
+            setTimeout(() => { history.push('/org/SponsorRequest'); }, 2000);   
         }
     }
 
