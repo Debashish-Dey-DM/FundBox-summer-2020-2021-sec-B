@@ -25,9 +25,6 @@ import SponsorHome from './Components/Sponsor/SponsorHome';
 import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise';
 import AddAdvertise from './Components/Sponsor/AddAdvertise';
 
-=======
-
-
 import EditCategory from './Components/Admin/EditCategory';
 import AdminHome from './Components/Admin/AdminHome';
 import CreateAdmin from './Components/Admin/CreateAdmin';
@@ -49,7 +46,6 @@ import OrgBlock from './Components/Admin/Organization/OrgBlock';
 import OrgCreate from './Components/Admin/Organization/OrgCreate';
 import CreateAdminEvent from './Components/Admin/Eevents/CreateAdminEvent';
 
-=======
 import HomeDefault from './Components/HomeDefault';
 import Login from './Components/Login';
 import CreateOrgEvent from './Components/Admin/Eevents/CreateOrgEvent';
