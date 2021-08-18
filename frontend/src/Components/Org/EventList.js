@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
 
 const EventList = () => {
     const history = useHistory();
@@ -28,7 +30,12 @@ const EventList = () => {
      }, []);
     
     return (
-        <div>
+        <div className="sb-nav-fixed">
+            <TopNavbar />
+            <div id="layoutSidenav">
+                <LeftNavBar />
+                <div id="layoutSidenav_content">
+                    <main>
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
@@ -81,8 +88,11 @@ const EventList = () => {
                         </div>
                     </div>
                 </div>
+                        </div>
+                        </main>
             </div>
-        </div>
+            </div>
+            </div>
     )
 }
 export default EventList;

@@ -5,7 +5,7 @@ import avatar from '../../avatar.png';
 import LeftNavBar from './Layout/LeftNavBar';
 import TopNavbar from './Layout/TopNavbar';
 
-import 'boxicons';
+// import 'boxicons';
 
  const AdminHome = () => {
     const ColoredLine = ({ color }) => (
