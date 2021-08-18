@@ -21,7 +21,13 @@ import Category from './Components/Admin/Category';
 import DeleteCategory from './Components/Admin/DeleteCategory';
 import SpTest from './Components/Sponsor/SpTest';
 import SponsorHome from './Components/Sponsor/SponsorHome';
-import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise'
+
+import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise';
+import AddAdvertise from './Components/Sponsor/AddAdvertise';
+
+=======
+
+
 import EditCategory from './Components/Admin/EditCategory';
 import AdminHome from './Components/Admin/AdminHome';
 import CreateAdmin from './Components/Admin/CreateAdmin';
@@ -42,6 +48,8 @@ import OrgManage from './Components/Admin/Organization/OrgManage';
 import OrgBlock from './Components/Admin/Organization/OrgBlock';
 import OrgCreate from './Components/Admin/Organization/OrgCreate';
 import CreateAdminEvent from './Components/Admin/Eevents/CreateAdminEvent';
+
+=======
 import HomeDefault from './Components/HomeDefault';
 import Login from './Components/Login';
 import CreateOrgEvent from './Components/Admin/Eevents/CreateOrgEvent';
@@ -49,6 +57,7 @@ import CreateVolunteerEvent from './Components/Admin/Eevents/CreateVolunteerEven
 import PendingEvents from './Components/Admin/Eevents/PendingEvents';
 import SponsorTransaction from './Components/Org/SponsorTransaction';
 import Volunteer from './Components/Org/Volunteers';
+
 
 
 function App() {
@@ -148,6 +157,7 @@ function App() {
 <Route path="/sp/test" component={SpTest} />
 <Route path="/sp/dashboard" component={SponsorHome} />
 <Route path="/sp/allAdvertiser" component={ListOfAdvertise} />
+<Route path="/sp/addAdvertise" component={AddAdvertise} />
 
 
 

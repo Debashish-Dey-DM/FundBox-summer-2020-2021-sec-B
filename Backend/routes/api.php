@@ -24,10 +24,12 @@ Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 Route::post('/admin/eventCategory','Admin\CategoryController@CreateCategory');
 Route::post('/admin/eventCategory/updateStatus','Admin\CategoryController@UpdateStatus');
 Route::post('/admin/eventCategory/delete','Admin\CategoryController@Delete');
-Route::post('/admin/eventCategory/update/{id}','Admin\CategoryController@Update');
-Route::get('/admin/eventCategory/singleCategory/{id}','Admin\CategoryController@SingleCategory');
+Route::post('/admin/eventCategory/update','Admin\CategoryController@Update');
 
 
+
+
+=======
 Route::post('/admin/createAdmin','Admin\UserController@CreateAdmin');
 Route::get('/admin/manageAdmin','Admin\UserController@ManageAdmin');
 Route::get('/admin/getSingleAdminData/{id}','Admin\UserController@ManageProfile');
@@ -69,6 +71,7 @@ Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 
 Route::post('/login','LoginController@Login');
 
+
 //closeadmin
 
 /////////////////ORG///////////////////////////////
@@ -94,7 +97,8 @@ Route::get('/VolunteerList','Org\OrganizationHomeController@VolList');
 
 /////////////////Sponsor///////////////////////////////
 
-
+Route::get('/sp/allAdvertiser','Sponsor\AdvertiseController@Show');
+Route::post('sp/addAdvertise','Sponsor\AdvertiseController@CreateAdd');
 
 
 
