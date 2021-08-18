@@ -49,6 +49,8 @@ import CreateVolunteerEvent from './Components/Admin/Eevents/CreateVolunteerEven
 import PendingEvents from './Components/Admin/Eevents/PendingEvents';
 import SponsorTransaction from './Components/Org/SponsorTransaction';
 import Volunteer from './Components/Org/Volunteers';
+import ManageAdminEvents from './Components/Admin/Eevents/ManageAdminEvents';
+import ManageAcceptedEvents from './Components/Admin/Eevents/ManageAcceptedEvents';
 
 
 function App() {
@@ -101,6 +103,8 @@ function App() {
 <Route  path="/admin/createOrgEvent" component={CreateOrgEvent} />
 <Route  path="/admin/createVolunteerEvent" component={CreateVolunteerEvent} />
 <Route  path="/admin/managePendingEvent" component={PendingEvents} />
+<Route  path="/admin/manageAdminEvent" component={ManageAdminEvents} />
+<Route  path="/admin/manageAcceptedEvent" component={ManageAcceptedEvents} />
               {/* Admin Event END */}
 
 <Route  path="/admin/transitionList" component={TransitionList} />

@@ -90,7 +90,7 @@ export default function LeftNavBar() {
                         </a>
 
                         <div className="sb-sidenav-menu-heading">Manage Events</div>
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/admin/manageAdminEvent">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Admin
                         </a>
@@ -98,7 +98,7 @@ export default function LeftNavBar() {
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Pending
                         </a>
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/admin/manageAcceptedEvent">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Accepted
                         </a>
