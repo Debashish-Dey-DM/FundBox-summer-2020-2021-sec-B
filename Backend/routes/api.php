@@ -41,6 +41,7 @@ Route::get('/admin/reports','Admin\ReportController@Index');
 Route::post('/admin/reports/{id}','Admin\ReportController@AddReply');
 
 Route::get('/admin/transitionList','Admin\EventController@TransitionList');
+Route::get('/admin/volunteerList','Admin\EventController@VolunteerList');
 
 Route::get('/admin/pendingOrg','Admin\OrganizationController@PendingOrg');
 Route::get('/admin/pendingOrg/accept/{id}','Admin\OrganizationController@PendingOrgAccept');
