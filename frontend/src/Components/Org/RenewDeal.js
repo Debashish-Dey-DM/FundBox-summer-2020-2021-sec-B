@@ -17,7 +17,7 @@ const RenewDeal = () => {
         const res = await axios.post(`http://localhost:8000/api/renewDeal/${eid}`);
         if (res.status ===200) {
            
-            setTimeout(() => { history.push('/org/RenewSponsor'); }, 3000);   
+            setTimeout(() => { history.push('/org/RenewSponsor'); }, 2000);   
         }
     }
 

@@ -9,7 +9,7 @@ export default function LeftNavBar() {
                 <div className="sb-sidenav-menu">
                     <div className="nav">
                         <div className="sb-sidenav-menu-heading">Core</div>
-                        <a className="nav-link" href="/admin/dashboard">
+                        <a className="nav-link" href="/organization">
                             <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt" /></div>
                             Dashboard
                         </a>
