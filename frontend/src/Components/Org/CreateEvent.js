@@ -42,7 +42,7 @@ const CreateEvent = () => {
         contact: '',
         eventCategory : '',
         targetDate: '' })
-            setTimeout(() => { history.push('/organization'); }, 3000);
+            setTimeout(() => { history.push('/org/EventList'); }, 3000);
             // 
         }
         else if (res.data.status === 240) {
