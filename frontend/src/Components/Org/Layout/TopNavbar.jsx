@@ -1,16 +1,6 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
 
 export default function TopNavbar() {
-    const history = useHistory();
-    function userLogout(){
-        sessionStorage.removeItem('userData');
-        let setData = sessionStorage.getItem('userData');
-        console.log(JSON.parse(setData))
-        console.log("Logout Successful")
-        setTimeout(() => { history.push('/login'); }, 0);
-    }
-
     return (
                 <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
                     {/* Navbar Brand*/}
@@ -20,8 +10,7 @@ export default function TopNavbar() {
                     {/* Navbar Search*/}
                     <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                     <div className="input-group">
-                        <input className="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                        <button className="btn btn-primary" id="btnNavbarSearch" type="button"><i className="fas fa-search" /></button>
+                        
                     </div>
                     </form>
                     {/* Navbar*/}
@@ -33,7 +22,7 @@ export default function TopNavbar() {
                             <a className="nav-link "  href="#!" role="button"  aria-expanded="false"><i className="fas fa-user fa-fw" /></a>
                         </li>
                         <li>
-                            <a className="nav-link "  href="" onClick={()=> userLogout()}  aria-hidden="true" ><i className="fas fa-sign-out-alt"/></a>
+                            <a className="nav-link "  href="index.html"  aria-hidden="true" ><i className="fa fa-sign-out" /></a>
                         </li>
                     </ul>
                 </nav>

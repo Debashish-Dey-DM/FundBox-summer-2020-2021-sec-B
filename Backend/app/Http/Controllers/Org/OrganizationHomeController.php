@@ -414,7 +414,8 @@ public function create(Request $req){
          if($validator->fails()) {
             return response()->json([
              'status' => 240,
-            'message' => 'Validation Error'
+            'message' => 'Validation Error
+                          Please Give Valid Information'
              ]);
         }
 
@@ -435,7 +436,7 @@ public function create(Request $req){
                return response()->json([
                         'status' => 200,
                         'event'=> $insert_event,
-                        'message' => 'User Added Successfully'
+                        'message' => 'Event Added Successfully'
                              ]);
             }else{
                 response()->json([
@@ -460,7 +461,8 @@ public function createVolunteerEvent(Request $req){
         if($validator->fails()) {
            return response()->json([
              'status' => 240,
-            'message' => 'Validation Error'
+            'message' => 'Validation Error
+                          Please Give Valid Information'
              ]);
         }
         else{
@@ -491,7 +493,7 @@ public function createVolunteerEvent(Request $req){
                 return response()->json([
                         'status' => 200,
                         'event'=> $insert_event,
-                        'message' => 'User Added Successfully'
+                        'message' => 'Volunteer Event Added Successfully'
                              ]);
             }else{
                response()->json([

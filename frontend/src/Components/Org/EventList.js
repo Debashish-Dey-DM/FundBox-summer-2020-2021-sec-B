@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios';
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
@@ -33,6 +35,12 @@ const EventList = () => {
     // }
 
     return (
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                    <main>
         <div>
             <div className="container">
                 <div className="row">
@@ -80,12 +88,12 @@ const EventList = () => {
                                                     <td>{e.id}</td>
                                                     <td>{e.event_name}</td>
                                                     <td>
-                                                        {e.eventType === 2 ? 'Normal Event' : `${e.targetMoney}$`}
+                                                        {e.eventType === 2 ? 'Volunteer Event' : `${e.targetMoney}$`}
                                                         </td>
                                                     <td>{e.eventType ===1 ? 'Normal Event' : 'Volunteer Event'}</td>
                                                     <td>
                                                         {/* <Link to={`edit-student/${e.id}`} className="btn btn-success btn-sm" >Edit</Link> */}
-                                                        <Link to={`edit-event/${e.id}`} className="btn btn-primary btn-sm foat-end"> Event List</Link><br />
+                                                        <Link to={`edit-event/${e.id}`} className="btn btn-primary btn-sm foat-end">Edit</Link><br />
                                                     </td>
                                                     <td>
                                                         <Link to={`delete-event/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
@@ -104,6 +112,11 @@ const EventList = () => {
                 </div>
             </div>
         </div>
+        	</main>
+                </div>
+            </div>
+        </div>
+
     )
 }
 export default EventList;

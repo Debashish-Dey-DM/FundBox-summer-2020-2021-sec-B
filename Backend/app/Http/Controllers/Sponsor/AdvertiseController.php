@@ -15,11 +15,11 @@ class AdvertiseController extends Controller
 {
     public function Show(Request $request){
 
-       $userId = $request->session()->get('user_id');
-       $spId = DB::table('sponsors')
-        ->where('user_id',$userId)
-        ->where('status',1)
-        ->first();
+      // $userId = $request->session()->get('user_id');
+       //$spId = DB::table('sponsors')
+        //->where('user_id',$userId)
+        //->where('status',1)
+        //->first();
         //dd($spId);
 
        $allAdvertise = DB::table('sponsor_banners')
@@ -28,61 +28,67 @@ class AdvertiseController extends Controller
         ->get();
         // $allAdvertise = "test";
         // dd($allAdvertise);
-        return view('Sponsor.ListofAdvertise')
-        ->with('title', 'All Advertise | Sponsor')
-        ->with('allAdvertise', $allAdvertise);
+        if($allAdvertise){
+            return response()->json($allAdvertise, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
     public function CreateAdd(Request $request){
 
-        $userId = $request->session()->get('user_id');
+        //$userId = $request->session()->get('user_id');
+       // dd($request->advertise_title);
+        //dd($imageData);
 
         $sp = DB::table('sponsors')
-        ->where('user_id',$userId)
+        ->where('user_id',13)
         ->where('status',1)
         ->first();
 
         $validator = Validator::make($request->all(), [
             'advertise_title' => 'required|min:5',
-            'image' => 'required'
+           // 'image' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Required data missing.'
+                return response()->json([
+                    'status' => 240,
+                    'message' => 'Validation Error'
             ]);
         }else{
 
-            $image = $request->file('image');
-            $image_name=$image->getClientOriginalName();
-            $image_ext=$image->getClientOriginalExtension();
-            $image_new_name =strtoupper(Str::random(6));
-            $image_full_name=$image_new_name.'.'.$image_ext;
-            $upload_path='images/Sponsor/';
-            $image_url=$upload_path.$image_full_name;
-            $success=$image->move($upload_path,$image_full_name);
-            $imageData='images/Sponsor/'.$image_full_name;
+            // $image = $request->file('image');
+            // $image_name=$image->getClientOriginalName();
+            // $image_ext=$image->getClientOriginalExtension();
+            // $image_new_name =strtoupper(Str::random(6));
+            // $image_full_name=$image_new_name.'.'.$image_ext;
+            // $upload_path='images/Sponsor/';
+            // $image_url=$upload_path.$image_full_name;
+            // $success=$image->move($upload_path,$image_full_name);
+            // $imageData='images/Sponsor/'.$image_full_name;
 
             
             $data=array();
             $data['title']=$request->advertise_title;
-            $data['image']=$imageData;
+            //$data['image']=$request->;
             $data['sponsor_Id']=$sp->id;
-            $data['status']='2';
+            $data['status']='1';
 
             $insert = DB::table('sponsor_banners')->insert($data);
 
             if($insert){
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'Create Successfully'
-                ]);
+
+                return response()->json([
+                    'status' => 200,
+                    'banner'=> $insert,
+                    'message' => 'Banner Added Successfully'
+                         ]);
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
-                ]);
+                response()->json([
+                        'status' => 202,
+                        'message' => 'Something went Wrong'
+                             ]);
             }
         }
 
@@ -132,12 +138,12 @@ class AdvertiseController extends Controller
 
                             
             if ($update) {
-                return redirect()->back()->with([
+                return response()->json([
                     'error' => false,
                     'message' => 'Edit successfully.'
                 ]);
             } else {
-                return redirect()->back()->with([
+                return response()->json([
                     'error' => true,
                     'message' => 'Something went wrong.'
                 ]);
