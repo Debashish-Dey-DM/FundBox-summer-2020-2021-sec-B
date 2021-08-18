@@ -3,6 +3,9 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import { useState} from 'react';
 import { useHistory } from "react-router-dom";
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
+
 const CreateAdmin = () => {
     const history = useHistory();
     const [user, setUser] = useState({
@@ -62,62 +65,69 @@ const CreateAdmin = () => {
     }
 
     return (
-        <div className="col-sm-6 offset-sm-3" style={{ "marginTop" :"50px"}}>
-            <div className="card">
-                <div className="card-header" style={{ "padding" :"5px"}}>
-                    <h4>
-                    <Link to={'/admin/dashboard'} className="btn btn-primary btn-sm foat-end"> Back</Link>
-                    </h4>
-                
-                    <h4 className="card-title">Create New Admin </h4>
-               </div>
-                <div className="card-content">
-                    <div className="card-body">  
-                        <form onSubmit={addAdmin} >
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                    <main>
+                        <div className="col-sm-10 offset-sm-1" style={{ "marginTop" :"50px"}}>
+                            <div className="card">
+                                <div className="card-header" style={{ "padding" :"5px"}}>
+                                    <h4 className="card-title">Create New Admin </h4>
+                                </div>
+                                <div className="card-content">
+                                    <div className="card-body">  
+                                        <form onSubmit={addAdmin} >
+                                                            
+                                            <div className="row">
+                                                <div className="col-12 col-sm-12 col-lg-12">
+                                                    <input type="text" className="form-control" name="admin_name" placeholder="Full Name" onChange={handleInput} required />
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <input type="text" className="form-control" name="username" placeholder="Username" onChange={handleInput} required/>
+                                                </div>
                                             
-                            <div className="row">
-                                <div className="col-12 col-sm-12 col-lg-12">
-                                    <input type="text" className="form-control" name="admin_name" placeholder="Full Name" onChange={handleInput} required />
-                                </div>
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <input type="text" className="form-control" name="username" placeholder="Username" onChange={handleInput} required/>
-                                </div>
-                            
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <input type="email" className="form-control" name="admin_email" placeholder="Email" onChange={handleInput} required/>
-                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <input type="email" className="form-control" name="admin_email" placeholder="Email" onChange={handleInput} required/>
+                                                </div>
 
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <input type="password" className="form-control" name="admin_password" placeholder="Password" onChange={handleInput} required/>
-                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <input type="password" className="form-control" name="admin_password" placeholder="Password" onChange={handleInput} required/>
+                                                </div>
 
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <input type="password" className="form-control" name="admin_confirm_assword" placeholder="Confirm Password" onChange={handleInput} required/>
-                                </div>
-                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
-                                    <input type="number" className="form-control" name="admin_phone" placeholder="Phone number" onChange={handleInput} required/>
-                                </div>
-                                
-                                <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
-                                    <fieldset className="form-group">
-                                        <select name="status" className="form-control" id="basicSelect" onChange={handleInput} required>
-                                            <option disabled defaultValue>Select Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="0">Deactivate</option>
-                                        </select>
-                                    </fieldset>
-                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <input type="password" className="form-control" name="admin_confirm_assword" placeholder="Confirm Password" onChange={handleInput} required/>
+                                                </div>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
+                                                    <input type="number" className="form-control" name="admin_phone" placeholder="Phone number" onChange={handleInput} required/>
+                                                </div>
+                                                
+                                                <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
+                                                    <fieldset className="form-group">
+                                                        <select name="status" className="form-control" id="basicSelect" onChange={handleInput} required>
+                                                            <option disabled defaultValue>Select Status</option>
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Deactivate</option>
+                                                        </select>
+                                                    </fieldset>
+                                                </div>
 
-                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
-                                    <button type="submit" className="btn btn-block btn-success glow">Add</button>
+                                                <div className="col-12 col-sm-12" style={{ "marginTop" :"10px"}}>
+                                                    <button type="submit" className="btn btn-block btn-success glow">Add</button>
+                                                </div>
+                                                <h4 className="card-title" style={{ "padding" :"5px"}}>{msg} </h4>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                                <h4 className="card-title" style={{ "padding" :"5px"}}>{msg} </h4>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         </div>
+
     )
 }
 export default CreateAdmin;

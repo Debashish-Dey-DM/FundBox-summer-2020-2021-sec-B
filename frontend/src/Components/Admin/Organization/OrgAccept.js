@@ -1,8 +1,10 @@
 import React from 'react'
 import axios from 'axios';
 import { useParams } from "react-router";
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
+import LeftNavBar from '../Layout/LeftNavBar';
+import TopNavbar from '../Layout/TopNavbar';
 
 const OrgAccept = () => {
     const history = useHistory();
@@ -21,8 +23,14 @@ const OrgAccept = () => {
          }, []);
     
     return (
-        <>
-        </>
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                </div>
+            </div>
+        </div>
     )
 }
 export default OrgAccept

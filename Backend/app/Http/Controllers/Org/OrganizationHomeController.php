@@ -192,19 +192,20 @@ Public function destroy($id,$type){
            
 // }
 
-public function reqsponsor(Request $req){
-    // $srequest = DB::table('spo_to_org_proposals')
-    //                     ->where('org_Id',$req->session()->get('org_id'))
-    //                     ->where('status','2')->get();
-    $srequest = DB::table('spo_to_org_proposals')
-    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
-    ->select('spo_to_org_proposals.*', 'sponsors.name')
-    ->where('org_Id',$req->session()->get('org_id'))
-    ->where('spo_to_org_proposals.status','2')->get();
-    return view('Organization.SponsorRequest')
-            ->with('Requests',$srequest)
-            ->with('title', 'Sponsor Requests | Organization');
-}
+// public function reqsponsor(Request $req){
+//     // $srequest = DB::table('spo_to_org_proposals')
+//     //                     ->where('org_Id',$req->session()->get('org_id'))
+//     //                     ->where('status','2')->get();
+//     $srequest = DB::table('spo_to_org_proposals')
+//     ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+//     ->select('spo_to_org_proposals.*', 'sponsors.name')
+//     ->where('org_Id',$req->session()->get('org_id'))
+//     ->where('spo_to_org_proposals.status','2')->get();
+//     return view('Organization.SponsorRequest')
+//             ->with('Requests',$srequest)
+//             ->with('title', 'Sponsor Requests | Organization');
+//             sponreq
+// }
 public function approvesponsor(Request $req,$id){
     $srequest = spo_to_org_proposal::find($id);
     $srequest->status = '0';
@@ -239,6 +240,7 @@ public function renewsponsor(Request $req){
     return view('Organization.RenewSponsor')
             ->with('Requests',$srequest)
             ->with('title', 'Sponsor Requests | Organization');
+            
 }
 
 public function renew(Request $req,$id){
@@ -412,7 +414,8 @@ public function create(Request $req){
          if($validator->fails()) {
             return response()->json([
              'status' => 240,
-            'message' => 'Validation Error'
+            'message' => 'Validation Error
+                          Please Give Valid Information'
              ]);
         }
 
@@ -433,7 +436,7 @@ public function create(Request $req){
                return response()->json([
                         'status' => 200,
                         'event'=> $insert_event,
-                        'message' => 'User Added Successfully'
+                        'message' => 'Event Added Successfully'
                              ]);
             }else{
                 response()->json([
@@ -458,7 +461,8 @@ public function createVolunteerEvent(Request $req){
         if($validator->fails()) {
            return response()->json([
              'status' => 240,
-            'message' => 'Validation Error'
+            'message' => 'Validation Error
+                          Please Give Valid Information'
              ]);
         }
         else{
@@ -489,7 +493,7 @@ public function createVolunteerEvent(Request $req){
                 return response()->json([
                         'status' => 200,
                         'event'=> $insert_event,
-                        'message' => 'User Added Successfully'
+                        'message' => 'Volunteer Event Added Successfully'
                              ]);
             }else{
                response()->json([
@@ -564,5 +568,106 @@ public function deleteEvent($id){
         ]);
     }
 }
+public function eTransaction(){
+    //  $transaction = DB::table('event_trans_lists')
+    //                     ->where('org_Id',$req->session()->get('org_id'))
+    //                     ->where('status','1')->get();
+    
+     $transaction = DB::table('event_trans_lists')
+    ->leftJoin('events','event_trans_lists.eventId','=' , 'events.id')
+    ->leftJoin('userinfos', 'event_trans_lists.user_id', '=', 'userinfos.id')
+    ->select('event_trans_lists.*', 'events.event_name','userinfos.name')
+    
+    ->where('events.status','1')
+    ->where('events.eventType','1')
+    ->where('event_trans_lists.status','1')
+    ->where('paymentType','1')
+    ->get();     
 
+    if($transaction){
+        return response()->json($transaction, 200);
+    }
+    
+    
+}
+public function refundEvent($id){
+    $refund = event_trans_list::find($id);
+    $refund->status = '6';
+    $refund->save();
+   return response()->json($refund, 200);
+
+}
+public function sponreq(Request $req){
+    // $srequest = DB::table('spo_to_org_proposals')
+    //                     ->where('org_Id',$req->session()->get('org_id'))
+    //                     ->where('status','2')->get();
+    $srequest = DB::table('spo_to_org_proposals')
+    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+    ->select('spo_to_org_proposals.*', 'sponsors.name')
+    ->where('spo_to_org_proposals.status','2')
+    ->get();
+   return response()->json($srequest, 200);
+            
+}
+public function approvespon(Request $req,$id){
+    $srequest = spo_to_org_proposal::find($id);
+    $srequest->status = '0';
+    $srequest->save();
+    return response()->json($srequest, 200);
+
+
+}
+public function sponList(Request $req){
+    $srequest = DB::table('spo_to_org_proposals')
+    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+    ->select('spo_to_org_proposals.*', 'sponsors.name')
+    ->where('spo_to_org_proposals.status','0')->get();
+     return response()->json($srequest, 200);
+
+}
+public function cancelspon(Request $req,$id){
+    $srequest = spo_to_org_proposal::find($id);
+    $srequest->status = '1';
+    $srequest->save();
+     return response()->json($srequest, 200);
+
+}
+public function RenSpon(Request $req){
+    $srequest = DB::table('spo_to_org_proposals')
+    ->leftJoin('sponsors','spo_to_org_proposals.sponsor_id','=' , 'sponsors.id')
+    ->select('spo_to_org_proposals.*', 'sponsors.name')
+    ->where('spo_to_org_proposals.status','1')->get();
+     return response()->json($srequest, 200);
+            
+}
+public function renewDeal(Request $req,$id){
+    $srequest = spo_to_org_proposal::find($id);
+    $srequest->status = '0';
+    $srequest->save();
+     return response()->json($srequest, 200);
+
+}
+public function sponTransaction(Request $req){
+    // $transaction = DB::table('sponsor_trans_lists')
+    //                     ->where('org_Id',$req->session()->get('org_id'))
+    //                     ->where('status','0')->get();
+    $transaction = DB::table('event_trans_lists')
+    ->leftJoin('sponsors','event_trans_lists.sponsor_id','=' , 'sponsors.id')
+    ->select('event_trans_lists.*', 'sponsors.name')
+    ->where('paymentType','2')
+    ->get();                    
+    
+
+    return response()->json($transaction, 200);
+
+}
+public function VolList(Request $req){
+     $vol = DB::table('event_volunteers')
+    ->leftJoin('events','event_volunteers.eventId','=' , 'events.id')
+    ->leftJoin('userinfos', 'event_volunteers.user_id', '=', 'userinfos.id')
+    ->select('event_volunteers.*', 'events.event_name','userinfos.name')
+    ->where('event_volunteers.status','1')->get();
+    
+    return response()->json($vol, 200);
+}
 }
