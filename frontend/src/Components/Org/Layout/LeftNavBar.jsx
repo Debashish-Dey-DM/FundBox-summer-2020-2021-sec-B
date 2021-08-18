@@ -14,96 +14,62 @@ export default function LeftNavBar() {
                             Dashboard
                         </a>
                         <div className="sb-sidenav-menu-heading">Events</div>
-                        <a className="nav-link" href="/admin/category">
+                        <a className="nav-link" href="/org/createEvents">
                             <div className="sb-nav-link-icon"><i className="far fa-handshake" /></div>
                             Create New Event
                         </a>
                         
-                        <a className="nav-link" href="/admin/createAdmin">
+                        
+                        
+                        <div className="sb-sidenav-menu-heading">Volunteer Events</div>
+                        <a className="nav-link" href="/org/createVolEvent">
                             <div className="sb-nav-link-icon"><i className="fas fa-user-ninja" /></div>
-                            Create Admin
-                        </a>
-                        <a className="nav-link" href="/admin/manageAdmin">
-                            <div className="sb-nav-link-icon"><i className="fas fa-user-ninja" /></div>
-                            Manage Admin
-                        </a>
-
-                        <div className="sb-sidenav-menu-heading">Organization</div>
-                        <a className="nav-link" href="/admin/orgCreate">
-                            <div className="sb-nav-link-icon"><i className="fas fa-hands" /></div>
-                            Create Organisation
-                        </a>
-                        <a className="nav-link" href="/admin/pendingOrg">
-                            <div className="sb-nav-link-icon"><i className="fas fa-hands" /></div>
-                            Pending Organisation
-                        </a>
-                        <a className="nav-link" href="/admin/orgManage">
-                            <div className="sb-nav-link-icon"><i className="fas fa-hands" /></div>
-                            Manage Organisation
-                        </a>
-
-                        <div className="sb-sidenav-menu-heading">Events</div>
-                        <a className="nav-link" href="/admin/createAdminEvent">
-                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
-                            Create Admin Event
-                        </a>
-                        <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
-                            Create organisation Event
-                        </a>
-                        <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Create Volunteer Event
+                            </a>
+                            <a className="nav-link" href="/org/VolunteerList">
+                            <div className="sb-nav-link-icon"><i className="fas fa-user-ninja" /></div>
+                           Volunteer List
                         </a>
-
-                        <div className="sb-sidenav-menu-heading">Manage Events</div>
-                        <a className="nav-link" href="#">
+                         <div className="sb-sidenav-menu-heading">Manage Events</div>
+                            
+                            <a className="nav-link" href="/org/EventList">
+                            <div className="sb-nav-link-icon"><i className="fas fa-user-ninja" /></div>
+                            Event List
+                        </a>
+                        <a className="nav-link" href="/org/EventTransactionList">
+                            <div className="sb-nav-link-icon"><i className="fas fa-hands" /></div>
+                        Event Transaction List                        </a>
+                        
+                         <div className="sb-sidenav-menu-heading">Sponsors</div>
+                        
+                        <a className="nav-link" href="/org/SponsorRequest">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
-                            Admin
-                        </a>
-                        <a className="nav-link" href="#">
+                            Sponsor Requests
+                            </a>
+                            <a className="nav-link" href="/org/SponsorList">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
-                            Pending
-                        </a>
-                        <a className="nav-link" href="#">
+                            Sponsor List
+                            </a>
+                            <a className="nav-link" href="/org/RenewSponsor">
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
-                            Accepted
+                            Renew Sponsor
+                            </a>
+                             <a className="nav-link" href="/org/SponsorTransaction">
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
+                            Sponsor Transaction List
                         </a>
-                        <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i className="fas fa-list"/></div>
-                            Volunteer List
-                        </a>
-                        <a className="nav-link" href="/admin/transitionList">
-                            <div className="sb-nav-link-icon"><i className="fas fa-dollar-sign"/></div>
-                            Transition List
-                        </a>
+                        
+                       
 
-                        <div className="sb-sidenav-menu-heading">Sponsor</div>
-                        <a className="nav-link" href="/admin/sponsor">
-                            <div className="sb-nav-link-icon"><i className="fas fa-hand-holding-usd"/></div>
-                            Pending Sponsor
-                        </a>
-                        <a className="nav-link" href="/admin/sponsorManage">
-                            <div className="sb-nav-link-icon"><i className="fas fa-hand-holding-usd"/></div>
-                            Manage Sponsor
-                        </a>
+                        
 
-                        <div className="sb-sidenav-menu-heading">Reports</div>
-                        <a className="nav-link" href="/admin/reports">
-                            <div className="sb-nav-link-icon"><i className="far fa-flag"/></div>
-                            Manage Reports
-                        </a>
-
-                        <div className="sb-sidenav-menu-heading">Account</div>
-                        <a className="nav-link" href="#">
-                            <div className="sb-nav-link-icon"><i className="far fa-flag"/></div>
-                            Manage Account
-                        </a>
+                       
+                         
                     </div>
                 </div>
                 <div className="sb-sidenav-footer">
                     <div className="small">Logged in as:</div>
-                    Admin
+                    Organization
                 </div>
             </nav>
             </div>
