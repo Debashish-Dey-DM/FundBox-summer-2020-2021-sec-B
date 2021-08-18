@@ -18,18 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 /////////////////Admin///////////////////////////////
-
-
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 Route::post('/admin/eventCategory','Admin\CategoryController@CreateCategory');
 Route::post('/admin/eventCategory/updateStatus','Admin\CategoryController@UpdateStatus');
 Route::post('/admin/eventCategory/delete','Admin\CategoryController@Delete');
 Route::post('/admin/eventCategory/update','Admin\CategoryController@Update');
 
-
-
-
-=======
 Route::post('/admin/createAdmin','Admin\UserController@CreateAdmin');
 Route::get('/admin/manageAdmin','Admin\UserController@ManageAdmin');
 Route::get('/admin/getSingleAdminData/{id}','Admin\UserController@ManageProfile');
@@ -37,7 +31,6 @@ Route::post('/admin/manageAdmin/updateStatus', 'Admin\UserController@UpdateStatu
 Route::post('/admin/manageAdmin/updateUserInfo/{id}', 'Admin\UserController@UpdateUserInfo');
 Route::post('/admin/manageAdmin/deleteAdmin', 'Admin\UserController@DeleteAdmin');
 Route::post('/admin/manageAdmin/makeSuperAdmin', 'Admin\UserController@MakeSuperAdmin');
-
 //SponsorAdmin
 Route::get('/admin/sponsor','Admin\SponsorController@Index');
 Route::get('/admin/sponsor/accept/{id}','Admin\SponsorController@Accept');
@@ -55,7 +48,6 @@ Route::get('/admin/pendingOrg/delete/{id}','Admin\OrganizationController@Pending
 Route::get('/admin/manageOrg','Admin\OrganizationController@ManageOrg');
 Route::get('/admin/manageOrg/block/{id}', 'Admin\OrganizationController@BlockOrg');
 Route::post('/admin/createOrg','Admin\OrganizationController@CreateOrganisation');
-
 //event admin
 Route::post('/admin/createAdminEvent','Admin\EventController@CreateAdminEvent');
 Route::post('/admin/createOrgEvent','Admin\EventController@CreateOrgEvent');
@@ -65,6 +57,10 @@ Route::post('/admin/createVolunteerEvent','Admin\EventController@CreateVolunteer
 Route::get('/admin/managePendingEvent','Admin\EventController@ManagePendingEvent');
 Route::get('/admin/managePendingEvent/accept/{id}','Admin\EventController@ManagePendingEventAccept');
 Route::get('/admin/managePendingEvent/delete/{id}','Admin\EventController@ManagePendingEventDelete');
+Route::get('/admin/manageAcceptedEvent','Admin\EventController@ManageAcceptedEvent');
+Route::get('/admin/manageAcceptedEvent/delete/{id}','Admin\EventController@ManageAcceptedEventUpdateStatus');
+Route::get('/admin/manageAdminEvent','Admin\EventController@ManageAdminEvent');
+Route::get('/admin/manageAdminEvent/delete/{id}','Admin\EventController@ManageAdminEventDelete');
 
 //getCategory
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');

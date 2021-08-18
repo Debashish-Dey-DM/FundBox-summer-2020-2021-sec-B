@@ -9,7 +9,7 @@ const ManageAdminEvents = () => {
     let serial = 0;
     const [getEvent, setGetEvent] = useState([]);
     const mount= async()=>{
-        const res = await axios.get('http://localhost:8000/api/admin/managePendingEvent');
+        const res = await axios.get('http://localhost:8000/api/admin/manageAdminEvent');
         console.log(res.data);
         
         if (res.status === 200) {
@@ -17,14 +17,8 @@ const ManageAdminEvents = () => {
         }
     }
 
-    const acceptEvent = async(id)=>{
-        const res = await axios.get(`http://localhost:8000/api/admin/managePendingEvent/accept/${id}`);
-        mount();
-        console.log(res.data.message);
-    }
-
     const deleteEvent = async(id)=>{
-        const res = await axios.get(`http://localhost:8000/api/admin/managePendingEvent/delete/${id}`);
+        const res = await axios.get(`http://localhost:8000/api/admin/manageAdminEvent/delete/${id}`);
         mount();
         console.log(res.data.message);
     }
@@ -44,8 +38,7 @@ const ManageAdminEvents = () => {
                         <div className="col-sm-12 offset-sm-0" style={{ "marginTop" :"0px"}}>
                             <div className="card">
                                 <div className="card-header" style={{ "padding" :"5px"}}>
-                                    <h4 className="card-title"> Pending Events List</h4>
-                                    <div className="small">Waiting for admin approve</div>
+                                    <h4 className="card-title"> Admin Events List</h4>
                                 </div>
 
                                 <div className="class-body">
@@ -76,7 +69,6 @@ const ManageAdminEvents = () => {
                                                             <small> <b>Target Date:</b> {e.targetDate} </small>
                                                         </td>
                                                         <td>
-                                                            <a className="btn btn-success btn-sm foat-end"  onClick={()=> acceptEvent(e.id)}  aria-hidden="true" >Accept</a>
                                                             <a className="btn btn-danger btn-sm foat-end"  onClick={()=> deleteEvent(e.id)}  aria-hidden="true" >Delete</a>
                                                         </td>
                                                     </tr>

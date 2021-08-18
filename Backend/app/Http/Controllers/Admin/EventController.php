@@ -206,11 +206,13 @@ class EventController extends Controller
 
         $allEvents = DB::table('events')
         ->where('isAdminEvent', 1)
-        ->paginate(10);
+        ->get();
 
-        return view('Admin.manageAdminEvent')
-        ->with('title', 'Manage Admin Event | Admin')
-        ->with('allEvents', $allEvents);
+        if($allEvents){
+            return response()->json($allEvents, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 
@@ -250,34 +252,24 @@ class EventController extends Controller
         }
     }
 
-    public function ManageAdminEventDelete(Request $request)
+    public function ManageAdminEventDelete(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required'
-        ]);
+    ;
 
-        if ($validator->fails()) {
+        $removed=DB::table('events')->where('id', $id)->delete();
+
+        if ($removed) {
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 200,
+                'message' => 'Delete Successfully'
             ]);
         } else {
-            $id = $request->input('id');
-
-            $removed=DB::table('events')->where('id', $id)->delete();
-
-            if ($removed) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Delete successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
         }
+    
     }
 
     public function ManagePendingEvent(Request $request){
@@ -341,47 +333,30 @@ class EventController extends Controller
         ->where('isAdminEvent', 0)
         ->where('status', 1)
         ->orWhere('status', 0)
-        ->paginate(10);
+        ->get();
 
-        return view('Admin.manageAcceptedEvent')
-        ->with('title', 'Manage Accepted Event | Admin')
-        ->with('allEvents', $allEvents);
+        if($allEvents){
+            return response()->json($allEvents, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 
-    public function ManageAcceptedEventUpdateStatus(Request $request)
+    public function ManageAcceptedEventUpdateStatus(Request $request,$id)
     {
-        $validator = Validator::make($request->all(), [
-            'id' => 'required',
-            'status' => 'required'
-        ]);
+        $removed=DB::table('events')->where('id', $id)->delete();
 
-        if ($validator->fails()) {
+        if ($removed) {
             return response()->json([
-                'error' => true,
-                'message' => 'Required data missing.'
+                'status' => 200,
+                'message' => 'Delete Successfully'
             ]);
         } else {
-            $id = $request->input('id');
-            
-            $data=array();
-            $data['status']=$request->input('status');
-
-            $update= DB::table('events')
-                            ->where('id',$id)
-                            ->update($data);
-
-            if ($update) {
-                return response()->json([
-                    'error' => false,
-                    'message' => 'Update successfully.'
-                ]);
-            } else {
-                return response()->json([
-                    'error' => true,
-                    'message' => 'Something went wrong.'
-                ]);
-            }
+            return response()->json([
+                'status' => 240,
+                'message' => 'Something going wrong!'
+            ]);
         }
     }
 
