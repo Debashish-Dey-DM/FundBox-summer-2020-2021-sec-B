@@ -112,7 +112,7 @@ function App() {
 
           <Route path="/organization" component={OrgHome} />
           
-          <Route path="/org/createEvent" component={CreateEvent} />
+          <Route path="/org/createEvents" component={CreateEvent} />
           
           <Route path="/org/createVolEvent" component={CreateVolEvent} />
           

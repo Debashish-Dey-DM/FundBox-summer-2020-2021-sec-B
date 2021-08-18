@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios';
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
+
 // import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useHistory } from "react-router-dom";
@@ -63,6 +66,12 @@ const CreateEvent = () => {
     
     }
     return (
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                    <main>
         <div className="col-sm-6 offset-sm-3">
            <div className="card">
             <div className="card-header">
@@ -120,6 +129,10 @@ const CreateEvent = () => {
                     </div>
                     </div> 
                                     </div>
+                        </div>
+                        	</main>
+                </div>
+            </div>
         </div>
     )
 }

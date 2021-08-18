@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios';
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
+
 import { useParams } from "react-router";
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
@@ -22,6 +25,13 @@ const RenewDeal = () => {
     
     
     return (
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                    <main>
+		
         <div className="col-sm-6 offset-sm-3">
             <div className="alert alert-success" role="alert">
                 Are You Sure You Want to Renew the Deal of Sponsor?
@@ -30,6 +40,11 @@ const RenewDeal = () => {
                 <button className="btn btn-success btn-sm foat-end" onClick={renewDeal}>Renew</button>
             </div>
         </div>
+        		</main>
+                </div>
+            </div>
+        </div>
+
     )
 }
 export default RenewDeal

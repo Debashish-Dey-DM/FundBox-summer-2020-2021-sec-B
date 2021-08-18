@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios';
+import LeftNavBar from './Layout/LeftNavBar';
+import TopNavbar from './Layout/TopNavbar';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 const SponsorTransaction = () => {
@@ -19,6 +21,13 @@ const SponsorTransaction = () => {
         
      }, []);
     return (
+        <div className="sb-nav-fixed">
+            <TopNavbar/>
+            <div id="layoutSidenav">
+                <LeftNavBar/>
+                <div id="layoutSidenav_content">
+                    <main>
+		
         <div className="col-sm-6 offset-sm-3">
                           <div className="restaurant-list-table">
                         <div className="card">
@@ -73,6 +82,11 @@ const SponsorTransaction = () => {
                         </div>
                     </div>
         </div>
+        		</main>
+                </div>
+            </div>
+        </div>
+
     )
 }
 export default SponsorTransaction
