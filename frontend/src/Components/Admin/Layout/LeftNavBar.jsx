@@ -102,7 +102,7 @@ export default function LeftNavBar() {
                             <div className="sb-nav-link-icon"><i className="fas fa-calendar-week"/></div>
                             Accepted
                         </a>
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/admin/adminVisitorList">
                             <div className="sb-nav-link-icon"><i className="fas fa-list"/></div>
                             Volunteer List
                         </a>

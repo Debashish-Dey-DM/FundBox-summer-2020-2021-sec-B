@@ -38,25 +38,27 @@ class HomeController extends Controller
         $totalSiteVisit = DB::table('sitealltrafic')->first();
         $uniqueIp = DB::table('site_unique_traficip')->get();
 
-
-        return view('Admin.AdminHome')
-        ->with('title', 'Home Admin')
-        ->with('date', date('d-M-Y'))
-        ->with('totalMoneyCollect', $totalMoneyCollect)
-        ->with('refundMoney', $refundMoney)
-        ->with('todayCollect', $todayCollect)
-        ->with('todayRefund', $todayRefund)
-        ->with('totalEvents', count($totalEvents))
-        ->with('pendingEvents', count($pendingEvents))
-        ->with('acceptedEvents', count($acceptedEvents))
-        ->with('deactiveEvents', count($deactiveEvents))
-        ->with('totalVolunteers', count($totalVolunteers))
-        ->with('totalAdmin', count($totalAdmin))
-        ->with('totalOrg', count($totalOrg))
-        ->with('totalSpo', count($totalSpo))
-        ->with('totalUser', count($totalUser))
-        ->with('totalSiteVisit', $totalSiteVisit->count)
-        ->with('uniqueIp', count($uniqueIp));
-
+        if($allReports){
+            return response()->json(
+                $allReports,
+                $totalMoneyCollect,
+                $refundMoney,
+                $todayCollect,
+                $todayRefund,
+                count($totalEvents),
+                count($pendingEvents),
+                count($acceptedEvents),
+                count($deactiveEvents),
+                count($totalVolunteers),
+                count($totalAdmin),
+                count($totalOrg),
+                count($totalSpo),
+                count($totalUser),
+                $totalSiteVisit->count,
+                count($uniqueIp),
+            200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
     }
 }

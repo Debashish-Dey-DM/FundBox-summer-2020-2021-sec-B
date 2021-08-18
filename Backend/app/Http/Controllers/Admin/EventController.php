@@ -366,12 +366,13 @@ class EventController extends Controller
         ->leftJoin('events', 'event_volunteers.eventId', '=', 'events.id')
         ->select('event_volunteers.*', 'events.event_name')
         ->orderBy('id','DESC')
-        ->paginate(10);
+        ->get();
 
-        return view('Admin.volunteerList')
-        ->with('title', 'Volunteer List | Admin')
-        ->with('eventName', "All Event")
-        ->with('allVolunteers', $allVolunteers);
+        if($allVolunteers){
+            return response()->json($allVolunteers, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
 

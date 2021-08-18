@@ -55,6 +55,7 @@ import SponsorTransaction from './Components/Org/SponsorTransaction';
 import Volunteer from './Components/Org/Volunteers';
 import ManageAdminEvents from './Components/Admin/Eevents/ManageAdminEvents';
 import ManageAcceptedEvents from './Components/Admin/Eevents/ManageAcceptedEvents';
+import AdminVisitorList from './Components/Admin/AdminVisitorList';
 
 
 
@@ -113,6 +114,7 @@ function App() {
               {/* Admin Event END */}
 
 <Route  path="/admin/transitionList" component={TransitionList} />
+<Route  path="/admin/adminVisitorList" component={AdminVisitorList} />
 
 {/* //closeadmin */}
 
