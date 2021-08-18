@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 /////////////////Admin///////////////////////////////
+
+Route::get('/admin/dashboard','Admin\HomeController@Index');
+
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');
 Route::post('/admin/eventCategory','Admin\CategoryController@CreateCategory');
 Route::post('/admin/eventCategory/updateStatus','Admin\CategoryController@UpdateStatus');

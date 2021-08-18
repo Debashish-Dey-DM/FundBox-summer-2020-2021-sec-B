@@ -38,27 +38,10 @@ class HomeController extends Controller
         $totalSiteVisit = DB::table('sitealltrafic')->first();
         $uniqueIp = DB::table('site_unique_traficip')->get();
 
-        if($allReports){
-            return response()->json(
-                $allReports,
-                $totalMoneyCollect,
-                $refundMoney,
-                $todayCollect,
-                $todayRefund,
-                count($totalEvents),
-                count($pendingEvents),
-                count($acceptedEvents),
-                count($deactiveEvents),
-                count($totalVolunteers),
-                count($totalAdmin),
-                count($totalOrg),
-                count($totalSpo),
-                count($totalUser),
-                $totalSiteVisit->count,
-                count($uniqueIp),
-            200);
-        }else{
-            return response()->json(['code'=>401, 'message' => 'No data Found!']);
-        }
+        $allData = response()->json(['totalMoneyCollect'=> $totalMoneyCollect,'refundMoney'=> $refundMoney,'refundMoney'=> $refundMoney,'todayCollect'=> $todayCollect,'todayRefund'=> $todayRefund,'totalEvents'=> count($totalEvents),'pendingEvents'=> count($pendingEvents)
+        ,'acceptedEvents'=> count($acceptedEvents),'deactiveEvents'=> count($deactiveEvents),'totalVolunteers'=> count($totalVolunteers),'totalAdmin'=> count($totalAdmin)
+        ,'totalOrg'=> count($totalOrg),'totalSpo'=> count($totalSpo),'totalUser'=> count($totalUser),'totalSiteVisit'=> $totalSiteVisit->count,'uniqueIp'=> count($uniqueIp)]);
+
+        return $allData;
     }
 }

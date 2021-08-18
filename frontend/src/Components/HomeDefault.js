@@ -24,11 +24,9 @@ const HomeDefault = () => {
                             <span className="mx-md-2 d-inline-block"></span>
                             <a href="#" className=""><span className="mr-2  icon-phone"></span> <span className="d-none d-md-inline-block">+880 1776 364781</span></a>
 
-
                             <div className="float-right">
-                                <a href="#" className=""><span className="mr-2  icon-youtube"></span> <span className="d-none d-md-inline-block"></span></a>
+                                <a href="/login" className=""><span></span> <span className="d-none d-md-inline-block">Login</span></a>
                                 <span className="mx-md-2 d-inline-block"></span>
-                                <a href="#" className=""><span className="mr-2  icon-facebook"></span> <span className="d-none d-md-inline-block"></span></a>
                             </div>
                         </div>
                     </div>
@@ -183,67 +181,10 @@ const HomeDefault = () => {
 
             <footer className="footer-01">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
-                            <h2 className="footer-heading">Fundbox</h2>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                            <ul className="ftco-footer-social p-0">
-                        <li className="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span className="ion-logo-twitter"></span></a></li>
-                        <li className="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span className="ion-logo-facebook"></span></a></li>
-                        <li className="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span className="ion-logo-instagram"></span></a></li>
-                        </ul>
-                                </div>
-                                <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
-                                    <h2 className="footer-heading">Latest Events</h2>
-                                    <div className="block-21 mb-4 d-flex">
-                        <img className="img mr-4 rounded" src="" alt="Event Image"/>
-                        <div className="text">
-                            <h5 className="text"><a href="#">Even the all-powerful Pointing has no control about</a></h5>
-                            <div className="meta">
-                            <div><a href="#"><span className="icon-calendar"></span> Oct. 16, 2019</a></div>
-                            <div><a href="#"><span className="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span className="icon-chat"></span> 19</a></div>
-                            </div>
+                    <div className="row mt-5">
+                        <div className="col-md-12 text-center">
+                            <p className="copyright">Copyright All rights reserved | Develop <i className="ion-ios-heart" aria-hidden="true"></i> by <a target="_blank">APWT_B_SUMMER-2021_GROUP_7 </a></p>
                         </div>
-                        </div>
-                        <div className="block-21 mb-4 d-flex">
-                        <img className="img mr-4 rounded" src="{{ asset('/Pages/Home/Footer/images/img1.jpg')}}" alt="Event Image" />
-                        <div className="text">
-                            <h5 className="text"><a href="#">Even the all-powerful Pointing has no control about</a></h5>
-                            <div className="meta">
-                            <div><a href="#"><span className="icon-calendar"></span> Oct. 16, 2019</a></div>
-                            <div><a href="#"><span className="icon-person"></span> Admin</a></div>
-                            <div><a href="#"><span className="icon-chat"></span> 19</a></div>
-                            </div>
-                        </div>
-                        </div>
-                        </div>
-                            <div className="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-                                <h2 className="footer-heading">Quick Links</h2>
-                                    <ul className="list-unstyled">
-                                        <li><a href="/" className="py-2 d-block">Home</a></li>
-                                        <li><a href="/about" className="py-2 d-block">About</a></li>
-                                        <li><a href="/events" className="py-2 d-block">Events</a></li>
-                                        <li><a href="/Ourteam/Organization" className="py-2 d-block">Organization</a></li>
-                                        <li><a href="/Ourteam/Volunteers" className="py-2 d-block">Our Volunteers</a></li>
-                                        <li><a href="/contact" className="py-2 d-block">Contact</a></li>
-                                    </ul>
-                                </div>
-                                <div className="col-md-6 col-lg-3 mb-4 mb-md-0">
-                                    <h2 className="footer-heading">Have a Questions?</h2>
-                                    <div className="block-23 mb-3">
-                        <ul>
-                            <li><span className="icon ion-ios-pin"></span><span className="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span className="icon ion-ios-call"></span><span className="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span className="icon ion-ios-send"></span><span className="text">info@yourdomain.com</span></a></li>
-                        </ul>
-                        </div>
-                                </div>
-                            </div>
-                            <div className="row mt-5">
-                            <div className="col-md-12 text-center">
-                                <p className="copyright">Copyright All rights reserved | This template is made with <i className="ion-ios-heart" aria-hidden="true"></i> by <a target="_blank">APWT_B_GROUP_7 </a></p>
-                            </div>
                     </div>
                 </div>
             </footer>
