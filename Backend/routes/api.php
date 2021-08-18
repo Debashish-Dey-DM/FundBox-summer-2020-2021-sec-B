@@ -87,6 +87,8 @@ Route::get('/RenewSponsor','Org\OrganizationHomeController@RenSpon');
 Route::post('/approvesponsor/{id}','Org\OrganizationHomeController@approvespon');
 Route::post('/cancelsponsor/{id}','Org\OrganizationHomeController@cancelspon');
 Route::post('/renewDeal/{id}','Org\OrganizationHomeController@renewDeal');
+Route::get('/sponsorTransaction','Org\OrganizationHomeController@sponTransaction');
+Route::get('/VolunteerList','Org\OrganizationHomeController@VolList');
 
 //closeorg
 

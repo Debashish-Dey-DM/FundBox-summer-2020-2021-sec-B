@@ -47,6 +47,8 @@ import Login from './Components/Login';
 import CreateOrgEvent from './Components/Admin/Eevents/CreateOrgEvent';
 import CreateVolunteerEvent from './Components/Admin/Eevents/CreateVolunteerEvent';
 import PendingEvents from './Components/Admin/Eevents/PendingEvents';
+import SponsorTransaction from './Components/Org/SponsorTransaction';
+import Volunteer from './Components/Org/Volunteers';
 
 
 function App() {
@@ -108,22 +110,37 @@ function App() {
 {/* /////////////////ORG/////////////////////////////// */}
 
 
-<Route path="/organization" component={OrgHome} />
-<Route path="/org/createEvent" component={CreateEvent} />
-<Route path="/org/createVolEvent" component={CreateVolEvent} />
-<Route path="/org/EventList" component={EventList}/>
-<Route path ="/org/edit-event/:id" component={EditEvent}/>
-<Route path ="/org/delete-event/:id" component={DeleteEvent} />
-<Route path="/org/EventTransactionList" component={EventTransaction} />
-<Route path="/org/refund-money/:id" component={RefundMoney} />
-<Route path ="/org/SponsorRequest" component={SponsorReq}/>
-<Route path ="/org/SponsorList" component={SponsorList}/>
-<Route path ="/org/RenewSponsor" component={RenewSpons}/>
-<Route path ="/org/Approve-Sponsor/:id" component={ApproveSponsor}/>
-<Route path ="/org/Cancel-deal/:id" component={CancelDeal}/>
-<Route path ="/org/Renew-Deal/:id" component={RenewDeal}/>
+          <Route path="/organization" component={OrgHome} />
+          
+          <Route path="/org/createEvent" component={CreateEvent} />
+          
+          <Route path="/org/createVolEvent" component={CreateVolEvent} />
+          
+          <Route path="/org/EventList" component={EventList} />
+          
+          <Route path="/org/edit-event/:id" component={EditEvent} />
+          
+          <Route path="/org/delete-event/:id" component={DeleteEvent} />
+          
+          <Route path="/org/EventTransactionList" component={EventTransaction} />
+          
+          <Route path="/org/refund-money/:id" component={RefundMoney} />
+          
+          <Route path="/org/SponsorRequest" component={SponsorReq} />
+          
+          <Route path="/org/SponsorList" component={SponsorList} />
+          
+          <Route path="/org/RenewSponsor" component={RenewSpons} />
+          
+          <Route path="/org/Approve-Sponsor/:id" component={ApproveSponsor} />
+          
+          <Route path="/org/Cancel-deal/:id" component={CancelDeal} />
+          
+          <Route path="/org/Renew-Deal/:id" component={RenewDeal} />
+          
+          <Route path="/org/SponsorTransaction" component={SponsorTransaction} />
 
-
+           <Route path="/org/VolunteerList" component={Volunteer} />
           
 {/* //closeorg */}
 

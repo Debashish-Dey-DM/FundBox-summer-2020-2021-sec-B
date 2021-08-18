@@ -12,7 +12,9 @@ import { Link } from 'react-router-dom';
             <p><Link to={'/org/EventTransactionList'} className="btn btn-primary btn-sm foat-end"> Event Transaction List</Link><br /> </p>
             <p><Link to={'/org/SponsorRequest'} className="btn btn-primary btn-sm foat-end"> Sponsor Request List</Link><br /> </p>
             <p><Link to={'/org/SponsorList'} className="btn btn-primary btn-sm foat-end"> Sponsor  List</Link><br /> </p>
-             <p><Link to={'/org/RenewSponsor'} className="btn btn-primary btn-sm foat-end"> Renew Sponsor </Link><br /> </p>
+            <p><Link to={'/org/RenewSponsor'} className="btn btn-primary btn-sm foat-end"> Renew Sponsor </Link><br /> </p>
+            <p><Link to={'/org/SponsorTransaction'} className="btn btn-primary btn-sm foat-end"> Sponsor Transaction List </Link><br /> </p>
+            <p><Link to={'/org/VolunteerList'} className="btn btn-primary btn-sm foat-end"> Volunteer List </Link><br /> </p>
         </div>
     )
 }

@@ -645,4 +645,27 @@ public function renewDeal(Request $req,$id){
      return response()->json($srequest, 200);
 
 }
+public function sponTransaction(Request $req){
+    // $transaction = DB::table('sponsor_trans_lists')
+    //                     ->where('org_Id',$req->session()->get('org_id'))
+    //                     ->where('status','0')->get();
+    $transaction = DB::table('event_trans_lists')
+    ->leftJoin('sponsors','event_trans_lists.sponsor_id','=' , 'sponsors.id')
+    ->select('event_trans_lists.*', 'sponsors.name')
+    ->where('paymentType','2')
+    ->get();                    
+    
+
+    return response()->json($transaction, 200);
+
+}
+public function VolList(Request $req){
+     $vol = DB::table('event_volunteers')
+    ->leftJoin('events','event_volunteers.eventId','=' , 'events.id')
+    ->leftJoin('userinfos', 'event_volunteers.user_id', '=', 'userinfos.id')
+    ->select('event_volunteers.*', 'events.event_name','userinfos.name')
+    ->where('event_volunteers.status','1')->get();
+    
+    return response()->json($vol, 200);
+}
 }
