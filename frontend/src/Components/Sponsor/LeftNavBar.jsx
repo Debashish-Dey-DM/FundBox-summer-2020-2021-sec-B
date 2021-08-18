@@ -16,9 +16,9 @@ export default function LeftNavBar() {
                             <div className="sb-nav-link-icon"><i className="far fa-handshake" /></div>
                             All Advertise
                             </a>
-                            <a className="nav-link" href="index.html">
+                            <a className="nav-link" href="/sp/addAdvertise">
                             <div className="sb-nav-link-icon"><i className="fas fa-user-ninja" /></div>
-                            All User
+                            Add Advertise
                             </a>
                             <a className="nav-link" href="index.html">
                             <div className="sb-nav-link-icon"><i className="fas fa-hands" /></div>

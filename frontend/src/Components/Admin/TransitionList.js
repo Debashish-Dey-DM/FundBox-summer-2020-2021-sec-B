@@ -14,8 +14,6 @@ const TransitionList = () => {
             setGetEvent(res.data)
         }
     }
-
-    
     useEffect(() => {
         mount();    
     }, []);
