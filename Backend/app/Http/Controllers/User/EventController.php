@@ -20,9 +20,20 @@ class EventController extends Controller
         $events = Event::all();
         $eventCategorys = DB::table('event_categorys')->get();
 
-        return view('User.Events')->with('Events', $events)
-                                               ->with('eventCategorys', $eventCategorys)
-                                              ->with('title', 'Event Categories');
+        // return view('User.Events')->with('Events', $events)
+        //                                        ->with('eventCategorys', $eventCategorys)
+        //                                       ->with('title', 'Event Categories');
+
+
+        if( $events){
+                  
+            return response()->json([
+             'status' => 19,
+             'events' =>  $events,
+             'eventCategorys' => $eventCategorys
+            
+             
+         ]);}
 
                                   
         }
@@ -36,11 +47,19 @@ class EventController extends Controller
         $eventCategorys = DB::table('event_categorys')->get();
 
 
-     return view('User.Events')->with('Events', $Event)
-                              ->with('eventCategorys', $eventCategorys)
-                            ->with('title', 'Event Categories');
+    //  return view('User.Events')->with('Events', $Event)
+    //                           ->with('eventCategorys', $eventCategorys)
+    //                         ->with('title', 'Event Categories');
 
-
+    if( $Event){
+                  
+        return response()->json([
+         'status' => 19,
+         'events' =>  $Event,
+         'eventCategorys' => $eventCategorys
+        
+         
+     ]);}
                                   
         }
     
@@ -50,14 +69,81 @@ class EventController extends Controller
                         ->get();
         $eventCategorys = DB::table('event_categorys')->get();
 
-        return view('User.Events')->with('Events', $events)
-                                               ->with('eventCategorys', $eventCategorys)
-                                              ->with('title', 'Event Categories');
-
+        // return view('User.Events')->with('Events', $events)
+        //                                        ->with('eventCategorys', $eventCategorys)
+        //                                       ->with('title', 'Event Categories');
+        if($events){
+                  
+            return response()->json([
+             'status' => 19,
+             'events' =>  $events,
+             'eventCategorys' => $eventCategorys
+            
+             
+         ]);}
                                   
         }
 
+        public function yourAppliedVolunteerEvents(Request $req){
 
+        
+            //    $user_id = $req->session()->get('user_id');
+             $user_id = 1;
+        
+               $Event = Event::join('event_volunteers', 'event_volunteers.eventId', '=' ,'events.id')
+                               ->where('event_volunteers.user_id',$user_id)
+                                ->get();
+        
+              
+               
+         
+                // return view('User/YourAppliedVolunteerEvents')->with('volunteerEvents', $Event)
+                //                                              ->with('title', 'Applied Volunteer Events');
+               
+                                                       
+                if($Event){
+                  
+                    return response()->json([
+                     'status' => 19,
+                     'list' => $Event,
+                     'user_id' => $user_id
+                    
+                     
+                 ]);}
+            
+            }
+
+
+
+
+            public function cancleVolunteerEvent(Request $req, $id){
+
+
+
+        
+       
+                Event_volunteer::destroy($id);
+        
+            
+                  
+                    return response()->json([
+                     'status' => 19,
+                     'message' => 'Cancel Done!'
+                     
+                 ]);
+        
+        
+            //     $user_id = $req->session()->get('user_id');
+        
+            //    $Event = Event::join('event_volunteers', 'event_volunteers.eventId', '=' ,'events.id')
+            //                    ->where('event_volunteers.user_id',$user_id)
+            //                     ->get();
+                
+                // return view('User/YourAppliedVolunteerEvents')->with('volunteerEvents', $Event)
+                //                                              ->with('title', 'Applied Volunteer Events');
+            
+            }
+        
 
 
 }

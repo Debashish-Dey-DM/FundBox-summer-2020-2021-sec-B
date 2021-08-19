@@ -338,8 +338,8 @@ Route::group(['middleware'=>['sess']] , function(){
         Route::get('/user/review/{id}','User\UserController@review')->name('User.review');  
         Route::post('/user/review','User\UserController@reviewPost');
         Route::get('/user/applyVolunteerEvent','User\UserController@applyVolunteerEvent')->name('User.applyVolunteerEvent');  
-        Route::get('/user/yourAppliedVolunteerEvents','User\UserController@yourAppliedVolunteerEvents')->name('User.yourAppliedVolunteerEvents');  
-        Route::get('/user/cancleVolunteerEvent/{id}','User\UserController@cancleVolunteerEvent')->name('User.cancleVolunteerEvent');  
+        Route::get('/user/yourAppliedVolunteerEvents','User\EventController@yourAppliedVolunteerEvents')->name('Event.yourAppliedVolunteerEvents');  
+        Route::get('/user/cancleVolunteerEvent/{id}','User\EventController@cancleVolunteerEvent')->name('Event.cancleVolunteerEvent');  
         Route::post('/user/CategoryWiseEvent','User\EventController@CategoryWiseEvent')->name('User.CategoryWiseEvent');  
         Route::get('/user/generateInvoice/{id}','User\UserController@generateInvoice')->name('User.generateInvoice');  
         

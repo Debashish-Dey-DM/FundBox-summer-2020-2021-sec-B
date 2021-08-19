@@ -12,8 +12,22 @@ class OrganizationController extends Controller
     public function organizationList(){
         $users = Organization::all();
 
-        return view('User.OrganizationList')->with('organizationList', $users)
-                                            ->with('title', 'Organization List');
+        // return view('User.OrganizationList')->with('organizationList', $users)
+        //                                     ->with('title', 'Organization List');
+    
+
+        if($users){
+          
+            return response()->json([
+             'status' => 19,
+             'list' => $users,
+             'message' => 'No Data Found!'
+             
+         ]);
+ 
+ 
+        }
+        
     
     }
 
@@ -24,11 +38,23 @@ class OrganizationController extends Controller
         $follow = Org_follow:: all();
 
         
-        return view('User.OrganizationDetails')->with('organization', $user)
-                                               ->with('followedOrganizations', $follow)
-                                               ->with('title', 'Organization Details');
+        // return view('User.OrganizationDetails')->with('organization', $user)
+        //                                        ->with('followedOrganizations', $follow)
+        //                                        ->with('title', 'Organization Details');
 
        
+        if( $user){
+          
+            return response()->json([
+             'status' => 19,
+             'list' => $user,
+             'Org_follow' => $follow,
+             'message' => 'No Data Found!'
+             
+         ]);
+ 
+ 
+        }
     
     }
 
@@ -37,9 +63,22 @@ class OrganizationController extends Controller
         $users = Event::where('orgId',$id)
                         ->get();
 
-        return view('User.OrganizationEvents')->with('organizationEvents', $users)
-                                               ->with('title', 'Organization Events');
+        // return view('User.OrganizationEvents')->with('organizationEvents', $users)
+        //                                        ->with('title', 'Organization Events');
 
+
+
+        if( $users){
+          
+            return response()->json([
+             'status' => 19,
+             'list' => $users,
+            
+             
+         ]);
+ 
+ 
+        }
        
     
     }
@@ -53,7 +92,8 @@ class OrganizationController extends Controller
 
         $organization = Organization::find($id);
 
-        $user_id = $req->session()->get('user_id');
+        $user_id = 1;
+        // $user_id = $req->session()->get('user_id');
 
         
 
@@ -61,15 +101,20 @@ class OrganizationController extends Controller
 
         $followOrganization = new Org_follow;
        
-        $followOrganization->org_id = $organization->user_id;
+        $followOrganization->org_id =$id;
         $followOrganization->user_id = $user_id;
         $followOrganization->status = $organization->status;
         $followOrganization->save();
 
         
-        return redirect()->route('Organization.followedOrganization');
+        // return redirect()->route('Organization.followedOrganization');
 
-       
+        return response()->json([
+            'status' => 19,
+            'message' => 'Success! Now You are following the Organiztion!!!'
+
+        ]);
+
     
     }
 
@@ -77,9 +122,21 @@ class OrganizationController extends Controller
     public function followedOrganization(){
         $followedOrganizations = Org_follow::all();
 
-        return view('User.FollowedOrganization')->with('followedOrganizations', $followedOrganizations)
-                                               ->with('title', 'Followed Organization');
+        // return view('User.FollowedOrganization')->with('followedOrganizations', $followedOrganizations)
+        //                                        ->with('title', 'Followed Organization');
 
+        
+        if($followedOrganizations){
+          
+            return response()->json([
+             'status' => 19,
+             'list' => $followedOrganizations
+          
+             
+         ]);
+ 
+ 
+        }
        
     
     }
@@ -89,8 +146,17 @@ class OrganizationController extends Controller
     public function unfollowedOrganization($id){
         
         Org_follow::destroy($id);
-        return redirect()->route('Organization.followedOrganization');
+        // return redirect()->route('Organization.followedOrganization');
 
+          
+            return response()->json([
+             'status' => 19,
+             'msg' => "Unfollowed successfully"
+          
+             
+         ]);
+ 
+ 
        
     
     }

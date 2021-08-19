@@ -11,8 +11,21 @@ class CategoryController extends Controller
     public function categoryList(){
         $users = Event_category::all();
 
-        return view('User.CategoryList')->with('categoryList', $users)
-                                            ->with('title', 'Category List');
+        // return view('User.CategoryList')->with('categoryList', $users)
+        //                                     ->with('title', 'Category List');
+
+        if( $users){
+          
+            return response()->json([
+             'status' => 19,
+             'list' =>  $users
+          
+             
+         ]);
+ 
+ 
+        }
+       
     
 }
 }

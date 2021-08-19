@@ -25,7 +25,7 @@ class ReportRequest extends FormRequest
     {
         return [
             
-            'report' => 'required'
+            'details' => 'required'
         ];
     }
 }
