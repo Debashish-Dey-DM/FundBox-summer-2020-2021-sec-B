@@ -28,7 +28,7 @@ import { useState,useEffect} from 'react';
     }
 
     const [event, setEvent] = useState([]);
-    const mount= async()=>{
+    const getDashboardData= async()=>{
         const res = await axios.get('http://localhost:8000/api/admin/dashboard');
         console.log(res.data);
         
@@ -37,7 +37,7 @@ import { useState,useEffect} from 'react';
         }
     }
     useEffect(() => {
-        mount();    
+        getDashboardData();    
     }, []);
 
     return (

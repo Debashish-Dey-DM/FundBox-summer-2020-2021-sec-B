@@ -137,8 +137,8 @@ class LoginController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->with([
-                'error' => true,
+            return response()->json([
+                'status' => 240,
                 'message' => 'Required data missing.'
             ]);
         }else{
@@ -164,19 +164,19 @@ class LoginController extends Controller
                 $insert_user = DB::table('userinfos')->insert($data);
 
                 if($insert_user){
-                    return redirect('/SignIn')->with([
-                        'message' => 'User Create Success Fully'
+                    return response()->json([
+                        'status' => 200,
+                        'message' => 'Account Create Successfully'
                     ]);
                 }else{
-                    return redirect('/SignIn')->with([
-                        'message' => 'Something going wrong'
+                    return response()->json([
+                        'status' => 240,
+                        'message' => 'Something going wrong!'
                     ]);
                 }
-
             }else{
-                
-                return redirect()->back()->with([
-                    'error' => true,
+                return response()->json([
+                    'status' => 240,
                     'message' => 'Username or Email Already register'
                 ]);
             }

@@ -27,7 +27,7 @@ const HomeDefault = () => {
                             <div className="float-right">
                                 <a href="/login" className=""><span></span> <span className="d-none d-md-inline-block">Login</span></a>
                                 <span className="mx-md-2 d-inline-block"></span>
-                                <a href="/login" className=""><span></span> <span className="d-none d-md-inline-block">Register</span></a>
+                                <a href="/signup" className=""><span></span> <span className="d-none d-md-inline-block">Signup</span></a>
                             </div>
                         </div>
                     </div>

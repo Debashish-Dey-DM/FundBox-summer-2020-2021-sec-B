@@ -56,6 +56,7 @@ import Volunteer from './Components/Org/Volunteers';
 import ManageAdminEvents from './Components/Admin/Eevents/ManageAdminEvents';
 import ManageAcceptedEvents from './Components/Admin/Eevents/ManageAcceptedEvents';
 import AdminVisitorList from './Components/Admin/AdminVisitorList';
+import Signup from './Components/Signup';
 
 
 
@@ -70,6 +71,7 @@ function App() {
 
 <Route  path="/index" component={HomeDefault} />
 <Route  path="/login" component={Login} />
+<Route  path="/signup" component={Signup} />
 
 {/* /////////////////Admin/////////////////////////////// */}
 

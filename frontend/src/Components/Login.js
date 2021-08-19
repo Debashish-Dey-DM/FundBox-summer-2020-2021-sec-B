@@ -43,14 +43,14 @@ const Login = () => {
     }, []);
 
     function setDate(userData){
-        localStorage.setItem('userData',JSON.stringify(userData));
+        // localStorage.setItem('userData',JSON.stringify(userData));
         sessionStorage.setItem('userData',JSON.stringify(userData))
     }
 
     function getUserData(){
-        let data = localStorage.getItem('userData');
+        // let data = localStorage.getItem('userData');
         let setData = sessionStorage.getItem('userData');
-        console.log(JSON.parse(data))
+        // console.log(JSON.parse(data))
         console.log(JSON.parse(setData))
     }
 
@@ -96,6 +96,9 @@ const Login = () => {
     }
     return (
         <div className="col-sm-6 offset-sm-3" style={{ "marginTop" :"50px"}}>
+            <div className="sb-sidenav-footer">
+                <a href="/index" className=""><span></span> <span className="d-none d-md-inline-block"> Back to Home</span></a>
+            </div>
             <div className="card">
                 <div className="card-header" style={{ "padding" :"5px"}}>
                     <h4 className="card-title">Welcome Back! <br/> Login </h4>
@@ -107,7 +110,7 @@ const Login = () => {
                                             
                             <div className="row">
                                 <div className="col-12 col-sm-12 col-lg-12">
-                                    <input type="text" className="form-control" name="login_email" placeholder="Username" onChange={handleInput} required/>
+                                    <input type="text" className="form-control" name="login_email" placeholder="Email" onChange={handleInput} required/>
                                 </div>
                                 <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
                                     <input type="password" className="form-control" name="login_password" placeholder="Password" onChange={handleInput} required/>
@@ -118,6 +121,11 @@ const Login = () => {
                                 </div>
                             </div>
                         </form>
+
+                        <div style={{ "marginTop" :"20px"}}>
+                            <div className="small">Hey! Don't Have an Account yet?</div>
+                            <a href="/signup" className=""><span></span> <span className="d-none d-md-inline-block"> Sign Up</span></a>
+                        </div>
                     </div>
                 </div>
             </div>
