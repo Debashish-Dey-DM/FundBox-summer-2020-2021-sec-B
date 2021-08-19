@@ -122,6 +122,7 @@ const HomeDefault = () => {
                     </div>
                 </div>
             </div>
+            
             <div className="status" style={{ "backgroundColor" :"#F2F4F4"}}>
                 <div className="container" style={{ "paddingBottom" :"30px"}}>
                     <h2 className="text-center">We will save the world</h2>
