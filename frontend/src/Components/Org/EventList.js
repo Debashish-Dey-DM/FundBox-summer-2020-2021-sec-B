@@ -7,6 +7,8 @@ import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
 const EventList = () => {
+    const [vol, setVol] = useState(false)
+    const [anVol,setAnvol] = useState(false)
     const history = useHistory();
     const [event, setEvent] = useState([]);
     const [search, setSearch] = useState("");
@@ -16,8 +18,11 @@ const EventList = () => {
         console.log(res.data);
         
         if (res.status === 200) {
+            
             setEvent(res.data)
-             
+            const newEvent = event.filter((val) => val.eventType === 1)
+            
+            
         }
             
     }
@@ -62,7 +67,32 @@ const EventList = () => {
                             <div className="class-body">
                                 <table className="table table-bordered table-striped">
                                     <thead>
-                                        
+                                                        <tr><button onClick={() => {
+                                                            setVol(!vol)
+                                                            console.log(vol);
+                                                            if (!vol) {
+                                                                const newEvent = event.filter((val) => val.eventType === 1)
+                                                                console.log(newEvent);
+                                                                setEvent(newEvent)
+                                                            }
+                                                            else {
+                                                                mount();
+                                                            }
+                                                            
+                                                        }}>Normal Event</button></tr>
+                                                        <tr><button onClick={() => {
+                                                            setAnvol(!anVol)
+                                                            console.log(anVol);
+                                                            if (!anVol) {
+                                                                const newEvent = event.filter((val) => val.eventType === 2)
+                                                                console.log(newEvent);
+                                                                setEvent(newEvent)
+                                                            }
+                                                            else {
+                                                                mount();
+                                                            }
+                                                            
+                                                        }}>Volunteer Event</button></tr>
                                         <tr>
                                             <th>ID</th>
                                             <th>Event Name</th>
@@ -99,6 +129,7 @@ const EventList = () => {
                                                         <Link to={`delete-event/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
                                                         {/* <button className="btn btn-danger btn-sm foat-end" onClick={deleteEvent}>Delete</button> */}
                                                     </td>
+                                                    
                                                 </tr>
                                             );
                                         })
