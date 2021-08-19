@@ -9,3 +9,8 @@ Users are the donors. They will fund many organisations events which will be cre
 
 A special event will be organised by Admin which represents the fundbox.
 There are also  sponsors who will take a big role in donations. A company will apply for sponsorship which the admin will approve. Sponsors will create advertisements and can manage it. Sponsors can also give sponsorships in organisations. 
+
+<br>
+
+Project Live on: http://fundbox.almahmudriaz.com/ <br>
+Soruce code: https://github.com/Riaz-Mahmud/FundBox-summer-2020-2021-sec-B
