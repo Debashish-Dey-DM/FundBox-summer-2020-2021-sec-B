@@ -24,6 +24,8 @@ import SponsorHome from './Components/Sponsor/SponsorHome';
 
 import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise';
 import AddAdvertise from './Components/Sponsor/AddAdvertise';
+import OngoingEvents from './Components/Sponsor/OngoingEvents';
+import SpTransactionList from './Components/Sponsor/SpTransactionList';
 
 import EditCategory from './Components/Admin/EditCategory';
 import AdminHome from './Components/Admin/AdminHome';
@@ -162,6 +164,8 @@ function App() {
 <Route path="/sp/dashboard" component={SponsorHome} />
 <Route path="/sp/allAdvertiser" component={ListOfAdvertise} />
 <Route path="/sp/addAdvertise" component={AddAdvertise} />
+<Route path="/sp/OngoingEvents" component={OngoingEvents} />
+<Route path="/sp/SpTransactionList" component={SpTransactionList} />
 
 
 

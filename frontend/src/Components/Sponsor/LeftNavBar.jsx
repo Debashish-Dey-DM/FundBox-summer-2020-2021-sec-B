@@ -20,18 +20,36 @@ export default function LeftNavBar() {
                             <div className="sb-nav-link-icon"><i className="fas fa-user-ninja" /></div>
                             Add Advertise
                             </a>
-                            <a className="nav-link" href="index.html">
-                            <div className="sb-nav-link-icon"><i className="fas fa-hands" /></div>
-                            All Organization
+                            <div className="sb-sidenav-menu-heading">Events</div>
+                            <a className="nav-link" href="/sp/OngoingEvents">
+                            <div className="sb-nav-link-icon"><i className="fas fa-calendar-day"/></div>
+                            Ongoing Events
                             </a>
-                            <div className="sb-sidenav-menu-heading">Addons</div>
+                            <div className="sb-sidenav-menu-heading">Organisation</div>
                             <a className="nav-link" href="#!">
+                            <div className="sb-nav-link-icon"><i className="fas fa-people-arrows" /></div>
+                            Apply in Organisation
+                            </a>
+                            <a className="nav-link" href="#!">
+                            <div className="sb-nav-link-icon"><i className="fas fa-clipboard-list" /></div>
+                            All Sponsored Organisation
+                            </a>
+                            <a className="nav-link" href="#!">
+                            <div className="sb-nav-link-icon"><i className="fas fa-child" /></div>
+                            Pending Request
+                            </a>
+                            <a className="nav-link" href="#!">
+                            <div className="sb-nav-link-icon"><i className="fab fa-connectdevelop" /></div>
+                            Ongoing Process
+                            </a>
+                            <div className="sb-sidenav-menu-heading">Account</div>
+                            <a className="nav-link" href="#!">
+                            <div className="sb-nav-link-icon"><i className="fas fa-address-book" /></div>
+                            Manage Account
+                            </a>
+                            <a className="nav-link" href="SpTransactionList">
                             <div className="sb-nav-link-icon"><i className="fas fa-chart-area" /></div>
-                            Charts
-                            </a>
-                            <a className="nav-link" href="#!">
-                            <div className="sb-nav-link-icon"><i className="fas fa-table" /></div>
-                            Tables
+                            Transaction List
                             </a>
                         </div>
                         </div>

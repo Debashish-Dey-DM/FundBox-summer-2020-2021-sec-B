@@ -184,12 +184,13 @@ class AccountController extends Controller
 
     public function allTransactionList(Request $request){
 
-        $spId = $request->session()->get('user_id');
+        //$spId = $request->session()->get('user_id');
 
         $allTransactionList = DB::table('event_trans_lists')
             ->leftjoin('events','event_trans_lists.eventId','=','events.id')
             //->leftjoin('organizations','event_trans_lists.org_Id','=','organizations.id')
-            ->where('user_id',$spId)
+            //->where('user_id',$spId)
+            ->where('user_id',13)
             ->get();
              //dd($allTransactionList);
 
@@ -202,9 +203,11 @@ class AccountController extends Controller
 //         ->where('user_id',$spId)
 //         ->get();
 
-        return view('Sponsor.TransactionList')
-            ->with('title', 'Transaction List | Sponsor')
-            ->with('allTransactionList', $allTransactionList);
+            if($allTransactionList){
+                return response()->json($allTransactionList, 200);
+            }else{
+                return response()->json(['code'=>401, 'message' => 'No data Found!']);
+            }
 
 
     }
