@@ -35,6 +35,28 @@ class AdvertiseController extends Controller
         }
 
     }
+    public function OngoingEvents(Request $request){
+
+      // $userId = $request->session()->get('user_id');
+       //$spId = DB::table('sponsors')
+        //->where('user_id',$userId)
+        //->where('status',1)
+        //->first();
+        //dd($spId);
+
+       $allEvents = DB::table('events')
+        //->where('sponsor_Id', $spId)
+        ->where('status', 1)
+        ->get();
+        // $allAdvertise = "test";
+        // dd($allAdvertise);
+        if($allEvents){
+            return response()->json($allEvents, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
+
+    }
     public function CreateAdd(Request $request){
 
         //$userId = $request->session()->get('user_id');

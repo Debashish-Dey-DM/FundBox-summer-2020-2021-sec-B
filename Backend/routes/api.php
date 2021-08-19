@@ -46,7 +46,9 @@ Route::post('/delete-event/{id}','Org\OrganizationHomeController@deleteEvent');
 /////////////////Sponsor///////////////////////////////
 
 Route::get('/sp/allAdvertiser','Sponsor\AdvertiseController@Show');
+Route::get('/sp/OngoingEvents','Sponsor\AdvertiseController@OngoingEvents');
 Route::post('sp/addAdvertise','Sponsor\AdvertiseController@CreateAdd');
+Route::get('/sp/SpTransactionList','Sponsor\AccountController@allTransactionList');
 
 
 
