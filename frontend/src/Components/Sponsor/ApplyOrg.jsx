@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 
-const OngoingEvents = () => {
+const ApplyOrg = () => {
     let serial = 0;
     const [getAllEvents, setAllEvents] = useState([]);
     const mount= async()=>{
-        const res = await axios.get('http://localhost:8000/api/sp/OngoingEvents');
+        const res = await axios.get('http://localhost:8000/api/sp/ApplyOrg');
         console.log(res.data);
         if (res.status === 200) {
             setAllEvents(res.data)
@@ -78,10 +78,9 @@ const OngoingEvents = () => {
                             <tr>
                             <th scope="col">SL</th>
                             <th scope="col">Image</th>
-                            <th scope="col">Events Name</th>
+                            <th scope="col">Organisation Name</th>
                             <th scope="col">Details</th>
                             <th scope="col">Contact</th>
-                            <th scope="col">Target money</th>
                             <th scope="col">Date</th>
                             <th scope="col">Apply</th>
                             </tr>
@@ -94,26 +93,24 @@ const OngoingEvents = () => {
                                         <tr key={e.id} >
                                             <td>{serial += 1}</td>
                                             <td>
-                                            <img src="https://thehill.com/sites/default/files/styles/article_full/public/ca_internationalwomensday_illustration_istock.jpg?itok=hOev3rFs" class="img-thumbnail" alt="..." />
+                                            <img src="https://image.shutterstock.com/image-photo/organization-management-structure-corporate-team-260nw-382125727.jpg" class="img-thumbnail" alt="..." />
                                             </td>
                                             <td>
-                                                {e.event_name}
+                                                {e.name}
                                             </td>
                                             <td>
                                                 {e.details}
                                             </td>
                                             <td>
-                                                {e.contact} 
-                                            </td>
-                                            <td>
-                                                {e.targetMoney}
+                                                {e.phone} 
                                             </td>
                                             <td>
                                                  {e.created_at}
                                             </td>
                                             <td>
                                             <form onSubmit={applyEvent(e.id)} >
-                                            <button type="submit" class="btn btn-success">Apply</button>
+                                            {/* <button type="submit" class="btn btn-success">Apply</button> */}
+                                            <Link to={`ApplyOrgForm/${e.id}`} className="btn btn-success" > Apply </Link>
                                             </form>
                                             </td>
                                             
@@ -132,4 +129,4 @@ const OngoingEvents = () => {
     )
 }
 
-export default OngoingEvents
+export default ApplyOrg

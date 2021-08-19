@@ -19,9 +19,11 @@ class OrgController extends Controller
          ->get();
          //dd($orgList);
 
-        return view('Sponsor.OrgList')
-            ->with('title', 'Apply Org | Sponsor')
-            ->with('allOrgList', $allOrgList);
+         if($allOrgList){
+            return response()->json($allOrgList, 200);
+        }else{
+            return response()->json(['code'=>401, 'message' => 'No data Found!']);
+        }
 
     }
     public function sponsoredOrgList(Request $request){
@@ -65,32 +67,32 @@ class OrgController extends Controller
             ->with('allOngoingOrgList', $ongoingOrgList);
 
     }
-    public function applyInOrg(Request $request){
+    public function applyInOrg(Request $request, $id){
 
-        $spId = $request->session()->get('user_id');
+       // $spId = $request->session()->get('user_id');
         //dd($spId);
 
 
-        $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'editStartDate' => 'required',
-            'editEndDate' => 'required',
-            'details' => 'required',
-            'editAmount' => 'required',
-            'orgId' => 'required'
-            //'image' => 'required'
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'title' => 'required',
+        //     'editStartDate' => 'required',
+        //     'editEndDate' => 'required',
+        //     'details' => 'required',
+        //     'editAmount' => 'required',
+        //     'orgId' => 'required'
+        //     //'image' => 'required'
+        // ]);
 
         
         //dd($validator);
 
-        if ($validator->fails()) {
-            dd($request->all());
-            return redirect()->back()->with([
-                'error' => true,
-                'message' => 'Required data missing.'
-            ]);
-        }else{
+        // if ($validator->fails()) {
+        //     dd($request->all());
+        //     return redirect()->back()->with([
+        //         'error' => true,
+        //         'message' => 'Required data missing.'
+        //     ]);
+        // }else{
 
             // $image = $request->file('image');
             // $image_name=$image->getClientOriginalName();
@@ -101,37 +103,40 @@ class OrgController extends Controller
             // $image_url=$upload_path.$image_full_name;
             // $success=$image->move($upload_path,$image_full_name);
             // $imageData='images/Sponsor/'.$image_full_name;
+            $orgId = $request->org_Id;
 
-            $imageData =  DB::table('organizations')
-            ->where('id',$request->orgId)
+            $orgData =  DB::table('organizations')
+            ->where('id',$orgId)
             ->first();
 
             
             $data=array();
             $data['title']=$request->title;
-            $data['startDate']=$request->editStartDate;
-            $data['endDate']=$request->editEndDate;
+            $data['startDate']=$request->startDate;
+            $data['endDate']=$request->endDate;
             $data['details']=$request->details;
-            $data['amount']=$request->editAmount;
-            $data['org_Id']=$request->orgId;
-            $data['sponsorLogo']=$imageData->image;
-            $data['sponsor_Id']=$spId;
+            $data['amount']=$request->amount;
+            $data['org_Id']=$orgData->id;
+            //$data['sponsorLogo']=$imageData->image;
+            $data['sponsor_Id']=1;
             $data['status']='2';
 
             $insert = DB::table('spo_to_org_proposals')->insert($data);
 
             if($insert){
-                return redirect()->back()->with([
-                    'error' => false,
-                    'message' => 'Applied Successfully'
-                ]);
+
+                return response()->json([
+                    'status' => 200,
+                    'banner'=> $insert,
+                    'message' => 'Banner Added Successfully'
+                         ]);
             }else{
-                return redirect()->back()->with([
-                    'error' => true,
-                    'message' => 'Something going wrong'
-                ]);
+                response()->json([
+                        'status' => 202,
+                        'message' => 'Something went Wrong'
+                             ]);
             }
-        }
+        // }
 
 
     }
