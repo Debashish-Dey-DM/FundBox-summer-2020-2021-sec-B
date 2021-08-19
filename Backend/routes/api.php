@@ -75,6 +75,7 @@ Route::post('/admin/eventCategory/update/{id}','Admin\CategoryController@Update'
 Route::get('/admin/eventCategory/singleCategory/{id}','Admin\CategoryController@SingleCategory');
 
 Route::post('/login','LoginController@Login');
+Route::post('/SignUp','LoginController@CreateNewUser');
 
 
 //closeadmin
