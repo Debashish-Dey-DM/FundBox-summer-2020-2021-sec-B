@@ -128,7 +128,7 @@ export default function LeftNavBar() {
                         </a>
 
                         <div className="sb-sidenav-menu-heading">Account</div>
-                        <a className="nav-link" href="#">
+                        <a className="nav-link" href="/admin/manageAccount">
                             <div className="sb-nav-link-icon"><i className="far fa-flag"/></div>
                             Manage Account
                         </a>

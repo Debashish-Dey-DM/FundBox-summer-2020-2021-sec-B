@@ -57,6 +57,7 @@ import ManageAdminEvents from './Components/Admin/Eevents/ManageAdminEvents';
 import ManageAcceptedEvents from './Components/Admin/Eevents/ManageAcceptedEvents';
 import AdminVisitorList from './Components/Admin/AdminVisitorList';
 import Signup from './Components/Signup';
+import ManageAdminAccount from './Components/Admin/ManageAdminAccount';
 
 
 
@@ -117,6 +118,8 @@ function App() {
 
 <Route  path="/admin/transitionList" component={TransitionList} />
 <Route  path="/admin/adminVisitorList" component={AdminVisitorList} />
+
+<Route  path="/admin/manageAccount" component={ManageAdminAccount} />
 
 {/* //closeadmin */}
 
