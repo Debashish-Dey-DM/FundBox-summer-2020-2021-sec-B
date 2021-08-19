@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../dummyLogo.png';
+import { useHistory } from "react-router-dom";
 // import logos from '../public/assets/img/undraw_team_work_k80m.png';
 
 const HomeDefault = () => {
+    const history = useHistory();
     return (
         <div>
             <div>
@@ -41,29 +43,6 @@ const HomeDefault = () => {
                             <img src={logo} alt="site logo" />
                         </div>
 
-                        {/* <div className="col-12">
-                            <nav className="site-navigation text-right ml-auto " role="navigation">
-                                <ul className="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                                <li><a href="/" className="nav-link">Home</a></li>
-                                <li className="has-children">
-                                    <a href="#about-section" className="nav-link">Category</a>
-                                    <ul className="dropdown arrow-top">
-                                    
-                                    </ul>
-                                </li>
-                                <li><a href="/Ourteam/Organization" className="nav-link">Organization</a></li>
-                                <li><a href="/events" className="nav-link">Events</a></li>
-                                <li><a href="/contact" className="nav-link">Contact</a></li>
-                                <li><a href="/FAQ" className="nav-link">FAQ</a></li>
-
-                                
-                                <li><a href="/SignIn" className="nav-link">Sign in</a></li>
-                                <li><a href="/events"><button type="button" className="btn btn-outline-success">Start Donation</button></a></li>
-                            
-                                </ul>
-                            </nav>
-                        </div> */}
-
                         <div className="toggle-button d-inline-block d-lg-none"><a href="#" className="site-menu-toggle py-5 js-menu-toggle text-black"><span className="icon-menu h3"></span></a></div>
 
                     </div>
@@ -81,7 +60,7 @@ const HomeDefault = () => {
                     </div>
                 </div>
             </div>
-            <div className="event" style={{ "background-color" :"#F2F4F4"}}>
+            <div className="event" style={{ "backgroundColor" :"#F2F4F4"}}>
                 <div className="container">
                     <div className="row" style={{ "marginBottom" :"00px"}}>
                         <div className="col-12" >
@@ -92,13 +71,13 @@ const HomeDefault = () => {
                                         <div className="col-4">
                                             <div className="card" style={{ "marginTop" :"10px","width": "20rem"}}>
                                                 <img className="card-img-top" style={{ "height" :"13.4rem"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} alt="Card image cap" />
-                                                <div className="card-body" style={{ "text-align" :"center"}}>
-                                                    <h5 className="card-title" style={{ "overflow" :"hidden","text-overflow":"ellipsis"}}>this is name</h5>
-                                                    <p className="card-text" style={{ "height" :"80px","width":"250px","overflow":"hidden","text-overflow":"ellipsis"}}>This is details</p>
+                                                <div className="card-body" style={{ "textAlign" :"center"}}>
+                                                    <h5 className="card-title" style={{ "overflow" :"hidden","textOverflow":"ellipsis"}}>this is name</h5>
+                                                    <p className="card-text" style={{ "height" :"80px","width":"250px","overflow":"hidden","textOverflow":"ellipsis"}}>This is details</p>
                                                     
                                                     <h6 style={{ "marginTop" :"10px"}}>Need ৳ 100</h6>
                                                     
-                                                    <a href="#" className="btn btn-primary loginAlert" aria-hidden="true" onclick="" style={{ "color" :"white"}}>Donate Now</a>
+                                                    <a  href="#" className="btn btn-primary loginAlert" aria-hidden="true" style={{ "color" :"white"}}>Donate Now</a >
                                                 </div>
                                             </div>
                                         </div>
@@ -109,13 +88,13 @@ const HomeDefault = () => {
                                         <div className="col-4">
                                             <div className="card" style={{ "marginTop" :"10px","width": "20rem"}}>
                                                 <img className="card-img-top" style={{ "height" :"13.4rem"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} alt="Card image cap" />
-                                                <div className="card-body" style={{ "text-align" :"center"}}>
-                                                    <h5 className="card-title" style={{ "overflow" :"hidden","text-overflow":"ellipsis"}}>this is name</h5>
-                                                    <p className="card-text" style={{ "height" :"80px","width":"250px","overflow":"hidden","text-overflow":"ellipsis"}}>This is details</p>
+                                                <div className="card-body" style={{ "textAlign" :"center"}}>
+                                                    <h5 className="card-title" style={{ "overflow" :"hidden","textOverflow":"ellipsis"}}>this is name</h5>
+                                                    <p className="card-text" style={{ "height" :"80px","width":"250px","overflow":"hidden","textOverflow":"ellipsis"}}>This is details</p>
                                                     
                                                     <h6 style={{ "marginTop" :"10px"}}>Need ৳ 100</h6>
                                                     
-                                                    <a href="#" className="btn btn-primary loginAlert" aria-hidden="true" onclick="" style={{ "color" :"white"}}>Donate Now</a>
+                                                    <a href="#" className="btn btn-primary loginAlert" aria-hidden="true" style={{ "color" :"white"}}>Donate Now</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,13 +105,13 @@ const HomeDefault = () => {
                                         <div className="col-4">
                                             <div className="card" style={{ "marginTop" :"10px","width": "20rem"}}>
                                                 <img className="card-img-top" style={{ "height" :"13.4rem"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} alt="Card image cap" />
-                                                <div className="card-body" style={{ "text-align" :"center"}}>
-                                                    <h5 className="card-title" style={{ "overflow" :"hidden","text-overflow":"ellipsis"}}>this is name</h5>
-                                                    <p className="card-text" style={{ "height" :"80px","width":"250px","overflow":"hidden","text-overflow":"ellipsis"}}>This is details</p>
+                                                <div className="card-body" style={{ "textAlign" :"center"}}>
+                                                    <h5 className="card-title" style={{ "overflow" :"hidden","textOverflow":"ellipsis"}}>this is name</h5>
+                                                    <p className="card-text" style={{ "height" :"80px","width":"250px","overflow":"hidden","textOverflow":"ellipsis"}}>This is details</p>
                                                     
                                                     <h6 style={{ "marginTop" :"10px"}}>Need ৳ 100</h6>
                                                     
-                                                    <a href="#" className="btn btn-primary loginAlert" aria-hidden="true" onclick="" style={{ "color" :"white"}}>Donate Now</a>
+                                                    <a href="#" className="btn btn-primary loginAlert" aria-hidden="true" style={{ "color" :"white"}}>Donate Now</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,40 +122,40 @@ const HomeDefault = () => {
                     </div>
                 </div>
             </div>
-            <div className="status" style={{ "background-color" :"#F2F4F4"}}>
+            <div className="status" style={{ "backgroundColor" :"#F2F4F4"}}>
                 <div className="container" style={{ "paddingBottom" :"30px"}}>
                     <h2 className="text-center">We will save the world</h2>
-                    <h6 className="text-center"  style={{ "padding-bottom" :"30px"}}>We have the strongest community</h6>
+                    <h6 className="text-center"  style={{ "paddingBottom" :"30px"}}>We have the strongest community</h6>
                     <div className="row">
-                        <div className="col-4" style={{ "text-align" :"center"}}>
+                        <div className="col-4" style={{ "textAlign" :"center"}}>
                             <h2><b>100</b></h2>
                             <h3>Volunteers</h3>
                         </div>
-                        <div className="col-4" style={{ "text-align" :"center"}}>
+                        <div className="col-4" style={{ "textAlign" :"center"}}>
                             <h2><b>500</b></h2>
                             <h3>Events</h3>
                         </div>
-                        <div className="col-4" style={{ "text-align" :"center"}}>
+                        <div className="col-4" style={{ "textAlign" :"center"}}>
                             <h2><b>154863.00 ৳</b></h2>
                             <h3>Total Donation</h3>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="event" style={{ "background-color" :"#ffffff","margin": "auto", "width": "50%","padding": "10px"}}>
+            <div className="event" style={{ "backgroundColor" :"#ffffff","margin": "auto", "width": "50%","padding": "10px"}}>
                 <div className="container" style={{ "paddingBottom" :"30px"}}>
                     <div className="">
                             <div className="osahan-slider-item mx-2">
-                                <img style={{ "width":"100%","background-color" :"#ffffff","object-fit":"contain"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} className="img-fluid mx-auto rounded promo-slider" alt="Responsive image" />
+                                <img style={{ "width":"100%","backgroundColor" :"#ffffff","objectFit":"contain"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} className="img-fluid mx-auto rounded promo-slider" alt="Responsive image" />
                             </div>
                     </div>
                 </div>
             </div>
             <div className="event" >
-                <div className="container" style={{ "height" :"200px","text-align": "center", "marginTop":"100px"}}>
+                <div className="container" style={{ "height" :"200px","textAlign": "center", "marginTop":"100px"}}>
                     <h2 style={{ "marginTop":"20px"}}>Ready to Join us?</h2>
-                    <a type="button" href="{{URL::to('/joinOrg')}}" class="btn btn-success">Join as Organization</a>
-                    <a type="button" href="{{URL::to('/joinSponsor')}}" class="btn btn-success">Join as Sponsor</a>
+                    <a type="button" href="{{URL::to('/joinOrg')}}" className="btn btn-success">Join as Organization</a>
+                    <a type="button" href="{{URL::to('/joinSponsor')}}" className="btn btn-success">Join as Sponsor</a>
                 </div>
             </div>
 

@@ -74,6 +74,8 @@ Route::post('/admin/eventCategory/delete','Admin\CategoryController@Delete');
 Route::post('/admin/eventCategory/update/{id}','Admin\CategoryController@Update');
 Route::get('/admin/eventCategory/singleCategory/{id}','Admin\CategoryController@SingleCategory');
 
+Route::post('/admin/ManageProfile/{id}','Admin\UserController@ManageProfileUpdate');
+
 Route::post('/login','LoginController@Login');
 Route::post('/SignUp','LoginController@CreateNewUser');
 
