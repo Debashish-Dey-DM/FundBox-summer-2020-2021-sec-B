@@ -102,7 +102,7 @@ const AdminEdit = () => {
                                                 </div>
                                                 
                                                 <div className="form-group mb-3"style={{ "marginTop" :"10px"}}>
-                                                <button type="submit" className="btn btn-primary">Save Category</button>
+                                                <button type="submit" className="btn btn-primary">Save</button>
                                                 </div>
                                             </div>
                                         </form>

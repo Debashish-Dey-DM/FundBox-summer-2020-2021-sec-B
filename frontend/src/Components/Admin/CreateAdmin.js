@@ -47,7 +47,7 @@ const CreateAdmin = () => {
                 admin_phone:'',
                 status: '1'
             })
-            setTimeout(() => { history.push('/admin/createAdmin'); }, 500);
+            setTimeout(() => { history.push('/admin/manageAdmin'); }, 100);
             
         }
         else if (res.data.status === 240) {
@@ -103,7 +103,7 @@ const CreateAdmin = () => {
                                                     <input type="number" className="form-control" name="admin_phone" placeholder="Phone number" onChange={handleInput} required/>
                                                 </div>
                                                 
-                                                <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px"}}>
+                                                <div className="col-12 col-sm-12 col-lg-6" style={{ "marginTop" :"10px"}}>
                                                     <fieldset className="form-group">
                                                         <select name="status" className="form-control" id="basicSelect" onChange={handleInput} required>
                                                             <option disabled defaultValue>Select Status</option>

@@ -27,6 +27,7 @@ const HomeDefault = () => {
                             <div className="float-right">
                                 <a href="/login" className=""><span></span> <span className="d-none d-md-inline-block">Login</span></a>
                                 <span className="mx-md-2 d-inline-block"></span>
+                                <a href="/login" className=""><span></span> <span className="d-none d-md-inline-block">Register</span></a>
                             </div>
                         </div>
                     </div>
@@ -162,11 +163,11 @@ const HomeDefault = () => {
                     </div>
                 </div>
             </div>
-            <div className="event" style={{ "background-color" :"#ffffff"}}>
+            <div className="event" style={{ "background-color" :"#ffffff","margin": "auto", "width": "50%","padding": "10px"}}>
                 <div className="container" style={{ "paddingBottom" :"30px"}}>
-                    <div className="recommend-sli pb-0 mb-0 slick-slider">
+                    <div className="">
                             <div className="osahan-slider-item mx-2">
-                                <img style={{ "width":"50%","background-color" :"#ffffff","object-fit":"contain"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} className="img-fluid mx-auto rounded promo-slider" alt="Responsive image" />
+                                <img style={{ "width":"100%","background-color" :"#ffffff","object-fit":"contain"}} src={process.env.PUBLIC_URL + '/assets/img/loading.gif'} className="img-fluid mx-auto rounded promo-slider" alt="Responsive image" />
                             </div>
                     </div>
                 </div>
