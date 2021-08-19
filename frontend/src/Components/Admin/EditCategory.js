@@ -14,10 +14,10 @@ const EditEvent = () => {
         status: '1'
     });
     const [msg, setMsg] = useState("");
-    const { id: eid } = useParams();
+    const { id: id } = useParams();
     const [ename, seteName] = useState("");
     const mount= async()=>{
-        const res = await axios.get(`http://localhost:8000/api/admin/eventCategory/singleCategory/${eid}`);
+        const res = await axios.get(`http://localhost:8000/api/admin/eventCategory/singleCategory/${id}`);
         console.log(res.data);
         console.log(res.data.name);
         console.log(res.data.status);
@@ -43,7 +43,7 @@ const EditEvent = () => {
         e.preventDefault();
         const category_name = event.category_name.toString();
         const status =event.status.toString();
-        const res = await axios.post(`http://localhost:8000/api/admin/eventCategory/update/${eid}`, { category_name: category_name,category_status: status});
+        const res = await axios.post(`http://localhost:8000/api/admin/eventCategory/update/${id}`, { category_name: category_name,category_status: status});
         if (res.data.status === 200) {
             console.log(res.data.message);
             setMsg(res.data.message);
@@ -79,10 +79,9 @@ const EditEvent = () => {
                                                 </h4>
                                                 <h4 className="card-title">{msg} </h4>
                                             </div>
-                                            <div className="class-body"></div>
                                             <form onSubmit={updateEvent}>
-                                                <div className="form-group mb-3">
-                                                <label > Event Name</label>
+                                                <div className="col-12 col-sm-12 col-lg-12">
+                                                    <label > Event Name</label>
                                                     <input type="text" name="category_name" onChange={handleInput} className="form-control" placeholder={ename} />
                                                 </div>
 
@@ -96,7 +95,7 @@ const EditEvent = () => {
                                                     </fieldset>
                                                 </div>
                                             
-                                                <div className="form-group mb-3"style={{ "marginTop" :"10px"}}>
+                                                <div className="col-12 col-sm-12 col-lg-12" style={{ "marginTop" :"10px","marginBottom" :"10px"}}>
                                                 <button type="submit" className="btn btn-primary">Save Category</button>
                                                 </div>
                                             </form>

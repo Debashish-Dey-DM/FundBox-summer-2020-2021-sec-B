@@ -68,6 +68,11 @@ Route::get('/admin/manageAdminEvent/delete/{id}','Admin\EventController@ManageAd
 
 //getCategory
 Route::get('/admin/eventCategory','Admin\CategoryController@Index');
+Route::post('/admin/eventCategory','Admin\CategoryController@CreateCategory');
+Route::post('/admin/eventCategory/updateStatus','Admin\CategoryController@UpdateStatus');
+Route::post('/admin/eventCategory/delete','Admin\CategoryController@Delete');
+Route::post('/admin/eventCategory/update/{id}','Admin\CategoryController@Update');
+Route::get('/admin/eventCategory/singleCategory/{id}','Admin\CategoryController@SingleCategory');
 
 Route::post('/login','LoginController@Login');
 
