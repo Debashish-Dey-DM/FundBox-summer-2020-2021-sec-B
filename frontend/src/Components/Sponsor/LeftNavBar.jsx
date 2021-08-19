@@ -26,7 +26,7 @@ export default function LeftNavBar() {
                             Ongoing Events
                             </a>
                             <div className="sb-sidenav-menu-heading">Organisation</div>
-                            <a className="nav-link" href="#!">
+                            <a className="nav-link" href="/sp/ApplyOrg">
                             <div className="sb-nav-link-icon"><i className="fas fa-people-arrows" /></div>
                             Apply in Organisation
                             </a>

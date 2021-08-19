@@ -26,6 +26,8 @@ import ListOfAdvertise from './Components/Sponsor/ListOfAdvertise';
 import AddAdvertise from './Components/Sponsor/AddAdvertise';
 import OngoingEvents from './Components/Sponsor/OngoingEvents';
 import SpTransactionList from './Components/Sponsor/SpTransactionList';
+import ApplyOrg from './Components/Sponsor/ApplyOrg';
+import ApplyOrgForm from './Components/Sponsor/ApplyOrgForm';
 
 import EditCategory from './Components/Admin/EditCategory';
 import AdminHome from './Components/Admin/AdminHome';
@@ -166,6 +168,8 @@ function App() {
 <Route path="/sp/addAdvertise" component={AddAdvertise} />
 <Route path="/sp/OngoingEvents" component={OngoingEvents} />
 <Route path="/sp/SpTransactionList" component={SpTransactionList} />
+<Route path="/sp/ApplyOrg" component={ApplyOrg} />
+<Route path="/sp/ApplyOrgForm/:id" component={ApplyOrgForm} />
 
 
 
