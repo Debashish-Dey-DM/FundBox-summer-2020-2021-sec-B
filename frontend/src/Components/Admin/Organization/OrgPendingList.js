@@ -8,7 +8,7 @@ import TopNavbar from '../Layout/TopNavbar';
 const OrgPendingList = () => {
     let serial = 0;
     const [getEvent, setGetEvent] = useState([]);
-    const mount= async()=>{
+    const getPendingOrg= async()=>{
         const res = await axios.get('http://localhost:8000/api/admin/pendingOrg');
         console.log(res.data);
         
@@ -17,9 +17,26 @@ const OrgPendingList = () => {
         }
     }
 
+    const acceptOrg= async(id)=>{
+        const res = await axios.get(`http://localhost:8000/api/admin/pendingOrg/accept/${id}`);
+        if (res.status === 200) {
+            getPendingOrg(); 
+        }
+            
+    }
+
+    const deleteOrg = async(id)=>{
+        const res = await axios.get(`http://localhost:8000/api/admin/pendingOrg/delete/${id}`);
+        if (res.status === 200) {
+            getPendingOrg(); 
+        }
+            
+    }
+    
+
     
     useEffect(() => {
-        mount();    
+        getPendingOrg();    
     }, []);
 
     return (
@@ -57,12 +74,12 @@ const OrgPendingList = () => {
                                                         </td>
                                                         <td>
                                                             <small> <b>Phone:</b> {e.phone} </small>  <br/>
-                                                            <small> <b>Phone:</b> {e.address} </small> <br/>
+                                                            <small> <b>Address:</b> {e.address} </small> <br/>
                                                         </td>
                                                         <td>Pending</td>
                                                         <td>
-                                                            <Link to={`pendingOrgAccept/${e.id}`} className="btn btn-success btn-sm foat-end" > Accept </Link>
-                                                            <Link to={`pendingOrgdelete/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
+                                                            <a className="btn btn-success btn-sm foat-end"  onClick={()=> acceptOrg(e.id)}  aria-hidden="true" style={{"color": "#ffffff"}}>Accept</a>
+                                                            <a className="btn btn-danger btn-sm foat-end"  onClick={()=> deleteOrg(e.id)}  aria-hidden="true" style={{"color": "#ffffff"}}>Delete</a>
                                                         </td>
                                                     </tr>
                                                 );

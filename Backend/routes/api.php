@@ -50,7 +50,7 @@ Route::get('/admin/pendingOrg','Admin\OrganizationController@PendingOrg');
 Route::get('/admin/pendingOrg/accept/{id}','Admin\OrganizationController@PendingOrgAccept');
 Route::get('/admin/pendingOrg/delete/{id}','Admin\OrganizationController@PendingOrgDelete');
 Route::get('/admin/manageOrg','Admin\OrganizationController@ManageOrg');
-Route::get('/admin/manageOrg/block/{id}', 'Admin\OrganizationController@BlockOrg');
+Route::get('/admin/manageOrg/block/{id}/{status}', 'Admin\OrganizationController@BlockOrg');
 Route::post('/admin/createOrg','Admin\OrganizationController@CreateOrganisation');
 //event admin
 Route::post('/admin/createAdminEvent','Admin\EventController@CreateAdminEvent');

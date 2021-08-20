@@ -54,7 +54,7 @@ const ReportsList = () => {
                                                         <td>{serial += 1}</td>
                                                         <td>
                                                             {e.name} <br/>
-                                                            <small> <b>username:</b> {e.username} </small> 
+                                                            <small> <b>username:</b> {e.user_name} </small> 
                                                         </td>
                                                         <td>
                                                             <small>{e.details} </small>  <br/>

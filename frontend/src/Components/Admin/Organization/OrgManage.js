@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { useState,useEffect} from 'react';
 import LeftNavBar from '../Layout/LeftNavBar';
 import TopNavbar from '../Layout/TopNavbar';
+import { useHistory } from "react-router-dom";
 
 const OrgManage = () => {
+    const history = useHistory();
     let serial = 0;
     const [getEvent, setGetEvent] = useState([]);
-    const mount= async()=>{
+    const getData= async()=>{
         const res = await axios.get('http://localhost:8000/api/admin/manageOrg');
         console.log(res.data);
         
@@ -17,9 +19,27 @@ const OrgManage = () => {
         }
     }
 
+    const deleteOrg = async(id)=>{
+        const res = await axios.get(`http://localhost:8000/api/admin/pendingOrg/delete/${id}`);
+        if (res.status === 200) {
+            getData();
+        }
+            
+    }
+
+    const blockOrg = async(id,status)=>{
+        console.log(id)
+        console.log(status)
+        const res = await axios.get(`http://localhost:8000/api/admin/manageOrg/block/${id}/${status}`);
+        console.log(res.data.message);
+        if (res.status === 200) {
+            getData();
+        }
+            
+    }
     
     useEffect(() => {
-        mount();    
+        getData();    
     }, []);
 
     return (
@@ -58,12 +78,22 @@ const OrgManage = () => {
                                                         </td>
                                                         <td>
                                                             <small> <b>Phone:</b> {e.phone} </small>  <br/>
-                                                            <small> <b>Phone:</b> {e.address} </small> <br/>
+                                                            <small> <b>Address:</b> {e.address} </small> <br/>
                                                         </td>
                                                         <td>{e.status === 1 ? 'Active' : 'Deactive'}</td>
                                                         <td>
-                                                            <Link to={`pendingOrgdelete/${e.id}`} className="btn btn-danger btn-sm foat-end" > Delete </Link>
-                                                            <Link to={`orgManageBlock/${e.id}`} className="btn btn-danger btn-sm foat-end" style={{ "marginLeft" :"10px"}}> Block </Link>
+                                                            <a className="btn btn-danger btn-sm foat-end"  onClick={()=> deleteOrg(e.id)}  aria-hidden="true" style={{"color": "#ffffff"}}>Delete</a>
+                                                            {(() => {
+                                                                if (e.status === 1) {
+                                                                return (
+                                                                    <a className="btn btn-danger btn-sm foat-end"  onClick={()=> blockOrg(e.id,e.status) }  aria-hidden="true" style={{ "marginLeft" :"10px","color": "#ffffff"}} >Block</a>
+                                                                )
+                                                                } else if (e.status === 2) {
+                                                                return (
+                                                                    <a className="btn btn-danger btn-sm foat-end"  onClick={()=> blockOrg(e.id,e.status) }  aria-hidden="true" style={{ "marginLeft" :"10px","color": "#ffffff"}} >Unblock</a>
+                                                                )
+                                                                }
+                                                            })()}
                                                         </td>
                                                     </tr>
                                                 );
