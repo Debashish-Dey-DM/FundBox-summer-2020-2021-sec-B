@@ -13,7 +13,7 @@ const OrgDelete = () => {
     const mount= async()=>{
         const res = await axios.get(`http://localhost:8000/api/admin/pendingOrg/delete/${id}`);
         if (res.status === 200) {
-            setTimeout(() => { history.push('/admin/pendingOrg'); }, 0);
+            setTimeout(() => { history.push('/admin/orgManage'); }, 0);
         }
             
     }

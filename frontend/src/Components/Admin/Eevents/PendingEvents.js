@@ -8,7 +8,7 @@ import TopNavbar from '../Layout/TopNavbar';
 const PendingEvents = () => {
     let serial = 0;
     const [getEvent, setGetEvent] = useState([]);
-    const mount= async()=>{
+    const getPendingData= async()=>{
         const res = await axios.get('http://localhost:8000/api/admin/managePendingEvent');
         console.log(res.data);
         
@@ -19,19 +19,19 @@ const PendingEvents = () => {
 
     const acceptEvent = async(id)=>{
         const res = await axios.get(`http://localhost:8000/api/admin/managePendingEvent/accept/${id}`);
-        mount();
+        getPendingData();
         console.log(res.data.message);
     }
 
     const deleteEvent = async(id)=>{
         const res = await axios.get(`http://localhost:8000/api/admin/managePendingEvent/delete/${id}`);
-        mount();
+        getPendingData();
         console.log(res.data.message);
     }
 
     
     useEffect(() => {
-        mount();    
+        getPendingData();    
     }, []);
 
     return (

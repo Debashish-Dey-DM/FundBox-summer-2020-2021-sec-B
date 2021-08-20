@@ -62,8 +62,6 @@ const CreateAdminEvent = () => {
                 event_phone : '',
                 status: '1'
             })
-            setTimeout(() => { history.push('/admin/dashboard'); }, 500);
-            // 
         }
         else if (res.data.status === 240) {
             setMsg(res.data.message);

@@ -64,7 +64,7 @@ const ManageAcceptedEvents = () => {
                                                         <td>
                                                             <small> <b>contact:</b> {e.contact} </small>  <br/>
                                                             <small> <b>Category:</b> {e.eventCategory} </small> <br/>
-                                                            <small> <b>Event Type:</b> {e.eventType} </small> <br/>
+                                                            <small><b>Event Type:</b> {e.eventType === 1 ? 'Funding Event' : 'Volunteer Event'}</small><br/>
                                                             <small> <b>Target Money:</b> {e.targetMoney} </small> <br/>
                                                             <small> <b>Target Date:</b> {e.targetDate} </small>
                                                         </td>

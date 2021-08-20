@@ -32,7 +32,7 @@ const AdminVisitorList = () => {
                         <div className="col-sm-12 offset-sm-0" style={{ "marginTop" :"0px"}}>
                             <div className="card">
                                 <div className="card-header" style={{ "padding" :"5px"}}>
-                                    <h4 className="card-title"> All Visitor List </h4>
+                                    <h4 className="card-title"> All Volunteer Response List </h4>
                                     <input className="col-sm-3 offset-sm-9" type="text"
                                         placeholder="searching"
                                         onChange={e => {setSearch(e.target.value)}}

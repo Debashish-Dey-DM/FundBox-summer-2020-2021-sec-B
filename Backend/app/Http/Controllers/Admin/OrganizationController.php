@@ -295,11 +295,16 @@ class OrganizationController extends Controller
         }
     }
 
-    public function BlockOrg(Request $request,$id)
+    public function BlockOrg(Request $request,$id,$status)
     {
             
         $data=array();
-        $data['status']=2;
+        if($status == 1){
+            $data['status']=2;
+        }elseif($status == 2){
+            $data['status']=1;
+        }
+        
 
         $update= DB::table('organizations')
                         ->where('id',$id)
